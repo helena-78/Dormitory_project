@@ -1,4 +1,4 @@
-#topBar{
+#topBar {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -8,17 +8,17 @@
     background-color: white;
 }
 
-.topBarGroup{
+.topBarGroup {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    cursor:pointer;
+    cursor: pointer;
 }
 
-.topBarButton{
-padding: 5%;
+.topBarButton {
+    padding: 5%;
 }
 
-#loginImage{
-   margin-right: 20px;
+#loginImage {
+    margin-right: 20px;
 }
