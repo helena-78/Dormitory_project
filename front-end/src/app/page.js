@@ -4,8 +4,13 @@
 //import SignIn from "../../component/SignIn";
 import Blog from "../../component/LandingPage/Blog";
 
+import Profile from "../../component/LandingPage/Profile";
+
+
+
 export default function Home() {
   return (
-    <Blog/>
+    // <Blog/>
+    <Profile/>
   );
 }
