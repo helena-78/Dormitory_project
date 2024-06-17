@@ -1,11 +1,10 @@
-import * as React from 'react';
+import React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import XIcon from '@mui/icons-material/X';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Header from './Header_blog';
 import MainFeaturedPost from './MainFeaturedPost';
 import FeaturedPost from './FeaturedPost';
@@ -16,11 +15,21 @@ import post1 from './blog-post.1.md';
 import post2 from './blog-post.2.md';
 import post3 from './blog-post.3.md';
 
-
-
-const mainFeaturedPost = {
-  image: '/images/Dormitory.jpg',
-};
+const images = [
+  {
+    src: '/images/Dormitory.jpg',
+    alt: 'Dormitory',
+  },
+  {
+    src: '/images/AnotherImage.jpg',
+    alt: 'Another Image',
+  },
+  {
+    src: '/images/Dormitory.jpg',
+    alt: 'Dormitory',
+  },
+  // Add more images as needed
+];
 
 const featuredPosts = [
   {
@@ -66,21 +75,20 @@ const sidebar = {
   ],
 };
 
-// TODO remove, this demo shouldn't need to reset the theme.
 export default function Blog() {
   return (
-      <>
+    <>
       <CssBaseline />
       <Container maxWidth="lg">
-        <Header title="Blog"/>
+        <Header title="Blog" />
         <main>
-          <MainFeaturedPost post={mainFeaturedPost} />
-          <Grid container spacing={4}>
+          <MainFeaturedPost images={images} />
+          <Grid container spacing={4} sx={{ zIndex: 0, position: 'relative', marginTop: '20px' }}>
             {featuredPosts.map((post) => (
               <FeaturedPost key={post.title} post={post} />
             ))}
           </Grid>
-          <Grid container spacing={5} sx={{ mt: 3 }}>
+          <Grid container spacing={5} sx={{ mt: 3, zIndex: 0, position: 'relative' }}>
             <Main title="From the firehose" posts={posts} />
             <Sidebar
               title={sidebar.title}
