@@ -8,6 +8,7 @@ import BookingBlock from "component/Hershelia_BlookingBlock+Map/bookingBlock";
 import GoogleMap from "component/Hershelia_BlookingBlock+Map/Map"
 import Advantages from "component/Advantages"
 import Gallery from "component/Gallery"
+import Profile from "component/LandingPage/Profile";
 
 const images = [
   {
@@ -51,6 +52,7 @@ export default function Home() {
           <BookingBlock />
           <Gallery /> 
           <GoogleMap />
+          <Profile />
           <Footer />
       </Stack>
   </Box>
