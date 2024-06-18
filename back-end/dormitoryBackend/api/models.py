@@ -1,14 +1,15 @@
 from django.db import models
+from django.utils import timezone
 
 class Student(models.Model):
     student_id = models.BigAutoField(primary_key=True)
     name = models.TextField()
     surname = models.TextField()
-    email = models.EmailField(unique=True)
+    email = models.EmailField(unique=True,max_length=255)
     contact_number = models.BigIntegerField(null=True, blank=True)
     gender = models.TextField(choices=[('Male', 'Male'), ('Female', 'Female')])
     room = models.ForeignKey('Room', null=True, blank=True, on_delete=models.SET_NULL)
-    application = models.ForeignKey('Application', null=True, blank=True, on_delete=models.SET_NULL)
+    application = models.ForeignKey('Application', null=True, blank=True, on_delete=models.SET_NULL, related_name='students')
     password = models.TextField()
 
 class Room(models.Model):
@@ -21,11 +22,12 @@ class Room(models.Model):
 
 class Application(models.Model):
     application_id = models.BigAutoField(primary_key=True)
-    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='applications')
     room = models.ForeignKey(Room, null=True, blank=True, on_delete=models.CASCADE)
     status = models.TextField(choices=[('Submitted', 'Submitted'), ('Approved', 'Approved'), ('Rejected', 'Rejected')])
     application_date = models.DateTimeField(auto_now_add=True)
-    desired_roommates = models.TextField(null=True, blank=True)
+    desired_roommate1 = models.TextField(null=True, blank=True)
+    desired_roommate2 = models.TextField(null=True, blank=True)
 
 class Booking(models.Model):
     booking_id = models.BigAutoField(primary_key=True)
