@@ -11,7 +11,9 @@ const Profile = () => {
     <div className={styles.profile}>
       <div className={styles.avatar}>
         <img className={styles.avatar} src="/profilephoto.png" alt="Avatar" />
+        <button className={styles.editProfileButton}>Редагувати профіль</button>
       </div>
+      
       <div className={styles.userData}>
         <h2 className={styles.profileText}>Мій профіль</h2>
         <div className={styles.form}>
@@ -47,6 +49,9 @@ const Profile = () => {
     <div className={styles.room}>
       <p>№511</p>
     </div>
+    <div className={styles.roomImage}>
+          <img src="/RoomImage.jpg" alt="Room Image" />
+        </div>
     </div>
     
   </div>
