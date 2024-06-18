@@ -45,7 +45,7 @@ export default function () {
             </div>
             <Divider></Divider>
         </div>
-    <div style={{height: '100vh'}}></div>
+
         </>
     );
 }
