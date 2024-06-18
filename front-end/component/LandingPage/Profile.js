@@ -50,7 +50,7 @@ const Profile = () => {
       <p>№511</p>
     </div>
     <div className={styles.roomImage}>
-          <img src="/RoomImage.jpg" alt="Room Image" />
+          <img src="/8_bed_1st.jpg" alt="Room Image" />
         </div>
     </div>
     
