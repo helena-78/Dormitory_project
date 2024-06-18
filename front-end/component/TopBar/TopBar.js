@@ -6,7 +6,7 @@ import IconButton from "@mui/material/IconButton";
 import LoginIcon from '@mui/icons-material/Login';
 
 export default function () {
-    const LogoImage = () => (<Image src="/LogoTopBar.png" height={70} width={70} alt=""/>);
+    const LogoImage = () => (<Image src="/images/TopBar/LogoTopBar.png" height={70} width={70} alt=""/>);
 
     return (
         <div id={'topBar'}>

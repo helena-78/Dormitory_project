@@ -4,7 +4,7 @@ import styles from "./Footer.css"
 import Divider from '@mui/material/Divider';
 
 export default function () {
-    const LogoImage = () => (<Image src="/LogoFooter.png" height={200} width={200} alt=""/>);
+    const LogoImage = () => (<Image src="/images/Footer/LogoFooter.png" height={200} width={200} alt=""/>);
 
     return (
         <>

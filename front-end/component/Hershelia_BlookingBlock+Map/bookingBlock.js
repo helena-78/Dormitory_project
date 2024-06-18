@@ -10,7 +10,7 @@ const BookingBlock = () => {
     return (
       <div className={styles.bookingBlock}>
         <div className={styles.icon}>
-        <img src="/night_shelter.png" alt="Bed Icon" />
+        <img src="/images/BookingBlock/night_shelter.png" alt="Bed Icon" />
         </div>
         <div className={styles.details}>
           <p>1 місце в трьохмісній кімнаті</p>

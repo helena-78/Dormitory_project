@@ -4,7 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aac95de3-22e8-4717-8dd6-c55d8b1ea068" name="Changes" comment="changed login icon" />
+    <list default="true" id="aac95de3-22e8-4717-8dd6-c55d8b1ea068" name="Changes" comment="changed login icon">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_16_2024_2_31_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_16_2024_2_31_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/component/Footer/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/component/Footer/Footer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/component/Hershelia_BlookingBlock+Map/bookingBlock.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/component/Hershelia_BlookingBlock+Map/bookingBlock.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/component/Hershelia_BlookingBlock+Map/night_shelter.png" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/public/images/BookingBlock/night_shelter.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/component/TopBar/TopBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/component/TopBar/TopBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/public/LogoFooter.png" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/public/images/Footer/LogoFooter.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/public/LogoTopBar.png" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/public/images/TopBar/LogoTopBar.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/public/images/left_arrow.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/public/images/night_shelter.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/public/images/right_arrow.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/public/next.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/public/night_shelter.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/public/profilephoto.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/public/vercel.svg" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -54,7 +70,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "shapovalenko",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "E:/SoftServe2024",
     "list.type.of.created.stylesheet": "CSS",
@@ -70,6 +86,9 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\SoftServe2024\front-end\public\images\BookingBlock" />
+      <recent name="E:\SoftServe2024\front-end\public\images\TopBar" />
+      <recent name="E:\SoftServe2024\front-end\public\images\Footer" />
       <recent name="E:\SoftServe2024\front-end\component\TopBar" />
       <recent name="E:\SoftServe2024\front-end\public" />
     </key>
