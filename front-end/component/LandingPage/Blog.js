@@ -16,6 +16,12 @@ import post1 from './blog-post.1.md';
 import post2 from './blog-post.2.md';
 import post3 from './blog-post.3.md';
 
+import BookingBlock from './bookingBlock'; 
+
+import GoogleMap from './Map'; 
+
+import Profile from "../../component/LandingPage/Profile";
+
 
 
 const mainFeaturedPost = {
@@ -95,6 +101,18 @@ export default function Blog() {
               social={sidebar.social}
             />
           </Grid>
+          <div>
+      <h1>Бронювання гуртожитку</h1>
+      <BookingBlock />
+    </div>
+    <div>
+    <GoogleMap />
+    </div>
+
+    <div>
+      <Profile />
+    </div>
+   
         </main>
       </Container>
       <Footer
