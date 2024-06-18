@@ -16,7 +16,7 @@ const images = [
     "/images/gallery/img_10.jpg",
 ]
 
-export const Gallery = () => {
+ const Gallery = () => {
     const [min, setMin] = useState(0)
     const [max, setMax] = useState(5)
 
@@ -71,5 +71,7 @@ export const Gallery = () => {
     
   )
 }
+
+export default Gallery
 
 
