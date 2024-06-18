@@ -1,6 +1,6 @@
 import Image from "next/image"
 
-export const Advantages = () => {
+ const Advantages = () => {
   return (
     <div className="container">
         <div className="advantage-block">
@@ -36,3 +36,5 @@ export const Advantages = () => {
     </div>
   )
 }
+
+export default Advantages;
