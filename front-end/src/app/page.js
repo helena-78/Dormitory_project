@@ -44,11 +44,12 @@ export default function Home() {
           alignItems="center"
           spacing={4}
           sx={{ width: '100%',
-                paddingTop: '10vh',
-                height: '100vh + 10px' }}  // Ensure Stack takes full height
+                paddingTop: '10vh', }}  // Ensure Stack takes full height
       >
-          <img src="/images/Dormitory.jpg" alt="Dormitory" style= {{width: '100%', height: '500px' }}/>
-          <BookingBlock />
+      
+          <img src="/images/Dormitory.jpg" alt="Dormitory" style= {{width: '100%', height: '800px' }}/>
+          {/*<MainFeaturedPost images={images} />*/}
+          <BookingBlock /> 
           <GoogleMap />
           <Footer />
       </Stack>
