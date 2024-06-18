@@ -1,11 +1,9 @@
-'use client'
-import Image from "next/image";
-import styles from "./page.module.css";
-import SignIn from "../../component/SignIn";
-import Blog from "../../component/LandingPage/Blog";
+import { Advantages } from "../../component/Advantages";
+import { Gallery } from "../../component/Gallery";
+import styles from "./globals.css";
 
 export default function Home() {
   return (
-    <Blog/>
+    <Gallery />
   );
 }
