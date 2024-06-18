@@ -1,9 +1,6 @@
 'use client'
-import Image from "next/image";
 import styles from "./page.module.css";
 import Box from '@mui/material/Box';
-import Blog from "../../component/LandingPage/Blog";
-import TopBar from "../../component/TopBar/TopBar";
 import Footer from "../../component/Footer/Footer";
 import Stack from '@mui/material/Stack';
 import MainFeaturedPost from "component/LandingPage/MainFeaturedPost";
@@ -37,7 +34,6 @@ export default function Home() {
           flexDirection: 'column'
       }}
   >
-  <TopBar />
       <Stack
           direction="column"
           justifyContent="flex-start"

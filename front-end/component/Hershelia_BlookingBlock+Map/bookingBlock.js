@@ -1,9 +1,12 @@
 import * as React from 'react';
+import { useRouter } from 'next/navigation'
 
 
 import styles from './BookingBlock.module.css';
 
 const BookingBlock = () => {
+  const router = useRouter()
+
     return (
       <div className={styles.bookingBlock}>
         <div className={styles.icon}>
@@ -15,7 +18,7 @@ const BookingBlock = () => {
           <p>СТАЛА ЦІНА</p>
           <p className={styles.price}>800₴</p>
         </div>
-        <button className={styles.bookButton}>Забронювати</button>
+        <button className={styles.bookButton} onClick={() => router.push('/order')}>Забронювати</button>
       </div>
     );
   };
