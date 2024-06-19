@@ -17,6 +17,10 @@ class CreateApplication(generics.ListCreateAPIView):
     queryset=Application.objects.all()
     serializer_class=ApplicationSerializer
 
+class CreateBooking(generics.ListCreateAPIView):
+    queryset = Booking.objects.all()
+    serializer_class = BookingSerializer
+
 class StudentRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset=Student.objects.all()
     serializer_class=StudentSerializer
@@ -26,6 +30,11 @@ class RoomRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset=Room.objects.all()
     serializer_class=RoomSerializer
     lookup_field="pk"
+
+class BookingRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Booking.objects.all()
+    serializer_class = BookingSerializer
+    lookup_field = "pk"
 
 @api_view(['GET'])
 def check_room_availability(request, room_id):
@@ -39,35 +48,24 @@ def check_room_availability(request, room_id):
     else:
         return Response({'available': False, 'available_places': room.available_places}, status=status.HTTP_200_OK)
 
-# @api_view(['POST'])
-# def create_application(request):
-#     data = request.data
-#     serializer = ApplicationSerializer(data=data)
-#     if serializer.is_valid():
-#         serializer.save()
-#         return Response(serializer.data, status=status.HTTP_201_CREATED)
-#     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+@api_view(['POST'])
+def book_room(request):
+    student_id = request.data.get('student_id')
+    room_id = request.data.get('room_id')
 
-# @api_view(['GET'])
-# def check_room_availability(request, application_id):
-#     try:
-#         application = Application.objects.get(application_id=application_id)
-#     except Application.DoesNotExist:
-#         return Response(status=status.HTTP_404_NOT_FOUND)
+    try:
+        student = Student.objects.get(pk=student_id)
+        room = Room.objects.get(pk=room_id)
+    except Student.DoesNotExist:
+        return Response({'error': 'Student not found'}, status=status.HTTP_404_NOT_FOUND)
+    except Room.DoesNotExist:
+        return Response({'error': 'Room not found'}, status=status.HTTP_404_NOT_FOUND)
 
-#     desired_roommates = application.desired_roommates.split(',')
-#     students = Student.objects.filter(name__in=desired_roommates)
+    if room.available_places <= 0:
+        return Response({'error': 'No available places in this room'}, status=status.HTTP_400_BAD_REQUEST)
 
-#     if not students:
-#         return Response({'detail': 'No matching students found'}, status=status.HTTP_404_NOT_FOUND)
+    booking = Booking.objects.create(student=student, room=room, confirmation_status='Pending')
+    room.available_places -= 1
+    room.save()
 
-#     room_count = Room.objects.filter(available_places__gte=len(students) + 1).count()
-
-#     if room_count > 0:
-#         room = Room.objects.filter(available_places__gte=len(students) + 1).first()
-#         for student in students:
-#             Booking.objects.create(student=student, room=room, confirmation_status='Pending')
-#         Booking.objects.create(student=application.student, room=room, confirmation_status='Pending')
-#         return Response({'room_id': room.room_id}, status=status.HTTP_200_OK)
-#     else:
-#         return Response({'detail': 'No available rooms for the specified number of students'}, status=status.HTTP_404_NOT_FOUND)
+    return Response({'success': 'Room booked successfully', 'booking_id': booking.booking_id}, status=status.HTTP_201_CREATED)
