@@ -36,6 +36,13 @@ class BookingRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = BookingSerializer
     lookup_field = "pk"
 
+class RoomsByFloor(generics.ListAPIView):
+    serializer_class = RoomSerializer
+
+    def get_queryset(self):
+        floor = self.kwargs['floor']
+        return Room.objects.filter(floor=floor)
+
 @api_view(['GET'])
 def check_room_availability(request, room_id):
     try:
@@ -52,6 +59,7 @@ def check_room_availability(request, room_id):
 def book_room(request):
     student_id = request.data.get('student_id')
     room_id = request.data.get('room_id')
+    desired_roommate_id = request.data.get('desired_roommate_id')
 
     try:
         student = Student.objects.get(pk=student_id)
@@ -64,7 +72,17 @@ def book_room(request):
     if room.available_places <= 0:
         return Response({'error': 'No available places in this room'}, status=status.HTTP_400_BAD_REQUEST)
 
-    booking = Booking.objects.create(student=student, room=room, confirmation_status='Pending')
+    if not desired_roommate_id:
+        desired_roommate = None
+    
+    try:
+        desired_roommate = Student.objects.get(pk=desired_roommate_id)
+        if desired_roommate.room and desired_roommate.room != room:
+            return Response({'error': 'Desired roommate is in a different room'}, status=status.HTTP_400_BAD_REQUEST)
+    except Student.DoesNotExist:
+        return Response({'error': 'Desired roommate not found'}, status=status.HTTP_404_NOT_FOUND)
+    
+    booking = Booking.objects.create(student=student, room=room, confirmation_status='Pending', desired_roommate=desired_roommate)
     room.available_places -= 1
     room.save()
 
