@@ -8,51 +8,59 @@ import BookingBlock from "component/Hershelia_BlookingBlock+Map/bookingBlock";
 import GoogleMap from "component/Hershelia_BlookingBlock+Map/Map"
 import Advantages from "component/Advantages"
 import Gallery from "component/Gallery"
+import SignIn from "../../component/SignIn/SignIn"
+import {useState} from "react";
+import TopBar from "../../component/TopBar/TopBar";
 
 const images = [
-  {
-    src: '/images/Dormitory.jpg',
-    alt: 'Dormitory',
-  },
-  {
-    src: '/images/Dormitory.jpg',
-    alt: 'Another Image',
-  },
-  {
-    src: '/images/Dormitory.jpg',
-    alt: 'Dormitory',
-  },
-  // Add more images as needed
+    {
+        src: '/images/Dormitory.jpg',
+        alt: 'Dormitory',
+    },
+    {
+        src: '/images/Dormitory.jpg',
+        alt: 'Another Image',
+    },
+    {
+        src: '/images/Dormitory.jpg',
+        alt: 'Dormitory',
+    },
+    // Add more images as needed
 ];
 
 export default function Home() {
+    const [popUpState, changePopUpState] = useState(false);
+
     return (
-      <Box
-      sx={{
-          height: '100vh',
-          width: '100vw',
-          overflow: 'auto',  // Allows scrolling when content overflows
-          display: 'flex',
-          flexDirection: 'column'
-      }}
-  >
-      <Stack
-          direction="column"
-          justifyContent="flex-start"
-          alignItems="center"
-          spacing={10}
-          sx={{ width: '100%',
-                paddingTop: '10vh', }}  // Ensure Stack takes full height
-      >
-      
-          <img src="/images/Dormitory.jpg" alt="Dormitory" style= {{width: '100%', height: '800px' }}/>
-          <Advantages />
-          {/*<MainFeaturedPost images={images} />*/}
-          <BookingBlock />
-          <Gallery /> 
-          <GoogleMap />
-          <Footer />
-      </Stack>
-  </Box>
+        <Box
+            sx={{
+                height: '100vh',
+                width: '100vw',
+                overflow: 'auto',  // Allows scrolling when content overflows
+                display: 'flex',
+                flexDirection: 'column'
+            }}
+        >
+            <TopBar showPopUp={changePopUpState} visibility={popUpState}/>
+            <SignIn hidePopUp={changePopUpState} visibility={popUpState}/>
+            <Stack
+                direction="column"
+                justifyContent="flex-start"
+                alignItems="center"
+                spacing={10}
+                sx={{
+                    width: '100%',
+                    paddingTop: '10vh',
+                }}  // Ensure Stack takes full height
+            >
+                <img src="/images/Dormitory.jpg" alt="Dormitory" style={{width: '100%', height: '800px'}}/>
+                <Advantages/>
+                {/*<MainFeaturedPost images={images} />*/}
+                <BookingBlock/>
+                <Gallery/>
+                <GoogleMap/>
+                <Footer/>
+            </Stack>
+        </Box>
     );
 }

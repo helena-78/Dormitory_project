@@ -1,0 +1,19 @@
+#signInBlock {
+    position: fixed;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    background-color: #cccccc;
+    opacity: 0.9;
+}
+
+#closeButtonContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+#closeButton:hover{
+    opacity: 0.8;
+}

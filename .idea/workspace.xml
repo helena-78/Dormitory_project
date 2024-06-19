@@ -4,7 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aac95de3-22e8-4717-8dd6-c55d8b1ea068" name="Changes" comment="changed login icon" />
+    <list default="true" id="aac95de3-22e8-4717-8dd6-c55d8b1ea068" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/component/Footer/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/component/Footer/Footer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/component/SignIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/component/SignIn/SignIn.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/component/TopBar/TopBar.css" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/component/TopBar/TopBar.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/component/TopBar/TopBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/component/TopBar/TopBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/public/LogoFooter.png" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/public/images/Footer/LogoFooter.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/public/LogoTopBar.png" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/public/images/TopBar/LogoTopBar.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/public/next.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/public/night_shelter.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/public/profilephoto.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/public/vercel.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/app/layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/layout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/app/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/page.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -50,29 +64,49 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "E:/SoftServe2024",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.keymap",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.1.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Node.js.TopBar.js.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;shapovalenko&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/SoftServe2024/front-end/public&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.1.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\SoftServe2024\front-end\component\TopBar" />
+    <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\SoftServe2024\front-end\public" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\SoftServe2024\front-end\component\SignIn" />
+      <recent name="E:\SoftServe2024\front-end\public\images" />
+      <recent name="E:\SoftServe2024\front-end\public\Footer" />
+      <recent name="E:\SoftServe2024\front-end\public\TopBar" />
+      <recent name="E:\SoftServe2024\front-end\component\TopBar" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -99,6 +133,8 @@
       <workItem from="1718623265300" duration="288000" />
       <workItem from="1718625695242" duration="1983000" />
       <workItem from="1718627862554" duration="614000" />
+      <workItem from="1718730731410" duration="5294000" />
+      <workItem from="1718791405254" duration="16173000" />
     </task>
     <task id="LOCAL-00001" summary="Added TopBar">
       <option name="closed" value="true" />
@@ -132,7 +168,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718627666025</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="removed unnecessary images">
+      <option name="closed" value="true" />
+      <created>1718718802642</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1718718802642</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -154,6 +198,7 @@
     <MESSAGE value="styles were separated from js&#10;minor changes to topBar" />
     <MESSAGE value="added styles import" />
     <MESSAGE value="changed login icon" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed login icon" />
+    <MESSAGE value="removed unnecessary images" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed unnecessary images" />
   </component>
 </project>

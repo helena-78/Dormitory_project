@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import TopBar from "component/TopBar/TopBar";
 import "./globals.css";
+import SignIn from "../../component/SignIn/SignIn";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,7 +14,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" >
       <body className={inter.className}>
-      {<TopBar/>}
       {children}
       </body>
     </html>
