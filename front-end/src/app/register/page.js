@@ -1,4 +1,6 @@
-import * as React from 'react';
+"use client"
+import React from 'react';
+import { useRouter } from 'next/navigation'; // Використання next/navigation для маршрутизації
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -14,21 +16,32 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
 export default function SignUp() {
-  
+  const router = useRouter();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const user = {
+      firstName: data.get('firstName'),
+      lastName: data.get('lastName'),
+      gender: data.get('gender'),
+      email: data.get('email'),
+      phone: data.get('phone'),
+      password: data.get('password'),
+    };
+
+    // Зберігання даних в LocalStorage
+    localStorage.setItem('user', JSON.stringify(user));
+    alert('Дані збережено локально!');
+
+    // Перенаправлення на сторінку авторизації
+    router.push('/login');
+  };
+
+  const handleClear = () => {
+    document.getElementById('registration-form').reset();
+  };
 
   return (
     <Container component="main" maxWidth="xs" sx={{ marginTop: 20 }}>
@@ -47,7 +60,7 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Реєстрація
         </Typography>
-        <Box component="form"   sx={{ mt: 1 }}>
+        <Box component="form" id="registration-form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <Button variant="contained" component="label" fullWidth>
@@ -127,7 +140,7 @@ export default function SignUp() {
             fullWidth
             variant="outlined"
             sx={{ mt: 1, mb: 2 }}
-       
+            onClick={handleClear}
           >
             Очистити
           </Button>
@@ -140,18 +153,6 @@ export default function SignUp() {
           </Grid>
         </Box>
       </Box>
-     
     </Container>
   );
 }
-
- //Для подальшої обробки полів
-// onClick={() => {
-//   document.getElementById('firstName').value = '';
-//   document.getElementById('lastName').value = '';
-//   document.getElementById('email').value = '';
-//   document.getElementById('phone').value = '';
-//   document.getElementById('password').value = '';
-//   document.querySelector('input[name="gender"][value="Чоловіча"]').checked = false;
-//   document.querySelector('input[name="gender"][value="Жіноча"]').checked = false;
-// }}

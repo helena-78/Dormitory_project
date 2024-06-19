@@ -1,4 +1,6 @@
-import * as React from 'react';
+"use client"
+import React from 'react';
+import { useRouter } from 'next/navigation'; // Використання next/navigation для маршрутизації
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -26,11 +28,29 @@ function Copyright(props) {
 }
 
 export default function SignIn() {
-  
+  const router = useRouter();
+
+  const handleLogin = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const email = data.get('email');
+    const password = data.get('password');
+
+    // Отримання даних з LocalStorage
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+
+    if (storedUser && storedUser.email === email && storedUser.password === password) {
+      alert('Авторизація успішна!');
+      // Перенаправлення на головну сторінку
+      router.push('/');
+    } else {
+      alert('Невірний email або пароль!');
+    }
+  };
 
   return (
     <Container component="main" maxWidth="xs" sx={{ marginTop: 30 }}>
-       <CssBaseline />
+      <CssBaseline />
       <Box
         sx={{
           marginTop: 8,
@@ -45,7 +65,7 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Авторизація
         </Typography>
-        <Box component="form"  noValidate sx={{ mt: 1 }}>
+        <Box component="form" onSubmit={handleLogin} noValidate sx={{ mt: 1 }}>
           <TextField
             margin="normal"
             required
@@ -92,7 +112,6 @@ export default function SignIn() {
           </Grid>
         </Box>
       </Box>
-     
     </Container>
   );
 }
