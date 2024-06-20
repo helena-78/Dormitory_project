@@ -9,7 +9,7 @@ import GoogleMap from "component/Hershelia_BlookingBlock+Map/Map"
 import Advantages from "component/Advantages"
 import Gallery from "component/Gallery"
 
-const images = [
+const images2 = [
   {
     src: '/images/Dormitory.jpg',
     alt: 'Dormitory',
@@ -30,24 +30,23 @@ export default function Home() {
       <Box
       sx={{
           height: '100vh',
-          width: '100vw',
-          overflow: 'auto',  // Allows scrolling when content overflows
+          width: '100vw',  // Allows scrolling when content overflows
           display: 'flex',
-          flexDirection: 'column'
+          flexDirection: 'column',
+          paddingTop: '10vh',
       }}
-  >
+  > 
+      <Box sx = {{paddingBottom: '100px', height: '1000px'}}><MainFeaturedPost images={images2} /></Box>
       <Stack
           direction="column"
           justifyContent="flex-start"
           alignItems="center"
           spacing={10}
-          sx={{ width: '100%',
-                paddingTop: '10vh', }}  // Ensure Stack takes full height
+          sx={{ width: '100%', }}  // Ensure Stack takes full height
       >
-      
-          <img src="/images/Dormitory.jpg" alt="Dormitory" style= {{width: '100%', height: '800px' }}/>
+          
+          {/*<img src="/images/Dormitory.jpg" alt="Dormitory" style= {{width: '100%', height: '800px' }}/>*/}
           <Advantages />
-          {/*<MainFeaturedPost images={images} />*/}
           <BookingBlock />
           <Gallery /> 
           <GoogleMap />
