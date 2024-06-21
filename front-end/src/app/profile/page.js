@@ -41,7 +41,7 @@ const Profile = () => {
             <div className={styles.formRow}>
               <div className={styles.formGroup}>
                 <label className={styles.profileLabel}>ID</label>
-                <p className={styles.textBox}>{user.id || '12345'}</p>
+                <p className={styles.textBox}>{user.id || ''}</p>
               </div>
               <div className={styles.formGroup}>
                 <label className={styles.profileLabel}>Телефон</label>
