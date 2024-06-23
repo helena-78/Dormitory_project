@@ -3,14 +3,10 @@ import styles from "./page.module.css";
 import Box from '@mui/material/Box';
 import Footer from "../../component/Footer/Footer";
 import Stack from '@mui/material/Stack';
-import MainFeaturedPost from "component/LandingPage/MainFeaturedPost";
 import BookingBlock from "component/Hershelia_BlookingBlock+Map/bookingBlock";
 import GoogleMap from "component/Hershelia_BlookingBlock+Map/Map"
 import Advantages from "component/Advantages"
 import Gallery from "component/Gallery"
-import SignIn from "../../component/SignIn/SignIn"
-import {useState} from "react";
-import TopBar from "../../component/TopBar/TopBar";
 
 const images = [
     {
@@ -29,8 +25,6 @@ const images = [
 ];
 
 export default function Home() {
-    const [popUpState, changePopUpState] = useState(false);
-
     return (
         <Box
             sx={{
@@ -41,8 +35,6 @@ export default function Home() {
                 flexDirection: 'column'
             }}
         >
-            <TopBar showPopUp={changePopUpState} visibility={popUpState}/>
-            <SignIn hidePopUp={changePopUpState} visibility={popUpState}/>
             <Stack
                 direction="column"
                 justifyContent="flex-start"

@@ -1,0 +1,8 @@
+#selectContainer{
+    padding-left: 10vh;
+    padding-right: 15vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}

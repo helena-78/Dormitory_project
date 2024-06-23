@@ -1,0 +1,11 @@
+.selectBlock{
+    display: flex;
+    padding-top: 20vh;
+    flex-direction: row;
+    padding-left: 10vh;
+    justify-content: space-between;
+    width: 20%;
+    max-width: 50%;
+    min-width: 13%;
+    align-items: center;
+}
