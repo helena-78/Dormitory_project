@@ -36,4 +36,4 @@ class Booking(models.Model):
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
     booking_date = models.DateTimeField(auto_now_add=True)
     confirmation_status = models.TextField(choices=[('Confirmed', 'Confirmed'), ('Pending', 'Pending'), ('Cancelled', 'Cancelled')])
-    desired_roommate = models.ForeignKey(Student, related_name='desired_roommate', null=True, blank=True, on_delete=models.SET_NULL)
+    desired_roommates = models.ForeignKey(Student, related_name='desired_roommate', null=True, blank=True, on_delete=models.SET_NULL)
