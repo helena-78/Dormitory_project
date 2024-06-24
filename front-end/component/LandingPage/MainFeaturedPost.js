@@ -34,7 +34,7 @@ function MainFeaturedPost(props) {
     
       <Slider {...settings}>
         {images.map((image, index) => (
-          <div key={index} style={{ height: '600px' }}>
+          <div key={index} style={{ height: '600px',}}>
             <img 
               src={image.src} 
               alt={image.alt} 

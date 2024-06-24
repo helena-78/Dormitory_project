@@ -40,7 +40,7 @@
 .gallery {
   margin: 50px 0;
   height: 205px;
-  width: 1640px;
+  width: 90%;
   display: flex;
   justify-content: center;  
 }
