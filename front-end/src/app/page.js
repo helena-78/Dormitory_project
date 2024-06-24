@@ -27,7 +27,7 @@ const images2 = [
 
 export default function Home() {
     return (
-      <Box
+    <Box
       sx={{
           height: '100vh',
           width: '100vw',  // Allows scrolling when content overflows

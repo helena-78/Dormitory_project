@@ -8,7 +8,8 @@ import Image from "next/image"
                 <Image 
                     src="/icons/wifi.png"
                     width={70}
-                    height={70}   
+                    height={70}  
+
                 />
             </div>
             <p className="advantage-text">На території гуртожитку надається безкоштовний WiFi.</p>
