@@ -1,6 +1,6 @@
 "use client"
 import React from 'react';
-import { useRouter } from 'next/navigation'; // Використання next/navigation для маршрутизації
+import { useRouter } from 'next/navigation';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -30,21 +30,35 @@ function Copyright(props) {
 export default function SignIn() {
   const router = useRouter();
 
-  const handleLogin = (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const email = data.get('email');
     const password = data.get('password');
 
-    // Отримання даних з LocalStorage
-    const storedUser = JSON.parse(localStorage.getItem('user'));
+    try {
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
 
-    if (storedUser && storedUser.email === email && storedUser.password === password) {
-      alert('Авторизація успішна!');
-      // Перенаправлення на головну сторінку
-      router.push('/');
-    } else {
-      alert('Невірний email або пароль!');
+      const result = await response.json();
+
+      if (response.ok) {
+        alert('Авторизація успішна!');
+        // Можливо, зберегти токен авторизації або іншу інформацію користувача
+        localStorage.setItem('user', JSON.stringify(result.user));
+        // Перенаправлення на головну сторінку
+        router.push('/');
+      } else {
+        alert(`Помилка авторизації: ${result.error}`);
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      alert(`Помилка: ${error.message}`);
     }
   };
 

@@ -1,6 +1,6 @@
 "use client"
 import React from 'react';
-import { useRouter } from 'next/navigation'; // Використання next/navigation для маршрутизації
+import { useRouter } from 'next/navigation';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -19,7 +19,7 @@ import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 export default function SignUp() {
   const router = useRouter();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const user = {
@@ -31,12 +31,33 @@ export default function SignUp() {
       password: data.get('password'),
     };
 
-    // Зберігання даних в LocalStorage
-    localStorage.setItem('user', JSON.stringify(user));
-    alert('Дані збережено локально!');
+    console.log('User data:', user); // Виведення даних користувача в консоль
 
-    // Перенаправлення на сторінку авторизації
-    router.push('/login');
+    try {
+      const response = await fetch('/api/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(user),
+      });
+
+      console.log('Response:', response); // Виведення об'єкта response в консоль
+
+      if (response.ok) {
+        const responseData = await response.json();
+        console.log('Response Data:', responseData); // Виведення даних відповіді в консоль
+        alert('Реєстрація успішна!');
+        router.push('/login');
+      } else {
+        const errorData = await response.json();
+        console.error('Error Data:', errorData); // Виведення даних помилки в консоль
+        alert(`Помилка реєстрації: ${errorData.error}`);
+      }
+    } catch (error) {
+      console.error('Catch Error:', error); // Виведення помилки в консоль
+      alert(`Помилка: ${error.message}`);
+    }
   };
 
   const handleClear = () => {
@@ -146,7 +167,7 @@ export default function SignUp() {
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="/login" variant="body2">
                 Маєте аккаунт? Увійти
               </Link>
             </Grid>
