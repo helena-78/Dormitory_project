@@ -8,12 +8,12 @@ urlpatterns=[
     path("rooms/", views.create_room, name="create-room"),
     path("rooms/<int:room_id>/", views.get_room, name="get-room"),
     path("rooms/<int:room_id>/update/", views.update_room, name="update-room"),
+    path("rooms/floor/<int:floor>/", views.get_rooms_by_floor, name="rooms-by-floor"), 
     # path("students/<int:student_id>/applications", views.create_application, name="create-application"),
     # path("students/<int:student_id>/applications/", views.get_application, name="get-application"),
     # path("students/<int:student_id>/applications/status/", views.update_application_status, name="update-application-status"),
     # path("bookings/", views.CreateBooking.as_view(), name="create-booking"),
     # path("bookings/<int:pk>/", views.BookingRetrieveUpdateDestroy.as_view(), name="booking-update"),
-    # path("rooms/<int:room_id>/availability/", views.check_room_availability, name="check-room-availability"),
-    # path("rooms/floor/<int:floor>/", views.RoomsByFloor.as_view(), name="rooms-by-floor"), 
+    path('rooms/check_availability/', views.check_room_availability, name='check_room_availability'),
     # path("book_room/", views.book_room, name="book-room")
 ]
