@@ -1,3 +1,5 @@
+'use client'
+import Room from 'component/Room/Room';
 import React, { useEffect, useState } from 'react';
 import { Box, Button, Grid, CircularProgress } from '@mui/material';
 
@@ -124,7 +126,7 @@ const FloorLayout = () => {
       border: '1px solid black',
       display: 'flex',
       alignItems: 'center',
-      justifyContent: 'center',
+      justifyContent: 'center'
     });
 
     if (loading) {
@@ -137,10 +139,11 @@ const FloorLayout = () => {
           {firstRowItems.map((item, idx) => (
             <Grid item xs={1} key={item.room_id + idx} sx={getContentStyle()}>
               <Box>
-                <div>{`Room № ${item.number}`}</div>
+                <Room item ={item}/>
+                {/* <div>{`Room № ${item.number}`}</div>
                 <div>{`Places left: ${item.available_places}`}</div>
                 <div>{`price: ${item.price}`}</div>
-                <div>{`Gender: ${item.gender}`}</div>
+                <div>{`Gender: ${item.gender}`}</div> */}
               </Box>
             </Grid>
           ))}
@@ -150,10 +153,11 @@ const FloorLayout = () => {
           {secondRowItems.map((item, idx) => (
             <Grid item xs={1} key={item.room_id + idx} sx={getContentStyle()}>
               <Box>
-                <div>{`Room № ${item.number}`}</div>
+                <Room/>
+                {/* <div>{`Room № ${item.number}`}</div>
                 <div>{`Places left: ${item.available_places}`}</div>
                 <div>{`price: ${item.price}`}</div>
-                <div>{`Gender: ${item.gender}`}</div>
+                <div>{`Gender: ${item.gender}`}</div> */}
               </Box>
             </Grid>
           ))}

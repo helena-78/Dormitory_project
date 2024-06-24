@@ -1,0 +1,88 @@
+
+.room-container {
+    width: 103px;
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.room-block {
+    width: 103px;
+    height: 220px;
+    background-color: #39b8f7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+  
+.room-block::after {
+    content: "";
+    position: absolute;
+    z-index: 50;
+    width: 103px;
+    height: 220px;
+    background-color: rgba(128, 128, 128, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s; 
+}
+
+.room-block:hover::after {
+    opacity: 1; 
+}
+  
+.room-number {
+    position: absolute;
+    z-index: 60;
+}
+
+.room-info {
+    cursor: default;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 100;
+    width: 300px;
+    height: 300px;
+    border: 1px solid #333333;
+    background-color: white;
+    margin-bottom: 200px;
+}
+
+.text-room-info {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.room-button {
+    margin-top: 15px;
+    padding: 10px 5px;
+    background-color: #00aaff;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+  
+.room-button:hover {
+    background-color: #0088cc;
+}
+
+.room-info .close-button {
+    position: absolute;
+    align-self: flex-end;
+    margin-bottom: 270px;
+    cursor: pointer;
+}
+
+
