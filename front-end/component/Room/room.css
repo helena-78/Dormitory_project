@@ -1,16 +1,19 @@
 
 .room-container {
-    width: 103px;
-    height: 220px;
+    width: 100%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    border: solid;
+    border-color: #313131;
+    border-width: 1px;
+    border-radius: 6px;
 }
 
 .room-block {
-    width: 103px;
-    height: 220px;
-    background-color: #39b8f7;
+    width: 100%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -18,14 +21,14 @@
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
+    border-radius: inherit;
 }
   
 .room-block::after {
     content: "";
-    position: absolute;
     z-index: 50;
-    width: 103px;
-    height: 220px;
+    width: 100%;
+    height: 100%;
     background-color: rgba(128, 128, 128, 0.5);
     opacity: 0;
     transition: opacity 0.3s; 

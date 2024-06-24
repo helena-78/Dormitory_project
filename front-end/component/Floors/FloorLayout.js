@@ -2,6 +2,7 @@
 import Room from 'component/Room/Room';
 import React, { useEffect, useState } from 'react';
 import { Box, Button, Grid, CircularProgress } from '@mui/material';
+import { BorderBottom } from '@mui/icons-material';
 
 const fakeDataSet1 = [
   {
@@ -122,11 +123,14 @@ const FloorLayout = () => {
     const firstRowItems = items.slice(0, 13);
     const secondRowItems = items.slice(13, 26);
 
-    const getContentStyle = () => ({
-      border: '1px solid black',
+    const getContentStyle = (isLast) => ({
+      borderTop: '4px solid black',
+      borderLeft: '4px solid black',
+      borderBottom: '4px solid black',
       display: 'flex',
       alignItems: 'center',
-      justifyContent: 'center'
+      justifyContent: 'center',
+      ...(isLast && { borderRight: '4px solid black' }),
     });
 
     if (loading) {
@@ -135,10 +139,10 @@ const FloorLayout = () => {
 
     return (
       <Box>
-        <Grid container spacing={2} columns={13}>
+        <Grid container spacing={2} columns={13} sx={{}}>
           {firstRowItems.map((item, idx) => (
-            <Grid item xs={1} key={item.room_id + idx} sx={getContentStyle()}>
-              <Box>
+            <Grid item xs={1} key={item.room_id + idx} sx={getContentStyle(idx === firstRowItems.length - 1)}>
+              <Box sx ={{ width: '100%', height: '220px',paddingRight : '6px',paddingBottom : '6px',paddingLeft : '3px',paddingTop : '3px'  }}>
                 <Room item ={item}/>
                 {/* <div>{`Room № ${item.number}`}</div>
                 <div>{`Places left: ${item.available_places}`}</div>
@@ -151,9 +155,9 @@ const FloorLayout = () => {
         <Box sx={{ height: 50 }} /> {/* Empty gap between the two rows */}
         <Grid container spacing={2} columns={13}>
           {secondRowItems.map((item, idx) => (
-            <Grid item xs={1} key={item.room_id + idx} sx={getContentStyle()}>
-              <Box>
-                <Room/>
+            <Grid item xs={1} key={item.room_id + idx} sx={getContentStyle(idx === secondRowItems.length - 1)}>
+              <Box sx ={{ width: '100%', height: '220px',paddingRight : '6px',paddingBottom : '6px',paddingLeft : '3px',paddingTop : '3px' }}>
+                <Room item ={item}/>
                 {/* <div>{`Room № ${item.number}`}</div>
                 <div>{`Places left: ${item.available_places}`}</div>
                 <div>{`price: ${item.price}`}</div>
@@ -169,13 +173,13 @@ const FloorLayout = () => {
   return (
     <Box sx={{ paddingTop: '10%', paddingLeft: '10%', paddingRight: '10%' }}>
       <Box sx={{ display: 'flex', justifyContent: 'center', marginBottom: 2, marginRight: 2, paddingBottom: '5vh' }}>
-        <Button variant="contained" onClick={() => handleButtonClick(0)} sx={{ marginRight: 1 }}>
+        <Button variant="outlined" onClick={() => handleButtonClick(0)} sx={{ marginRight:10 }}>
           Поверх 1
         </Button>
-        <Button variant="contained" onClick={() => handleButtonClick(1)} sx={{ marginRight: 1 }}>
+        <Button variant="outlined" onClick={() => handleButtonClick(1)} sx={{ marginRight: 10 }}>
           Поверх 2
         </Button>
-        <Button variant="contained" onClick={() => handleButtonClick(2)}>
+        <Button variant="outlined" onClick={() => handleButtonClick(2)}>
           Поверх 3
         </Button>
       </Box>
