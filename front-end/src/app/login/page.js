@@ -1,6 +1,4 @@
-"use client"
-import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -15,45 +13,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
 export default function SignIn() {
-  const router = useRouter();
-  const [error, setError] = useState('');
-
-  const handleLogin = async (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const email = data.get('email');
-    const password = data.get('password');
-
-    if (!email || !password) {
-      setError('Будь ласка, введіть email і пароль.');
-      return;
-    }
-
-    try {
-      const response = await fetch('/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        alert('Авторизація успішна!');
-      
-
-        localStorage.setItem('user', JSON.stringify(result.user));
-        router.push('/');
-      } else {
-        setError(`Помилка авторизації: ${result.error}`);
-      }
-    } catch (error) {
-      console.error('Login error:', error);
-      setError(`Помилка: ${error.message}`);
-    }
-  };
+  
 
   return (
     <Container component="main" maxWidth="xs" sx={{ marginTop: 30 }}>

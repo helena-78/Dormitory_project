@@ -1,6 +1,4 @@
-"use client"
-import React from 'react';
-import { useRouter } from 'next/navigation';
+import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -17,60 +15,7 @@ import FormLabel from '@mui/material/FormLabel';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 
 export default function SignUp() {
-  const router = useRouter();
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-
-    // Перевірка чи всі поля заповнені
-    const firstName = data.get('firstName');
-    const lastName = data.get('lastName');
-    const gender = data.get('gender');
-    const email = data.get('email');
-    const phone = data.get('phone');
-    const password = data.get('password');
-
-    if (!firstName || !lastName || !gender || !email || !phone || !password) {
-      alert('Будь ласка, заповніть всі обов\'язкові поля.');
-      return;
-    }
-
-    const user = {
-      firstName,
-      lastName,
-      gender,
-      email,
-      phone,
-      password,
-    };
-
-    try {
-      const response = await fetch('/api/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(user),
-      });
-
-      if (response.ok) {
-        const responseData = await response.json();
-        alert('Реєстрація успішна!');
-        router.push('/login');
-      } else {
-        const errorData = await response.json();
-        alert(`Помилка реєстрації: ${errorData.error}`);
-      }
-    } catch (error) {
-      alert(`Помилка: ${error.message}`);
-    }
-  };
-
-  const handleClear = () => {
-    // Очистка форми
-    document.getElementById('registration-form').reset();
-  };
+  
 
   return (
     <Container component="main" maxWidth="xs" sx={{ marginTop: 20 }}>
