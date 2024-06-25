@@ -1,4 +1,6 @@
-import * as React from 'react';
+"use client"
+import React from 'react';
+import { useRouter } from 'next/navigation';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -15,7 +17,52 @@ import FormLabel from '@mui/material/FormLabel';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 
 export default function SignUp() {
-  
+  const router = useRouter();
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const user = {
+      firstName: data.get('firstName'),
+      lastName: data.get('lastName'),
+      gender: data.get('gender'),
+      email: data.get('email'),
+      phone: data.get('phone'),
+      password: data.get('password'),
+    };
+
+    console.log('User data:', user); // Виведення даних користувача в консоль
+
+    try {
+      const response = await fetch('/api/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(user),
+      });
+
+      console.log('Response:', response); // Виведення об'єкта response в консоль
+
+      if (response.ok) {
+        const responseData = await response.json();
+        console.log('Response Data:', responseData); // Виведення даних відповіді в консоль
+        alert('Реєстрація успішна!');
+        router.push('/login');
+      } else {
+        const errorData = await response.json();
+        console.error('Error Data:', errorData); // Виведення даних помилки в консоль
+        alert(`Помилка реєстрації: ${errorData.error}`);
+      }
+    } catch (error) {
+      console.error('Catch Error:', error); // Виведення помилки в консоль
+      alert(`Помилка: ${error.message}`);
+    }
+  };
+
+  const handleClear = () => {
+    document.getElementById('registration-form').reset();
+  };
 
   return (
     <Container component="main" maxWidth="xs" sx={{ marginTop: 20 }}>
