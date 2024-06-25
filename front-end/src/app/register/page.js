@@ -22,16 +22,28 @@ export default function SignUp() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const user = {
-      firstName: data.get('firstName'),
-      lastName: data.get('lastName'),
-      gender: data.get('gender'),
-      email: data.get('email'),
-      phone: data.get('phone'),
-      password: data.get('password'),
-    };
 
-    console.log('User data:', user); // Виведення даних користувача в консоль
+    // Перевірка чи всі поля заповнені
+    const firstName = data.get('firstName');
+    const lastName = data.get('lastName');
+    const gender = data.get('gender');
+    const email = data.get('email');
+    const phone = data.get('phone');
+    const password = data.get('password');
+
+    if (!firstName || !lastName || !gender || !email || !phone || !password) {
+      alert('Будь ласка, заповніть всі обов\'язкові поля.');
+      return;
+    }
+
+    const user = {
+      firstName,
+      lastName,
+      gender,
+      email,
+      phone,
+      password,
+    };
 
     try {
       const response = await fetch('/api/register', {
@@ -42,25 +54,21 @@ export default function SignUp() {
         body: JSON.stringify(user),
       });
 
-      console.log('Response:', response); // Виведення об'єкта response в консоль
-
       if (response.ok) {
         const responseData = await response.json();
-        console.log('Response Data:', responseData); // Виведення даних відповіді в консоль
         alert('Реєстрація успішна!');
         router.push('/login');
       } else {
         const errorData = await response.json();
-        console.error('Error Data:', errorData); // Виведення даних помилки в консоль
         alert(`Помилка реєстрації: ${errorData.error}`);
       }
     } catch (error) {
-      console.error('Catch Error:', error); // Виведення помилки в консоль
       alert(`Помилка: ${error.message}`);
     }
   };
 
   const handleClear = () => {
+    // Очистка форми
     document.getElementById('registration-form').reset();
   };
 

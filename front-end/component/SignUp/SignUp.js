@@ -28,19 +28,47 @@ function Copyright(props) {
 }
 
 export default function SignUp() {
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
+    const user = {
       firstName: data.get('firstName'),
       lastName: data.get('lastName'),
       gender: data.get('gender'),
       email: data.get('email'),
       phone: data.get('phone'),
       password: data.get('password'),
-    });
-  };
+    };
 
+    console.log('User data:', user); // Виведення даних користувача в консоль
+
+    try {
+      const response = await fetch('http://127.0.0.1:8000/students', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(user),
+      });
+
+      console.log('Response:', response); // Виведення об'єкта response в консоль
+
+      if (response.ok) {
+        const responseData = await response.json();
+        console.log('Response Data:', responseData); // Виведення даних відповіді в консоль
+        alert('Реєстрація успішна!');
+        router.push('/login');
+      } else {
+        const errorData = await response.json();
+        console.error('Error Data:', errorData); // Виведення даних помилки в консоль
+        alert(`Помилка реєстрації: ${errorData.error}`);
+      }
+    } catch (error) {
+      console.error('Catch Error:', error); // Виведення помилки в консоль
+      alert(`Помилка: ${error.message}`);
+    }
+  };
+  
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />

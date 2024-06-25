@@ -1,20 +1,56 @@
-"use client"
+"use client";
+"use strict";
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import styles from './Profile.module.css';
 
 const Profile = () => {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem('user'));
-    if (storedUser) {
-      setUser(storedUser);
-    }
+    const fetchUserData = async () => {
+      try {
+        const email = localStorage.getItem('userEmail');
+        if (!email) {
+          throw new Error('Email is missing');
+        }
+
+        const response = await fetch(`/api/profile?email=${encodeURIComponent(email)}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch user data');
+        }
+
+        const userData = await response.json();
+        setUser(userData);
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUserData();
   }, []);
 
-  if (!user) {
+  if (loading) {
     return <p>Завантаження...</p>;
+  }
+
+  if (error) {
+    return <p>Помилка: {error}</p>;
+  }
+
+  if (!user) {
+    return <p>Користувач не знайдений.</p>;
   }
 
   return (

@@ -26,7 +26,37 @@ function Copyright(props) {
 }
 
 export default function SignIn() {
-  
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const email = data.get('email');
+    const password = data.get('password');
+
+    try {
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        alert('Авторизація успішна!');
+        // Зберегти інформацію про користувача в локальному сховищі
+        localStorage.setItem('user', JSON.stringify(result.user));
+        // Перенаправлення на сторінку студента
+        router.push(`http://127.0.0.1:8000/students/?${result.user.student_id}`);
+      } else {
+        alert(`Помилка авторизації: ${result.error}`);
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      alert(`Помилка: ${error.message}`);
+    }
+  };
 
   return (
     <Container component="main" maxWidth="xs">

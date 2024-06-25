@@ -1,5 +1,5 @@
 "use client"
-import React from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -14,27 +14,20 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
 export default function SignIn() {
   const router = useRouter();
+  const [error, setError] = useState('');
 
   const handleLogin = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const email = data.get('email');
     const password = data.get('password');
+
+    if (!email || !password) {
+      setError('Будь ласка, введіть email і пароль.');
+      return;
+    }
 
     try {
       const response = await fetch('/api/login', {
@@ -49,16 +42,16 @@ export default function SignIn() {
 
       if (response.ok) {
         alert('Авторизація успішна!');
-        // Можливо, зберегти токен авторизації або іншу інформацію користувача
+      
+
         localStorage.setItem('user', JSON.stringify(result.user));
-        // Перенаправлення на головну сторінку
         router.push('/');
       } else {
-        alert(`Помилка авторизації: ${result.error}`);
+        setError(`Помилка авторизації: ${result.error}`);
       }
     } catch (error) {
       console.error('Login error:', error);
-      alert(`Помилка: ${error.message}`);
+      setError(`Помилка: ${error.message}`);
     }
   };
 
@@ -89,6 +82,8 @@ export default function SignIn() {
             name="email"
             autoComplete="email"
             autoFocus
+            error={!!error}
+            helperText={error} 
           />
           <TextField
             margin="normal"
@@ -99,6 +94,8 @@ export default function SignIn() {
             type="password"
             id="password"
             autoComplete="current-password"
+            error={!!error} 
+            helperText={error} 
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
