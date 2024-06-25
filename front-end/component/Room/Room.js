@@ -8,12 +8,14 @@ import { useState } from 'react'
 const Room = (props) => {
 
 const [isVisible, setIsVisible] = useState(false)
+const [isUndefined, setIsUndefined] = useState(false)
 const [coordinates, setCoordinates] = useState({x: 0, y: 0})
 const [roomColor, setRoomColor] = useState('')
 
 useEffect(() => {
      if (props.item.available_places === 'undefined') {
         setRoomColor('#525252')
+        setIsUndefined(true)
      }
      else if(props.item.available_places === '3') {
          setRoomColor('#39b8f7')
@@ -37,7 +39,7 @@ const showRoomInfo = (event) => {
 
 return (
     <div className='room-container'>
-        {isVisible && (
+        {isVisible && !isUndefined && (
             <div className='room-info' style={{
                     top: `${coordinates.y - 300}px`,
                     left: `${coordinates.x - 150}px`,
@@ -65,7 +67,10 @@ return (
         )}
         {props.item &&(
         <div className='room-block' onClick={showRoomInfo} style={{backgroundColor: `${roomColor}`}}>
-            <div className='room-number'>№{props.item.number}</div>
+            {!isUndefined &&(
+                <div className='room-number'>№{props.item.number}</div>
+            )
+            }
         </div>
         )
         }
