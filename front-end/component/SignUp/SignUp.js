@@ -1,18 +1,91 @@
+"use client"
 import * as React from 'react';
+import { useRouter } from 'next/navigation';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import FormLabel from '@mui/material/FormLabel';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormLabel from '@mui/material/FormLabel';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
+
+const fakeStudentsDataSet1 = [
+  {
+    "student_id": 1,
+    "firstName": "John",
+    "lastName": "Doe",
+    "gender": "M",
+    "email": "john.doe@example.com",
+    "phone": "1234567890",
+    "password": "password123"
+  },
+  {
+    "student_id": 2,
+    "firstName": "Jane",
+    "lastName": "Smith",
+    "gender": "F",
+    "email": "jane.smith@example.com",
+    "phone": "0987654321",
+    "password": "password456"
+  }
+];
+
+const fakeStudentsDataSet2 = [
+  {
+    "student_id": 3,
+    "firstName": "Alice",
+    "lastName": "Johnson",
+    "gender": "F",
+    "email": "alice.johnson@example.com",
+    "phone": "1234509876",
+    "password": "password789"
+  },
+  {
+    "student_id": 4,
+    "firstName": "Bob",
+    "lastName": "Brown",
+    "gender": "M",
+    "email": "bob.brown@example.com",
+    "phone": "0987612345",
+    "password": "password101"
+  },
+  {
+    "student_id": 5,
+    "firstName": "Charlie",
+    "lastName": "Davis",
+    "gender": "M",
+    "email": "charlie.davis@example.com",
+    "phone": "1122334455",
+    "password": "password202"
+  },
+  {
+    "student_id": 6,
+    "firstName": "Diana",
+    "lastName": "Miller",
+    "gender": "F",
+    "email": "diana.miller@example.com",
+    "phone": "5566778899",
+    "password": "password303"
+  },
+  {
+    "student_id": 7,
+    "firstName": "Eve",
+    "lastName": "Wilson",
+    "gender": "F",
+    "email": "eve.wilson@example.com",
+    "phone": "6677889900",
+    "password": "password404"
+  }
+];
 
 function Copyright(props) {
   return (
@@ -27,7 +100,9 @@ function Copyright(props) {
   );
 }
 
-export default function SignUp() {
+function SignUp() {
+  const router = useRouter();
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -41,36 +116,14 @@ export default function SignUp() {
     };
 
     console.log('User data:', user); // Виведення даних користувача в консоль
-
-    try {
-      const response = await fetch('http://127.0.0.1:8000/students', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(user),
-      });
-
-      console.log('Response:', response); // Виведення об'єкта response в консоль
-
-      if (response.ok) {
-        const responseData = await response.json();
-        console.log('Response Data:', responseData); // Виведення даних відповіді в консоль
-        alert('Реєстрація успішна!');
-        router.push('/login');
-      } else {
-        const errorData = await response.json();
-        console.error('Error Data:', errorData); // Виведення даних помилки в консоль
-        alert(`Помилка реєстрації: ${errorData.error}`);
-      }
-    } catch (error) {
-      console.error('Catch Error:', error); // Виведення помилки в консоль
-      alert(`Помилка: ${error.message}`);
-    }
   };
-  
+
+  const handleClear = () => {
+    document.getElementById('registration-form').reset();
+  };
+
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="xs" sx={{ marginTop: 30 }}>
       <CssBaseline />
       <Box
         sx={{
@@ -86,7 +139,7 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Реєстрація
         </Typography>
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+        <Box component="form" id="registration-form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <Button variant="contained" component="label" fullWidth>
@@ -166,15 +219,7 @@ export default function SignUp() {
             fullWidth
             variant="outlined"
             sx={{ mt: 1, mb: 2 }}
-            onClick={() => {
-              document.getElementById('firstName').value = '';
-              document.getElementById('lastName').value = '';
-              document.getElementById('email').value = '';
-              document.getElementById('phone').value = '';
-              document.getElementById('password').value = '';
-              document.querySelector('input[name="gender"][value="Чоловіча"]').checked = false;
-              document.querySelector('input[name="gender"][value="Жіноча"]').checked = false;
-            }}
+            onClick={handleClear}
           >
             Очистити
           </Button>
@@ -187,7 +232,9 @@ export default function SignUp() {
           </Grid>
         </Box>
       </Box>
-     
+      <Copyright sx={{ mt: 8, mb: 4 }} />
     </Container>
   );
 }
+
+export default SignUp;
