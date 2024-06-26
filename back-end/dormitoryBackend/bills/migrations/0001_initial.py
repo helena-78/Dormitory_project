@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('bill_id', models.BigAutoField(primary_key=True, serialize=False)),
                 ('student_id', models.BigIntegerField()),
-                ('amount', models.DecimalField(decimal_places=2, default=0.0, max_digits=10)),
+                ('debt', models.DecimalField(decimal_places=2, default=0.0, max_digits=10)),
             ],
             options={
                 'db_table': 'bills',
