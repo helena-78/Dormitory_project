@@ -19,7 +19,7 @@ function MainFeaturedPost(props) {
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     appendDots: dots => (
-      <div style={{ padding: '10px' }}>
+      <div style={{  }}>
         <ul style={{ margin: 0 }}> {dots} </ul>
       </div>
     ),
@@ -34,13 +34,13 @@ function MainFeaturedPost(props) {
     
       <Slider {...settings}>
         {images.map((image, index) => (
-          <div key={index} style={{ height: '400px' }}>
+          <div key={index} style={{ height: '600px',}}>
             <img 
               src={image.src} 
               alt={image.alt} 
               style={{ 
                 width: '100%', 
-                height: '400px', 
+                height: '600px', 
                 objectFit: 'cover' 
               }} 
             />
