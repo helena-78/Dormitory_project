@@ -17,10 +17,10 @@ useEffect(() => {
         setRoomColor('#525252')
         setIsUndefined(true)
      }
-     else if(props.item.available_places === '3') {
+     else if(props.item.available_places === 3) {
          setRoomColor('#39b8f7')
      }
-     else if (props.item.available_places > '0') {
+     else if (props.item.available_places > 0) {
          setRoomColor('#575afa')
      }
      else {

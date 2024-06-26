@@ -85,7 +85,7 @@ const fakeDataSet2 = [
 const fakeDataSet3 = [
 ];
 
-const BASE_URL = '';
+const BASE_URL = 'http://127.0.0.1:8000';
 const ENDPOINT = '/rooms/floor';
 const QUERY_PARAM = 'floor';
 
@@ -93,6 +93,7 @@ const addUndefinedItems = (data) => {
   const undefinedItem = {
     room_id: "undefined",
     number: "undefined",
+    floor: 0,
     available_places: "undefined",
     image: "undefined",
     price: "undefined",
@@ -114,34 +115,27 @@ const FloorLayout = () => {
   const [loading, setLoading] = useState(true);
 
   const fetchItems = async (index) => {
-    const url = `${BASE_URL}${ENDPOINT}?${QUERY_PARAM}=${index + 1}`;
-
-    try {
-      //useEffect(() => {
-      //fetch(url)
-      //.then((data) => data.json())
-      //.then((data) => setItems(addUndefinedItems(data)))
-      //}, [])
-      let data;
-      switch (index) {
-        case 0:
-          data = fakeDataSet1;
-          break;
-        case 1:
-          data = fakeDataSet2;
-          break;
-        case 2:
-          data = fakeDataSet3;
-          break;
-        default:
-          data = fakeDataSet1;
-      }
-      setItems(addUndefinedItems(data));
-      setLoading(false);
-    } catch (error) {
-      console.error('Error fetching items:', error);
-      setLoading(false);
-    }
+    const url = `${BASE_URL}${ENDPOINT}/?${QUERY_PARAM}=${index + 1}`;
+    fetch(url)
+      .then((data) => data.json())
+      .then((data) => setItems(addUndefinedItems(data)))
+      .finally(() => {setLoading(false)})
+      // let data;
+      // switch (index) {
+      //   case 0:
+      //     data = fakeDataSet1;
+      //     break;
+      //   case 1:
+      //     data = fakeDataSet2;
+      //     break;
+      //   case 2:
+      //     data = fakeDataSet3;
+      //     break;
+      //   default:
+      //     data = fakeDataSet1;
+      // }
+      // setItems(addUndefinedItems(data));
+      
   };
 
   const divideArray = (items) => {
@@ -149,7 +143,6 @@ const FloorLayout = () => {
     const firstRowItems = items.slice(0, midIndex);
     let secondRowItems = items.slice(midIndex).reverse();
     
-    console.log(secondRowItems);
     return { firstRowItems, secondRowItems };
   };
 
