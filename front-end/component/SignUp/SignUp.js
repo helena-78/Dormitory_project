@@ -87,6 +87,11 @@ const fakeStudentsDataSet2 = [
   }
 ];
 
+
+const BASE_URL = 'http://127.0.0.1:8000';
+const ENDPOINT = '/students';
+const QUERY_PARAM = 'student_id';
+
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
