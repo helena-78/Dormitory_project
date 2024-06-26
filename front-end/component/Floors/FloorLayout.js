@@ -1,6 +1,8 @@
-import React, { useEffect, useState} from 'react';
+'use client'
+import Room from 'component/Room/Room';
+import React, { useEffect, useState } from 'react';
 import { Box, Button, Grid, CircularProgress } from '@mui/material';
-import { useRouter } from 'next/navigation';
+import { BorderBottom } from '@mui/icons-material';
 
 const fakeDataSet1 = [
   {
@@ -37,41 +39,71 @@ const fakeDataSet2 = [
     "image": "awwwww",
     "price": "2500",
     "gender": "F"
+  },
+  {
+    "room_id": 2,
+    "number": "203",
+    "available_places": "2",
+    "image": "awwwww",
+    "price": "2032",
+    "gender": "F"
+  },
+  {
+    "room_id": 1,
+    "number": "204",
+    "available_places": "0",
+    "image": "awwwww",
+    "price": "19999",
+    "gender": "M"
+  },
+  {
+    "room_id": 2,
+    "number": "205",
+    "available_places": "2",
+    "image": "awwwww",
+    "price": "2032",
+    "gender": "F"
+  },
+  {
+    "room_id": 1,
+    "number": "206",
+    "available_places": "0",
+    "image": "awwwww",
+    "price": "19999",
+    "gender": "M"
+  },
+  {
+    "room_id": 1,
+    "number": "207",
+    "available_places": "0",
+    "image": "awwwww",
+    "price": "19999",
+    "gender": "M"
   }
 ];
 
 const fakeDataSet3 = [
-  {
-    "room_id": 5,
-    "number": "301",
-    "available_places": "0",
-    "image": "awwwww",
-    "price": "3000",
-    "gender": "M"
-  },
-  {
-    "room_id": 6,
-    "number": "302",
-    "available_places": "2",
-    "image": "awwwww",
-    "price": "3500",
-    "gender": "F"
-  }
 ];
 
+const BASE_URL = 'http://127.0.0.1:8000';
+const ENDPOINT = '/rooms/floor';
+const QUERY_PARAM = 'floor';
+
 const addUndefinedItems = (data) => {
-  if (data.length < 26) {
-    const missingItems = 26 - data.length;
-    const undefinedItem = {
-      room_id: "undefined",
-      number: "undefined",
-      available_places: "undefined",
-      image: "undefined",
-      price: "undefined",
-      gender: "undefined"
-    };
+  const undefinedItem = {
+    room_id: "undefined",
+    number: "undefined",
+    floor: 0,
+    available_places: "undefined",
+    image: "undefined",
+    price: "undefined",
+    gender: "undefined"
+  };
+  if (data.length < 2) {
+    const missingItems = 2 - data.length;
     return data.concat(Array(missingItems).fill(undefinedItem));
-  } else if (data.length > 26) {
+  }
+  else if (data.length > 26) {
     return data.slice(0, 26);
   }
   return data;
@@ -81,30 +113,37 @@ const FloorLayout = () => {
   const [contentIndex, setContentIndex] = useState(0);
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
-  const router = useRouter();
 
   const fetchItems = async (index) => {
-    try {
-      let data;
-      switch (index) {
-        case 0:
-          data = fakeDataSet1;
-          break;
-        case 1:
-          data = fakeDataSet2;
-          break;
-        case 2:
-          data = fakeDataSet3;
-          break;
-        default:
-          data = fakeDataSet1;
-      }
-      setItems(addUndefinedItems(data));
-      setLoading(false);
-    } catch (error) {
-      console.error('Error fetching items:', error);
-      setLoading(false);
-    }
+    const url = `${BASE_URL}${ENDPOINT}/?${QUERY_PARAM}=${index + 1}`;
+    fetch(url)
+      .then((data) => data.json())
+      .then((data) => setItems(addUndefinedItems(data)))
+      .finally(() => {setLoading(false)})
+      // let data;
+      // switch (index) {
+      //   case 0:
+      //     data = fakeDataSet1;
+      //     break;
+      //   case 1:
+      //     data = fakeDataSet2;
+      //     break;
+      //   case 2:
+      //     data = fakeDataSet3;
+      //     break;
+      //   default:
+      //     data = fakeDataSet1;
+      // }
+      // setItems(addUndefinedItems(data));
+      
+  };
+
+  const divideArray = (items) => {
+    const midIndex = Math.ceil(items.length / 2); // Round up to ensure the first array gets the extra item if the length is odd
+    const firstRowItems = items.slice(0, midIndex);
+    let secondRowItems = items.slice(midIndex).reverse();
+    
+    return { firstRowItems, secondRowItems };
   };
 
   useEffect(() => {
@@ -112,34 +151,25 @@ const FloorLayout = () => {
   }, [contentIndex]);
 
   const handleButtonClick = (index) => {
-    setLoading(true);
-    setContentIndex(index);
-  };
-
-  const handleItemClick = (item) => {
-    const floor = contentIndex + 1; // Assuming floor is 1-based index
-
-    const params = new URLSearchParams({
-      room_id: item.room_id.toString(),
-      number: item.number,
-      available_places: item.available_places,
-      price: item.price,
-      gender: item.gender,
-      floor: floor.toString()
-    });
-
-    router.push(`/order/booking_detail?${params.toString()}`);
+    if(index !== contentIndex)
+    {
+      setLoading(true);
+      setContentIndex(index);
+    }
   };
 
   const renderContent = () => {
-    const firstRowItems = items.slice(0, 13);
-    const secondRowItems = items.slice(13, 26);
+    const {firstRowItems, secondRowItems} = divideArray(items);
 
-    const getContentStyle = () => ({
-      border: '1px solid black',
+
+    const getContentStyle = (isLast) => ({
+      borderTop: '4px solid black',
+      borderLeft: '4px solid black',
+      borderBottom: '4px solid black',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
+      ...(isLast && { borderRight: '4px solid black' }),
     });
 
     if (loading) {
@@ -148,27 +178,29 @@ const FloorLayout = () => {
 
     return (
       <Box>
-        <Grid container spacing={2} columns={13}>
+        <Grid container spacing={2} columns={firstRowItems.length} sx={{}}>
           {firstRowItems.map((item, idx) => (
-            <Grid item xs={1} key={item.room_id + idx} sx={getContentStyle()} onClick={() => handleItemClick(item)}>
-              <Box>
-                <div>{`Room № ${item.number}`}</div>
+            <Grid item xs={1} key={item.room_id + idx} sx={getContentStyle(idx === firstRowItems.length - 1)}>
+              <Box sx ={{ width: '100%', height: '220px',paddingRight : '6px',paddingBottom : '6px',paddingLeft : '3px',paddingTop : '3px'  }}>
+                <Room item ={item}/>
+                {/* <div>{`Room № ${item.number}`}</div>
                 <div>{`Places left: ${item.available_places}`}</div>
                 <div>{`price: ${item.price}`}</div>
-                <div>{`Gender: ${item.gender}`}</div>
+                <div>{`Gender: ${item.gender}`}</div> */}
               </Box>
             </Grid>
           ))}
         </Grid>
-        <Box sx={{ height: 50 }} /> {/* Empty gap between the two rows */}
-        <Grid container spacing={2} columns={13}>
+        <Box sx={{ height: 50, }} /> {/* Empty gap between the two rows */}
+        <Grid container spacing={2} columns={secondRowItems.length}>
           {secondRowItems.map((item, idx) => (
-            <Grid item xs={1} key={item.room_id + idx} sx={getContentStyle()} onClick={() => handleItemClick(item)}>
-              <Box>
-                <div>{`Room № ${item.number}`}</div>
+            <Grid item xs={1} key={item.room_id + idx} sx={getContentStyle(idx === secondRowItems.length - 1)}>
+              <Box sx ={{ width: '100%', height: '220px',paddingRight : '6px',paddingBottom : '6px',paddingLeft : '3px',paddingTop : '3px' }}>
+                <Room item ={item}/>
+                {/* <div>{`Room № ${item.number}`}</div>
                 <div>{`Places left: ${item.available_places}`}</div>
                 <div>{`price: ${item.price}`}</div>
-                <div>{`Gender: ${item.gender}`}</div>
+                <div>{`Gender: ${item.gender}`}</div> */}
               </Box>
             </Grid>
           ))}
@@ -180,13 +212,13 @@ const FloorLayout = () => {
   return (
     <Box sx={{ paddingTop: '10%', paddingLeft: '10%', paddingRight: '10%' }}>
       <Box sx={{ display: 'flex', justifyContent: 'center', marginBottom: 2, marginRight: 2, paddingBottom: '5vh' }}>
-        <Button variant="contained" onClick={() => handleButtonClick(0)} sx={{ marginRight: 1 }}>
+        <Button variant="outlined" onClick={() => handleButtonClick(0)} sx={{ marginRight:10 }}>
           Поверх 1
         </Button>
-        <Button variant="contained" onClick={() => handleButtonClick(1)} sx={{ marginRight: 1 }}>
+        <Button variant="outlined" onClick={() => handleButtonClick(1)} sx={{ marginRight: 10 }}>
           Поверх 2
         </Button>
-        <Button variant="contained" onClick={() => handleButtonClick(2)}>
+        <Button variant="outlined" onClick={() => handleButtonClick(2)}>
           Поверх 3
         </Button>
       </Box>

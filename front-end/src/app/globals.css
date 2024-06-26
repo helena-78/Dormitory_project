@@ -40,7 +40,7 @@
 .gallery {
   margin: 50px 0;
   height: 205px;
-  width: 1640px;
+  width: 90%;
   display: flex;
   justify-content: center;  
 }
@@ -84,3 +84,8 @@
 .scroll-button-l:hover {
   background: linear-gradient(to right, rgba(171, 218, 244, 0) 5%, rgba(171, 218, 244, 0.3) 95%);
 } 
+
+.css-mhc70k-MuiGrid-root  .MuiGrid-item {
+  padding: 0;
+}
+
