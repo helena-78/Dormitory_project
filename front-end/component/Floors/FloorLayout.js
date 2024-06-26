@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState} from 'react';
 import { Box, Button, Grid, CircularProgress } from '@mui/material';
+import { useRouter } from 'next/navigation';
 
 const fakeDataSet1 = [
   {
@@ -70,8 +71,7 @@ const addUndefinedItems = (data) => {
       gender: "undefined"
     };
     return data.concat(Array(missingItems).fill(undefinedItem));
-  }
-  else if (data.length > 26) {
+  } else if (data.length > 26) {
     return data.slice(0, 26);
   }
   return data;
@@ -81,9 +81,9 @@ const FloorLayout = () => {
   const [contentIndex, setContentIndex] = useState(0);
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   const fetchItems = async (index) => {
-    // Simulating an API call with fake data
     try {
       let data;
       switch (index) {
@@ -116,6 +116,21 @@ const FloorLayout = () => {
     setContentIndex(index);
   };
 
+  const handleItemClick = (item) => {
+    const floor = contentIndex + 1; // Assuming floor is 1-based index
+
+    const params = new URLSearchParams({
+      room_id: item.room_id.toString(),
+      number: item.number,
+      available_places: item.available_places,
+      price: item.price,
+      gender: item.gender,
+      floor: floor.toString()
+    });
+
+    router.push(`/order/booking_detail?${params.toString()}`);
+  };
+
   const renderContent = () => {
     const firstRowItems = items.slice(0, 13);
     const secondRowItems = items.slice(13, 26);
@@ -135,7 +150,7 @@ const FloorLayout = () => {
       <Box>
         <Grid container spacing={2} columns={13}>
           {firstRowItems.map((item, idx) => (
-            <Grid item xs={1} key={item.room_id + idx} sx={getContentStyle()}>
+            <Grid item xs={1} key={item.room_id + idx} sx={getContentStyle()} onClick={() => handleItemClick(item)}>
               <Box>
                 <div>{`Room № ${item.number}`}</div>
                 <div>{`Places left: ${item.available_places}`}</div>
@@ -148,7 +163,7 @@ const FloorLayout = () => {
         <Box sx={{ height: 50 }} /> {/* Empty gap between the two rows */}
         <Grid container spacing={2} columns={13}>
           {secondRowItems.map((item, idx) => (
-            <Grid item xs={1} key={item.room_id + idx} sx={getContentStyle()}>
+            <Grid item xs={1} key={item.room_id + idx} sx={getContentStyle()} onClick={() => handleItemClick(item)}>
               <Box>
                 <div>{`Room № ${item.number}`}</div>
                 <div>{`Places left: ${item.available_places}`}</div>
