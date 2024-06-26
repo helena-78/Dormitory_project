@@ -88,7 +88,7 @@ export default function Page() {
             <Box className="list">
                 <DynamicList
                     icon={<ArticleIcon sx={{color: '#FFFFFF', transform: 'scale(1.4)'}}></ArticleIcon>}
-                    value={getStudentById()}
+                    items={getStudentById()}
                     data={fakeApplicationsData} title={"заяв"} itemName={"Заява "}></DynamicList>
             </Box>
         </>

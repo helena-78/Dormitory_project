@@ -15,12 +15,12 @@ const inter = Inter({subsets: ["latin"]});
 // };
 
 export default function RootLayout({children}) {
-    const [popUpState, changePopUpState] = useState(false);
+    const [popUpState, setPopUpState] = useState(false);
     return (
         <html lang="en">
         <body className={inter.className}>
-        <TopBar showPopUp={changePopUpState} visibility={popUpState}/>
-        <SignIn hidePopUp={changePopUpState} visibility={popUpState}/>
+        <TopBar showPopUp={setPopUpState} visibility={popUpState}/>
+        <SignIn hidePopUp={setPopUpState} visibility={popUpState}/>
         {children}
         </body>
         </html>

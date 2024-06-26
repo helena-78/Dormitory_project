@@ -45,7 +45,7 @@ export default function Page() {
             <Box className="list">
                 <DynamicList
                     icon={<AccountCircleIcon sx={{color: '#FFFFFF', transform: 'scale(1.9)'}}></AccountCircleIcon>}
-                    value={fakeStudentsData.map((student) => student.name + " " + student.surname + " Id:" + student.student_id)}
+                    items={fakeStudentsData.map((student) => student.name + " " + student.surname + " Id:" + student.student_id)}
                     data={fakeStudentsData} title={"студентів"} itemName={"Студент "}></DynamicList>
             </Box>
         </>

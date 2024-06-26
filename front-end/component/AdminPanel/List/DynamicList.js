@@ -34,7 +34,7 @@ function generateListItems(props) {
 
     for (let i = 0; i < props.data.length; i++) {
         listItemsArray[i] =
-            <div className="listElement">
+            <div  key={i} className="listElement">
                 <ListItem
                     secondaryAction={
                         <IconButton edge="end">
@@ -48,7 +48,7 @@ function generateListItems(props) {
                         </Avatar>
                     </ListItemAvatar>
                     <ListItemText
-                        primary={props.itemName + props.value[i]}
+                        primary={props.itemName + props.items[i]}
                     />
                 </ListItem>
             </div>
