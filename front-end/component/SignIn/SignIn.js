@@ -1,5 +1,4 @@
-
-      "use client"
+"use client";
 import * as React from 'react';
 import { useRouter } from 'next/navigation';
 import Avatar from '@mui/material/Avatar';
@@ -16,8 +15,76 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import CircularProgress from '@mui/material/CircularProgress';
 
+const fakeStudentsDataSet1 = [
+  {
+    "student_id": 1,
+    "firstName": "John",
+    "lastName": "Doe",
+    "gender": "M",
+    "email": "john.doe@example.com",
+    "phone": "1234567890",
+    "password": "password123"
+  },
+  {
+    "student_id": 2,
+    "firstName": "Jane",
+    "lastName": "Smith",
+    "gender": "F",
+    "email": "jane.smith@example.com",
+    "phone": "0987654321",
+    "password": "password456"
+  }
+];
+
+const fakeStudentsDataSet2 = [
+  {
+    "student_id": 3,
+    "firstName": "Alice",
+    "lastName": "Johnson",
+    "gender": "F",
+    "email": "alice.johnson@example.com",
+    "phone": "1234509876",
+    "password": "password789"
+  },
+  {
+    "student_id": 4,
+    "firstName": "Bob",
+    "lastName": "Brown",
+    "gender": "M",
+    "email": "bob.brown@example.com",
+    "phone": "0987612345",
+    "password": "password101"
+  },
+  {
+    "student_id": 5,
+    "firstName": "Charlie",
+    "lastName": "Davis",
+    "gender": "M",
+    "email": "charlie.davis@example.com",
+    "phone": "1122334455",
+    "password": "password202"
+  },
+  {
+    "student_id": 6,
+    "firstName": "Diana",
+    "lastName": "Miller",
+    "gender": "F",
+    "email": "diana.miller@example.com",
+    "phone": "5566778899",
+    "password": "password303"
+  },
+  {
+    "student_id": 7,
+    "firstName": "Eve",
+    "lastName": "Wilson",
+    "gender": "F",
+    "email": "eve.wilson@example.com",
+    "phone": "6677889900",
+    "password": "password404"
+  }
+];
+
 const BASE_URL = 'http://127.0.0.1:8000';
-const ENDPOINT = '/students/?<student_id>';
 const QUERY_PARAM = 'student_id';
 
 function Copyright(props) {
@@ -37,7 +104,6 @@ function SignIn() {
   const router = useRouter();
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState('');
-
   const handleLogin = async (event) => {
     event.preventDefault();
     setLoading(true);
@@ -45,39 +111,48 @@ function SignIn() {
     const data = new FormData(event.currentTarget);
     const email = data.get('email');
     const password = data.get('password');
-
-    try {
-      // Запит на сервер для отримання даних користувача
-      const response = await fetch(`${BASE_URL}/students/<student_id>`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      const result = await response.json();
-
+  
+    // Check the fake datasets
+    const allFakeStudents = [...fakeStudentsDataSet1, ...fakeStudentsDataSet2];
+    const user = allFakeStudents.find(student => student.email === email && student.password === password);
+  
+    if (user) {
       setLoading(false);
-
-      if (response.ok && result.student_id) {
-        // Успішна авторизація, отримання даних користувача
-        const studentResponse = await fetch(`${BASE_URL}/students/?${QUERY_PARAM}=${result.student_id}`);
-        const studentData = await studentResponse.json();
-
-        if (studentResponse.ok) {
-          // Збереження даних користувача або перенаправлення на іншу сторінку
-          console.log('User data:', studentData);
-          router.push('/profile');
+      localStorage.setItem('userEmail', email); // Store email in localStorage
+      router.push('/profile'); // Redirect to profile page
+    } else {
+      try {
+        // Fallback to server request
+        const response = await fetch(`http://127.0.0.1:8000/students/`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email, password }),
+        });
+  
+        const result = await response.json();
+  
+        setLoading(false);
+  
+        if (response.ok && result.student_id) {
+          const studentResponse = await fetch(`http://127.0.0.1:8000/students/?student_id=${result.student_id}`);
+          const studentData = await studentResponse.json();
+  
+          if (studentResponse.ok) {
+            console.log('User data:', studentData);
+            localStorage.setItem('userEmail', email); // Store email in localStorage
+            router.push('/profile'); // Redirect to profile page
+          } else {
+            setError('Error fetching user data');
+          }
         } else {
-          setError('Помилка отримання даних користувача');
+          setError('Incorrect email or password');
         }
-      } else {
-        setError('Неправильний email або пароль');
+      } catch (error) {
+        setLoading(false);
+        setError('Connection error with server');
       }
-    } catch (error) {
-      setLoading(false);
-      setError('Помилка з\'єднання з сервером');
     }
   };
 
@@ -157,4 +232,3 @@ function SignIn() {
 }
 
 export default SignIn;
-

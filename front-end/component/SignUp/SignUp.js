@@ -1,4 +1,3 @@
-"use client"
 import * as React from 'react';
 import { useRouter } from 'next/navigation';
 import Avatar from '@mui/material/Avatar';
@@ -17,80 +16,10 @@ import FormLabel from '@mui/material/FormLabel';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
-
-const fakeStudentsDataSet1 = [
-  {
-    "student_id": 1,
-    "firstName": "John",
-    "lastName": "Doe",
-    "gender": "M",
-    "email": "john.doe@example.com",
-    "phone": "1234567890",
-    "password": "password123"
-  },
-  {
-    "student_id": 2,
-    "firstName": "Jane",
-    "lastName": "Smith",
-    "gender": "F",
-    "email": "jane.smith@example.com",
-    "phone": "0987654321",
-    "password": "password456"
-  }
-];
-
-const fakeStudentsDataSet2 = [
-  {
-    "student_id": 3,
-    "firstName": "Alice",
-    "lastName": "Johnson",
-    "gender": "F",
-    "email": "alice.johnson@example.com",
-    "phone": "1234509876",
-    "password": "password789"
-  },
-  {
-    "student_id": 4,
-    "firstName": "Bob",
-    "lastName": "Brown",
-    "gender": "M",
-    "email": "bob.brown@example.com",
-    "phone": "0987612345",
-    "password": "password101"
-  },
-  {
-    "student_id": 5,
-    "firstName": "Charlie",
-    "lastName": "Davis",
-    "gender": "M",
-    "email": "charlie.davis@example.com",
-    "phone": "1122334455",
-    "password": "password202"
-  },
-  {
-    "student_id": 6,
-    "firstName": "Diana",
-    "lastName": "Miller",
-    "gender": "F",
-    "email": "diana.miller@example.com",
-    "phone": "5566778899",
-    "password": "password303"
-  },
-  {
-    "student_id": 7,
-    "firstName": "Eve",
-    "lastName": "Wilson",
-    "gender": "F",
-    "email": "eve.wilson@example.com",
-    "phone": "6677889900",
-    "password": "password404"
-  }
-];
-
+import CircularProgress from '@mui/material/CircularProgress';
 
 const BASE_URL = 'http://127.0.0.1:8000';
 const ENDPOINT = '/students';
-const QUERY_PARAM = 'student_id';
 
 function Copyright(props) {
   return (
@@ -107,20 +36,46 @@ function Copyright(props) {
 
 function SignUp() {
   const router = useRouter();
+  const [loading, setLoading] = React.useState(false);
+  const [error, setError] = React.useState('');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true);
+    setError('');
     const data = new FormData(event.currentTarget);
-    const user = {
-      firstName: data.get('firstName'),
-      lastName: data.get('lastName'),
-      gender: data.get('gender'),
+
+    const newUser = {
+      name: data.get('firstName'),
+      surname: data.get('lastName'),
       email: data.get('email'),
-      phone: data.get('phone'),
+      contact_number: data.get('phone'),
+      gender: data.get('gender'),
       password: data.get('password'),
     };
 
-    console.log('User data:', user); // Виведення даних користувача в консоль
+    try {
+      const response = await fetch(`${BASE_URL}${ENDPOINT}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newUser),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to register');
+      }
+
+      const result = await response.json();
+      console.log('New user registered:', result);
+      setLoading(false);
+      router.push('/profile');
+    } catch (error) {
+      console.error('Error:', error);
+      setError('Failed to register. Please try again.');
+      setLoading(false);
+    }
   };
 
   const handleClear = () => {
@@ -175,9 +130,9 @@ function SignUp() {
             </Grid>
             <Grid item xs={12}>
               <FormLabel component="legend">Стать</FormLabel>
-              <RadioGroup row name="gender" defaultValue="Чоловіча">
-                <FormControlLabel value="Чоловіча" control={<Radio />} label="Чоловіча" />
-                <FormControlLabel value="Жіноча" control={<Radio />} label="Жіноча" />
+              <RadioGroup row name="gender" >
+                <FormControlLabel value="Male" control={<Radio />} label="Male" />
+                <FormControlLabel value="Female" control={<Radio />} label="Female" />
               </RadioGroup>
             </Grid>
             <Grid item xs={12}>
@@ -217,20 +172,25 @@ function SignUp() {
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
+            disabled={loading}
           >
-            Зберегти
+            {loading ? <CircularProgress size={24} /> : 'Зберегти'}
           </Button>
+          {error && (
+            <Typography color="error" variant="body2" align="center">
+              {error}
+            </Typography>
+          )}
           <Button
             fullWidth
             variant="outlined"
             sx={{ mt: 1, mb: 2 }}
-            onClick={handleClear}
-          >
+            onClick={handleClear}>
             Очистити
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="/login" variant="body2">
                 Маєте аккаунт? Увійти
               </Link>
             </Grid>
