@@ -34,7 +34,7 @@ function generateListItems(props) {
 
     for (let i = 0; i < props.data.length; i++) {
         listItemsArray[i] =
-            <div  key={i} className="listElement">
+            <div   primary={props.itemName + props.items[i]} key={i} className="listElement">
                 <ListItem
                     secondaryAction={
                         <IconButton edge="end">
@@ -53,6 +53,8 @@ function generateListItems(props) {
                 </ListItem>
             </div>
     }
+
+    listItemsArray= listItemsArray.sort(props.sortExpression);
 
     return listItemsArray;
 }
