@@ -47,16 +47,20 @@ def create_room(request):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET'])
-def get_room(request):
-    room_id=request.GET.get("room_id")
-    
+def get_all_rooms(request):
+    rooms = Room.objects.all()
+    serializer = RoomSerializer(rooms, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def get_room_by_id(request, room_id):
     try:
         room = Room.objects.get(pk=room_id)
     except Room.DoesNotExist:
         return Response({'error': 'Room not found'}, status=status.HTTP_404_NOT_FOUND)
     
     serializer = RoomSerializer(room)
-    return Response(serializer.data, status=status.HTTP_200_OK)  
+    return Response(serializer.data, status=status.HTTP_200_OK)
 
 @api_view(['PATCH'])
 def update_room(request, room_id):
@@ -78,7 +82,7 @@ def get_rooms_by_floor(request):
     serializer = RoomSerializer(rooms, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
-@api_view(['POST'])
+@api_view(['POST']) #переделать в гет
 def check_room_availability(request):
     room_id = request.data.get('room_id')
     application_id = request.data.get('application_id')
