@@ -14,16 +14,20 @@ def create_student(request):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET'])
-def get_student(request):
-    student_id=request.GET.get("student_id")
+def get_all_students(request):
+    students = Student.objects.all()
+    serializer = StudentSerializer(students, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
 
+@api_view(['GET'])
+def get_student_by_id(request, student_id):
     try:
         student = Student.objects.get(pk=student_id)
     except Student.DoesNotExist:
         return Response({'error': 'Student not found'}, status=status.HTTP_404_NOT_FOUND)
     
     serializer = StudentSerializer(student)
-    return Response(serializer.data, status=status.HTTP_200_OK)  
+    return Response(serializer.data, status=status.HTTP_200_OK)
 
 @api_view(['PATCH'])
 def update_student(request, student_id):
