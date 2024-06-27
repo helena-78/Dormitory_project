@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+#!/home/ec2-user/Dormitory_project/back-end/dormitoryBackend/venv/bin/python
+
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
