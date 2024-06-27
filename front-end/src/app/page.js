@@ -1,95 +1,57 @@
-import Image from "next/image";
+'use client'
 import styles from "./page.module.css";
+import Box from '@mui/material/Box';
+import Footer from "../../component/Footer/Footer";
+import Stack from '@mui/material/Stack';
+import MainFeaturedPost from "component/LandingPage/MainFeaturedPost";
+import BookingBlock from "component/Hershelia_BlookingBlock+Map/bookingBlock";
+import GoogleMap from "component/Hershelia_BlookingBlock+Map/Map"
+import Advantages from "component/Advantages"
+import Gallery from "component/Gallery"
+
+const images2 = [
+  {
+    src: '/images/Dormitory.jpg',
+    alt: 'Dormitory',
+  },
+  {
+    src: '/images/Dormitory.jpg',
+    alt: 'Another Image',
+  },
+  {
+    src: '/images/Dormitory.jpg',
+    alt: 'Dormitory',
+  },
+  // Add more images as needed
+];
 
 export default function Home() {
-  return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  );
+    return (
+    <Box
+      sx={{
+          height: '100vh',
+          width: '100vw',  // Allows scrolling when content overflows
+          display: 'flex',
+          flexDirection: 'column',
+          paddingTop: '10vh',
+      }}
+  > 
+      <Box sx = {{paddingBottom: '100px', height: '1000px'}}><MainFeaturedPost images={images2} /></Box>
+      <Stack
+          direction="column"
+          justifyContent="flex-start"
+          alignItems="center"
+          spacing={10}
+          sx={{ width: '100%', }}  // Ensure Stack takes full height
+      >
+          
+          {/*<img src="/images/Dormitory.jpg" alt="Dormitory" style= {{width: '100%', height: '800px' }}/>*/}
+          <Advantages />
+          <BookingBlock />
+          <Gallery /> 
+          <GoogleMap />
+          <Footer />
+      </Stack>
+  </Box>
+    );
 }
