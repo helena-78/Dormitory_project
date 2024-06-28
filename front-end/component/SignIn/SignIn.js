@@ -112,18 +112,18 @@ function SignIn() {
     const email = data.get('email');
     const password = data.get('password');
   
-    // Check the fake datasets
+   
     const allFakeStudents = [...fakeStudentsDataSet1, ...fakeStudentsDataSet2];
     const user = allFakeStudents.find(student => student.email === email && student.password === password);
   
     if (user) {
       setLoading(false);
-      localStorage.setItem('userEmail', email); // Store email in localStorage
-      router.push('/profile'); // Redirect to profile page
+      localStorage.setItem('userEmail', email); 
+      router.push('/profile/[student_id]');
     } else {
       try {
-        // Fallback to server request
-        const response = await fetch(`http://127.0.0.1:8000/students/`, {
+       
+        const response = await fetch(`${BASE_URL}/students/`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -136,13 +136,13 @@ function SignIn() {
         setLoading(false);
   
         if (response.ok && result.student_id) {
-          const studentResponse = await fetch(`http://127.0.0.1:8000/students/?student_id=${result.student_id}`);
+          const studentResponse = await fetch(`${BASE_URL}/students/?student_id=${result.student_id}`);
           const studentData = await studentResponse.json();
   
           if (studentResponse.ok) {
             console.log('User data:', studentData);
-            localStorage.setItem('userEmail', email); // Store email in localStorage
-            router.push('/profile'); // Redirect to profile page
+            localStorage.setItem('userEmail', email); 
+            router.push('/profile'); 
           } else {
             setError('Error fetching user data');
           }
@@ -226,7 +226,7 @@ function SignIn() {
           </Grid>
         </Box>
       </Box>
-      <Copyright sx={{ mt: 8, mb: 4 }} />
+      
     </Container>
   );
 }
