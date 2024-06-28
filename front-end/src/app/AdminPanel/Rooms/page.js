@@ -7,11 +7,12 @@ import DynamicList from "../../../../component/AdminPanel/List/DynamicList";
 import NightShelterIcon from '@mui/icons-material/NightShelter';
 import {DynamicSelect} from "../../../../component/AdminPanel/Select/DynamicSelect";
 import {useState, useEffect} from "react";
+import {CircularProgress} from "@mui/material";
 
 export default function Page() {
     const url = 'http://127.0.0.1:8000//rooms/floor?floor=';
 
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState('');
     const [currentData, setCurrentData] = useState([]);
 
     const fetchData = async (floor) => {
@@ -23,7 +24,7 @@ export default function Page() {
 
     return (
         <>
-            <DynamicSelect handleSelectChange={handleSelect} title={"поверх"}
+            <DynamicSelect handleSelectChange={handleSelectChange} title={"поверх"}
                            options={["Перший", "Другий", "Третій"]}></DynamicSelect>
             <Box className="list">
                 {getRoomList()}
@@ -31,13 +32,14 @@ export default function Page() {
         </>
     );
 
-    function handleSelect(selectedValue) {
+    function handleSelectChange(selectedValue) {
         fetchData(parseInt(selectedValue)+1);
+        setLoading(true);
     }
 
     function getRoomList() {
         if (loading == true) {
-            return null;
+            return <CircularProgress />;
         } else {
             return (
                 <DynamicList
