@@ -76,8 +76,8 @@ export default function Page() {
 
     const fakeDataset2 = [
         {
-            "bill_id": 1,
-            "student_id": 1,
+            "bill_id": 4,
+            "student_id": 4,
             "dept": 1000,
         }
     ] 
@@ -158,55 +158,56 @@ export default function Page() {
                 </Grid>
                 <Grid item xs={6}>
                 {selectedStudent && (
-                        <Box sx={{ p: 2 }}>
-                            <Typography variant="h6" sx={{ mb: 2 }}>Student Details</Typography>
-                            <TableContainer component={Paper} sx={{ borderRadius: 2, border: '1px solid lightgrey' }}>
-                                <Table>
-                                    <TableBody>
-                                        <TableRow>
-                                            <TableCell>Name</TableCell>
-                                            <TableCell>{selectedStudent.name}</TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell>Surname</TableCell>
-                                            <TableCell>{selectedStudent.surname}</TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell>Email</TableCell>
-                                            <TableCell>{selectedStudent.email}</TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell>Contact Number</TableCell>
-                                            <TableCell>{selectedStudent.contact_number}</TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell>Gender</TableCell>
-                                            <TableCell>{selectedStudent.gender}</TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell>Room ID</TableCell>
-                                            <TableCell>{selectedStudent.room_id}</TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell>Application ID</TableCell>
-                                            <TableCell>{selectedStudent.application_id}</TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell>Debt</TableCell>
-                                            <TableCell>{selectedStudent.dept}</TableCell>
-                                        </TableRow>
-                                    </TableBody>
-                                </Table>
-                            </TableContainer>
-                            <Button
-                                variant="contained"
-                                color="primary"
-                                onClick={() => dismissBill(selectedStudent.bill_id)}
-                                sx={{ mt: 2 }}
-                            >
-                                Dismiss Bill
-                            </Button>
-                        </Box>
+                    <Box sx={{ p: 2 }}>
+    <Typography variant="h6" sx={{ mb: 2 }}>Деталі студента</Typography>
+    <TableContainer component={Paper} sx={{ borderRadius: 2, border: '1px solid lightgrey' }}>
+        <Table>
+            <TableBody>
+                <TableRow>
+                    <TableCell>Ім'я</TableCell>
+                    <TableCell>{selectedStudent.name}</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell>Прізвище</TableCell>
+                    <TableCell>{selectedStudent.surname}</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell>Електронна пошта</TableCell>
+                    <TableCell>{selectedStudent.email}</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell>Контактний номер</TableCell>
+                    <TableCell>{selectedStudent.contact_number}</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell>Стать</TableCell>
+                    <TableCell>{selectedStudent.gender}</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell>ID кімнати</TableCell>
+                    <TableCell>{selectedStudent.room_id}</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell>ID заявки</TableCell>
+                    <TableCell>{selectedStudent.application_id}</TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell>Заборгованість</TableCell>
+                    <TableCell>{selectedStudent.dept}</TableCell>
+                </TableRow>
+            </TableBody>
+        </Table>
+    </TableContainer>
+    <Button
+        variant="contained"
+        color="primary"
+        //onClick={() => dismissBill(selectedStudent.bill_id)}
+        sx={{ mt: 2 }}
+    >
+        Видалити Борг
+    </Button>
+</Box>
+
                     )}
                 </Grid>
             </Grid>
