@@ -1,3 +1,4 @@
+'use client'
 import Typography from "@mui/material/Typography";
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
