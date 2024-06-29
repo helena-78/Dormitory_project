@@ -4,13 +4,13 @@ import styles from "./Footer.css"
 import Divider from '@mui/material/Divider';
 
 export default function () {
-    const LogoImage = () => (<Image src="/LogoFooter.png" height={200} width={200} alt=""/>);
+    const LogoImage = () => (<Image src="/images/Footer/LogoFooter.png" height={200} width={200} alt=""/>);
 
     return (
         <>
         <div id={'footer'}>
             <Divider></Divider>
-            <div className="footerGroup">
+            <div className="footerGroup" onClick={()=> window.open("https://www.nmu.org.ua/ua/")}>
                 <LogoImage></LogoImage>
             </div>
             <div className="footerGroup">

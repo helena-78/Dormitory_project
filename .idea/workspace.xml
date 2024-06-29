@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="aac95de3-22e8-4717-8dd6-c55d8b1ea068" name="Changes" comment="added rooms, students and application pages to the admin panel&#10;&#10;added layout to the admin panel&#10;changed layout for the main page">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/component/AdminPanel/List/DynamicList.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/component/AdminPanel/List/DynamicList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/component/AdminPanel/Select/DynamicSelect.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/component/AdminPanel/Select/DynamicSelect.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Applications/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Applications/page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Rooms/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Rooms/page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Students/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Students/page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/app/AdminPanel/layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/AdminPanel/layout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/app/layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/layout.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="CSS File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="shapovalenko" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;VictorShap&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/helena-78/Dormitory_project.git&quot;,
+    &quot;accountId&quot;: &quot;6403337c-d59f-4f25-90eb-d64373ce0f8e&quot;
+  }
+}</component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2hxYNAEDaVrrOlBXrSbHHIpXFSD" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Node.js.TopBar.js.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;shapovalenko&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/SoftServe2024/front-end/public&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.1.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\SoftServe2024\front-end\public" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\SoftServe2024\front-end\src\app\AdminPanel\MainPage" />
+      <recent name="E:\SoftServe2024\front-end\component\SignIn" />
+      <recent name="E:\SoftServe2024\front-end\public\images" />
+      <recent name="E:\SoftServe2024\front-end\public\Footer" />
+      <recent name="E:\SoftServe2024\front-end\public\TopBar" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17890.1" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17890.1" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="aac95de3-22e8-4717-8dd6-c55d8b1ea068" name="Changes" comment="" />
+      <created>1718537155115</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1718537155115</updated>
+      <workItem from="1718545553134" duration="1918000" />
+      <workItem from="1718554592654" duration="5833000" />
+      <workItem from="1718571212553" duration="46000" />
+      <workItem from="1718573101459" duration="659000" />
+      <workItem from="1718607697994" duration="3246000" />
+      <workItem from="1718616814700" duration="5123000" />
+      <workItem from="1718623265300" duration="288000" />
+      <workItem from="1718625695242" duration="1983000" />
+      <workItem from="1718627862554" duration="614000" />
+      <workItem from="1718730731410" duration="5294000" />
+      <workItem from="1718791405254" duration="16254000" />
+      <workItem from="1718833628437" duration="304000" />
+      <workItem from="1718880059372" duration="264000" />
+      <workItem from="1718889717938" duration="3512000" />
+      <workItem from="1718905403013" duration="89000" />
+      <workItem from="1718969298785" duration="17709000" />
+      <workItem from="1719056984529" duration="14461000" />
+      <workItem from="1719141608860" duration="8887000" />
+      <workItem from="1719213097949" duration="3935000" />
+      <workItem from="1719356032085" duration="153000" />
+      <workItem from="1719386012166" duration="12871000" />
+    </task>
+    <task id="LOCAL-00001" summary="Added TopBar">
+      <option name="closed" value="true" />
+      <created>1718573671162</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1718573671162</updated>
+    </task>
+    <task id="LOCAL-00002" summary="styles were separated from js&#10;minor changes to topBar">
+      <option name="closed" value="true" />
+      <created>1718622536981</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1718622536981</updated>
+    </task>
+    <task id="LOCAL-00003" summary="added styles import">
+      <option name="closed" value="true" />
+      <created>1718623522499</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1718623522499</updated>
+    </task>
+    <task id="LOCAL-00004" summary="changed login icon">
+      <option name="closed" value="true" />
+      <created>1718627666025</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1718627666025</updated>
+    </task>
+    <task id="LOCAL-00005" summary="removed unnecessary images">
+      <option name="closed" value="true" />
+      <created>1718718802642</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1718718802642</updated>
+    </task>
+    <task id="LOCAL-00006" summary="added a sign in pop up&#10;sign in component was changed">
+      <option name="closed" value="true" />
+      <created>1718809954195</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1718809954195</updated>
+    </task>
+    <task id="LOCAL-00007" summary="added rooms, students and application pages to the admin panel&#10;&#10;added layout to the admin panel&#10;changed layout for the main page">
+      <option name="closed" value="true" />
+      <created>1719153377370</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1719153377370</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added TopBar" />
+    <MESSAGE value="styles were separated from js&#10;minor changes to topBar" />
+    <MESSAGE value="added styles import" />
+    <MESSAGE value="changed login icon" />
+    <MESSAGE value="removed unnecessary images" />
+    <MESSAGE value="added a sign in pop up&#10;sign in component was changed" />
+    <MESSAGE value="added rooms, students and application pages to the admin panel&#10;&#10;added layout to the admin panel&#10;changed layout for the main page" />
+    <option name="LAST_COMMIT_MESSAGE" value="added rooms, students and application pages to the admin panel&#10;&#10;added layout to the admin panel&#10;changed layout for the main page" />
+  </component>
+</project>
