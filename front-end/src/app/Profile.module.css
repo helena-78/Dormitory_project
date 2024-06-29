@@ -1,4 +1,5 @@
-/* pages/profile.module.css */
+@import url('https://fonts.googleapis.com/css2?family=Bitter:wght@700&family=Montserrat&display=swap');
+
 .container {
   width: 80%;
   margin: 0 auto;
@@ -32,16 +33,17 @@
 }
 
 .profileText {
-  font-size: 48px;
+  font-size: 50px;
   margin: 30px 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Bitter', serif;
+  font-weight: 700; /* Bold 700 */
+  font-style: normal;
 }
 
 .profileRoom {
   font-size: 36px;
   margin: 10px 0;
   padding-top: 50px;
-  
 }
 
 .form {
@@ -71,20 +73,27 @@
 }
 
 .profileLabel {
-  font-size: 28px;
+  font-size: 30px;
   margin-bottom: 5px;
   font-weight: bold;
+  color: #1976d2; /* Синій колір для акценту */
+  text-transform: uppercase; /* Великі літери */
+  letter-spacing: 1.5px; /* Розрідження літер */
 }
 
 .textBox {
-  font-size: 22px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  font-family: 'Roboto', sans-serif;
+  font-size: 24px;
+  padding: 10px 15px; /* Відступи навколо тексту */
+  font-family: 'Montserrat', sans-serif; /* Montserrat шрифт */
   border: 1px solid #ccc;
   border-radius: 7px;
+  background-color: #f9f9f9; /* Світлий фон */
+  transition: border-color 0.3s, box-shadow 0.3s; /* Плавні переходи для бордюра та тіні */
+}
 
-  
+.textBox:hover {
+  border-color: #1976d2; /* Синій бордюр при наведенні */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Легка тінь при наведенні */
 }
 
 .room {
@@ -102,14 +111,15 @@
 
 .Myroom {
   margin-left: 40%;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Bitter', serif;
+  font-weight: 700; /* Bold 700 */
+  font-style: normal;
 }
 
 .roomImage img {
   width: 100%;
   max-width: 360px;
   border-radius: 5px;
-
 }
 
 .editProfileButton {

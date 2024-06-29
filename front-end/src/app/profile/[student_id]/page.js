@@ -1,26 +1,34 @@
 "use client";
 import * as React from 'react';
 import { useEffect, useState } from 'react';
-import styles from './Profile.module.css';
+import { useParams } from 'next/navigation';
+import styles from '../../Profile.module.css';
 
-const Profile = ({ student_id }) => {
-  const [user, setUser] = useState(null); 
+
+
+const Profile = () => {
+  const { student_id } = useParams();
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null); 
+  const [error, setError] = useState(null);
 
   const BASE_URL = 'http://127.0.0.1:8000';
 
   useEffect(() => {
+    if (!student_id) {
+      console.error("student_id is not defined");
+      return;
+    }
+
     const fetchUserData = async () => {
       try {
-        const email = localStorage.getItem('userEmail'); 
+        const email = localStorage.getItem('userEmail');
         if (!email) {
           throw new Error('Email is missing');
         }
 
         console.log('Fetching user data for student_id:', student_id);
 
-       
         const response = await fetch(`${BASE_URL}/students/${student_id}`, {
           method: 'GET',
           headers: {
@@ -31,38 +39,45 @@ const Profile = ({ student_id }) => {
         console.log('Response status:', response.status);
 
         if (!response.ok) {
-          throw new Error('Failed to fetch user data');
+          const errorText = await response.text();
+          console.error('Failed to fetch user data:', errorText);
+          throw new Error(errorText || 'Failed to fetch user data');
         }
 
-        const userData = await response.json(); 
+        const userData = await response.json();
         console.log('User data fetched successfully:', userData);
         setUser(userData);
       } catch (error) {
         console.error('Error fetching user data:', error);
-        setError(error.message); 
+        setError(error.message);
       } finally {
-        setLoading(false); 
+        setLoading(false);
       }
     };
 
-    if (student_id) {
-      fetchUserData(); 
+    fetchUserData();
+  }, [student_id]);
+
+  useEffect(() => {
+    if (user) {
+      console.log('User data in state:', user);
     }
-  }, [student_id]); 
+  }, [user]);
 
   if (loading) {
-    return <p>Loading...</p>; 
+    return <p>Loading...</p>;
   }
 
   if (error) {
-    return <p>Error: {error}</p>; 
+    return <p>Error: {error}</p>;
   }
 
   if (!user) {
-    return <p>User not found.</p>; 
+    return <p>User not found.</p>;
   }
-  
+
   return (
+    
     <div className={styles.container}>
       <div className={styles.profile}>
         <div className={styles.avatar}>
@@ -76,11 +91,11 @@ const Profile = ({ student_id }) => {
             <div className={styles.formRow}>
               <div className={styles.formGroup}>
                 <label className={styles.profileLabel}>Ім'я</label>
-                <p className={styles.textBox}>{user.firstName}</p> 
+                <p className={styles.textBox}>{user.name}</p>
               </div>
               <div className={styles.formGroup}>
                 <label className={styles.profileLabel}>Прізвище</label>
-                <p className={styles.textBox}>{user.lastName}</p> 
+                <p className={styles.textBox}>{user.surname}</p>
               </div>
             </div>
             <div className={styles.formRow}>
@@ -90,12 +105,12 @@ const Profile = ({ student_id }) => {
               </div>
               <div className={styles.formGroup}>
                 <label className={styles.profileLabel}>Телефон</label>
-                <p className={styles.textBox}>+38{user.phone}</p> 
+                <p className={styles.textBox}>{user.contact_number}</p>
               </div>
             </div>
             <div className={styles.formGroup}>
               <label className={styles.profileLabel}>Пошта</label>
-              <p className={styles.textBox}>{user.email}</p> 
+              <p className={styles.textBox}>{user.email}</p>
             </div>
           </div>
         </div>
@@ -103,7 +118,7 @@ const Profile = ({ student_id }) => {
       <div className={styles.Myroom}>
         <h2 className={styles.profileRoom}>Моя кімната</h2>
         <div className={styles.room}>
-          <p>{user.room}</p> 
+          <p>{user.room ? user.room : "Немає інформації про кімнату"}</p>
         </div>
         <div className={styles.roomImage}>
           <img src="/8_bed_1st.jpg" alt="Room Image" />
