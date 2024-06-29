@@ -11,16 +11,15 @@ export function DynamicSelect(props) {
         <FormControl fullWidth className="selectBlock">
             <div><b>Виберіть {props.title}:</b></div>
             <div>
-                <NativeSelect onChange={handleSelect} defaultValue={-1}>
-                    <option value="-1" disabled selected>...</option>
+                <NativeSelect onChange={handleSelect} defaultValue={0}>
                     {optionList}
                 </NativeSelect>
             </div>
         </FormControl>
     );
 
-    function handleSelect(selectedItem){
-       props.handleSelectChange(selectedItem.target.value);
+    function handleSelect(selectedOption){
+       props.handleSelectChange(selectedOption.target.value);
     }
 }
 

@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aac95de3-22e8-4717-8dd6-c55d8b1ea068" name="Changes" comment="added filtering with select for rooms page in admin panel">
+    <list default="true" id="aac95de3-22e8-4717-8dd6-c55d8b1ea068" name="Changes" comment="a">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-end/component/AdminPanel/List/DynamicList.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/component/AdminPanel/List/DynamicList.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-end/component/AdminPanel/Select/DynamicSelect.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/component/AdminPanel/Select/DynamicSelect.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Rooms/EditRoom/EditRoom.css" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/AdminPanel/EditRoom/EditRoom.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Rooms/EditRoom/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/AdminPanel/EditRoom/page.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Rooms/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Rooms/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/page.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +62,7 @@
     &quot;Node.js.TopBar.js.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;shapovalenko&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;923d43f8&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;E:/SoftServe2024/front-end/public&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
@@ -80,11 +81,11 @@
       <recent name="E:\SoftServe2024\front-end\public" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\SoftServe2024\front-end\src\app\AdminPanel" />
       <recent name="E:\SoftServe2024\front-end\src\app\AdminPanel\MainPage" />
       <recent name="E:\SoftServe2024\front-end\component\SignIn" />
       <recent name="E:\SoftServe2024\front-end\public\images" />
       <recent name="E:\SoftServe2024\front-end\public\Footer" />
-      <recent name="E:\SoftServe2024\front-end\public\TopBar" />
     </key>
   </component>
   <component name="RunManager">
@@ -141,6 +142,7 @@
       <workItem from="1719411389876" duration="10057000" />
       <workItem from="1719479711875" duration="7696000" />
       <workItem from="1719501749674" duration="10155000" />
+      <workItem from="1719662246723" duration="4937000" />
     </task>
     <task id="LOCAL-00001" summary="Added TopBar">
       <option name="closed" value="true" />
