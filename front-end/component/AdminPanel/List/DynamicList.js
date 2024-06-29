@@ -11,6 +11,7 @@ import Grid from "@mui/material/Grid";
 import * as React from "react";
 import {styled} from "@mui/material/styles";
 import styles from './DynamicList.css';
+import Link from "next/link";
 
 export default function DynamicList(props) {
     let listItems = generateListItems(props);
@@ -32,14 +33,21 @@ export default function DynamicList(props) {
 function generateListItems(props) {
     let listItemsArray = [];
 
-    for (let i = 0; i < props.data.length; i++) {
+    for (let i = 0; i < props.dataLength; i++) {
         listItemsArray[i] =
-            <div   primary={props.itemName + props.items[i]} key={i} className="listElement">
+            <div primary={props.itemName + props.itemValues[i]} key={i} className="listElement">
                 <ListItem
                     secondaryAction={
+                    <Link
+                        href={{
+                            pathname: props.editComponentUrl,
+                            query: "id=" + props.itemIDs[i]
+                        }}
+                    >
                         <IconButton edge="end">
                             <BorderColorIcon sx={{color: '#1976d2'}}></BorderColorIcon>
                         </IconButton>
+                    </Link>
                     }
                 >
                     <ListItemAvatar>
@@ -48,7 +56,7 @@ function generateListItems(props) {
                         </Avatar>
                     </ListItemAvatar>
                     <ListItemText
-                        primary={props.itemName + props.items[i]}
+                        primary={props.itemName + props.itemValues[i]}
                     />
                 </ListItem>
             </div>
