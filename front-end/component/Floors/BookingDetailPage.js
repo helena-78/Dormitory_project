@@ -4,53 +4,49 @@ import { useState } from 'react';
 
 const BookingDetailPage = () => {
   const searchParams = useSearchParams();
-
   const floor = searchParams.get('floor');
   const number = searchParams.get('number');
   const gender = searchParams.get('gender');
   const available_places = searchParams.get('available_places');
   const price = searchParams.get('price');
-  const room_id = searchParams.get('room_id');
 
   const [loading, setLoading] = useState(false);
 
- const handleBooking = async () => {
-   setLoading(true);
+  const handleBooking = async () => {
+    setLoading(true);
 
-   const data = {
-     application_id: Math.random().toString(36).substr(2, 9), // generate a random application id
-     student_id: 12, // replace with the actual student id
-     room_id,
-     status: "Submitted",
-     application_date: new Date().toISOString(),
-     desired_roommates: [], // replace with actual data if needed
-   };
+    const bookingData = {
+      booking_id: 3, // generate a random booking id
+      student_id: 3, // replace with the actual student id
+      room_id: parseInt(number), // assuming 'number' is the room_id
+      booking_date: new Date().toISOString(),
+      confirmation_status: "Pending",
+    };
 
-   try {
-     const response = await fetch('http://127.0.0.1:8000/applications/create/', {
-       method: 'POST',
-       headers: {
-         'Content-Type': 'application/json',
-       },
-       body: JSON.stringify(data),
-     });
+    try {
+      const response = await fetch('http://localhost:8000/bookings/create/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(bookingData),
+      });
 
-     if (!response.ok) {
-       throw new Error('Network response was not ok');
-     }
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Network response was not ok: ${errorText}`);
+      }
 
-     const result = await response.json();
-     console.log(result);
-     alert('Booking successful!');
-   } catch (error) {
-     console.error('Error during booking:', error);
-     //alert(error);
-   } finally {
-     setLoading(false);
-   }
- };
-
-
+      const result = await response.json();
+      console.log(result);
+      alert('Booking successful!');
+    } catch (error) {
+      console.error('Error during booking:', error);
+      alert(`Booking failed, please try again. Error: ${error.message}`);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className={styles.bookingDetailPage}>
@@ -87,7 +83,7 @@ const BookingDetailPage = () => {
       </div>
       <div className={styles.reservationButton}>
         <button onClick={handleBooking} disabled={loading}>
-          {loading ? 'Забронювання...' : 'Забронювати'}
+          {loading ? 'Завантаження...' : 'Забронювати'}
         </button>
       </div>
     </div>
