@@ -9,19 +9,25 @@ import {DynamicSelect} from "../../../../component/AdminPanel/Select/DynamicSele
 import {useState, useEffect} from "react";
 import {CircularProgress} from "@mui/material";
 
-export default function Page() {
-    const url = 'http://127.0.0.1:8000//rooms/floor?floor=';
+const BASE_URL = 'http://127.0.0.1:8000';
+const ENDPOINT = '/rooms/floor';
+const QUERY_PARAM = 'floor';
 
+export default function Page() {
     const [loading, setLoading] = useState('');
     const [currentData, setCurrentData] = useState([]);
     const [selectState, setSelectState] = useState(1);
     const [errorOccurredState, setErrorOccurredState] = useState(false);
+    const url = `${BASE_URL}${ENDPOINT}/?${QUERY_PARAM}=${selectState}`;
 
     const fetchData = async () => {
-        const result = await fetch(url + selectState)
+        const result = await fetch(url)
             .then(response => response.json())
             .finally(() => setLoading(false)).
-            catch(()=>setErrorOccurredState(true));
+            catch((reason)=>{
+                setErrorOccurredState(true);
+                console.log(reason);
+            });
 
         setCurrentData(result);
     }
@@ -34,7 +40,7 @@ export default function Page() {
 
     if(errorOccurredState==true){
         return (
-          <h1 style={{paddingTop:'15vh', color:'red'}}>Failed to fetch data</h1>
+          <h1 style={{paddingTop:'15vh', color:'red', textAlign:'center'}}>Failed to fetch data</h1>
         );
     }
 
@@ -55,7 +61,8 @@ export default function Page() {
     function getRoomList() {
         if (loading == true) {
             return <CircularProgress/>;
-        } else {
+        }
+        else {
             return (
                 <DynamicList
                     icon={<NightShelterIcon sx={{color: '#FFFFFF', transform: 'scale(1.5)'}}></NightShelterIcon>}
@@ -64,16 +71,11 @@ export default function Page() {
                     itemIDs={currentData.map((room) => room.room_id)}
                     title={"кімнат"}
                     itemName={"Кімната "}
-                    sortExpression={sortList}
                     editComponentUrl={'./EditRoom'}
                 >
                 </DynamicList>
             );
         }
-    }
-
-    function sortList(listItem1, listItem2) {
-        return parseInt(listItem1.props.primary.slice(-1)) - parseInt(listItem2.props.primary.slice(-1));
     }
 }
 
