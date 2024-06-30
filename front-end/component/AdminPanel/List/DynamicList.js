@@ -36,7 +36,7 @@ function generateListItems(props) {
 
     for (let i = 0; i < props.dataLength; i++) {
         listItemsArray[i] =
-            <div primary={props.itemName + props.itemValues[i]} key={i} className="listElement">
+            <div id={props.itemIDs[i]} className="listElement">
                 <ListItem
                     secondaryAction={
                     <Link
@@ -63,9 +63,13 @@ function generateListItems(props) {
             </div>
     }
 
-    listItemsArray= listItemsArray.sort(props.sortExpression);
+    listItemsArray= listItemsArray.sort(sortList);
 
     return listItemsArray;
+
+    function sortList(listItem1, listItem2){
+        return parseInt(listItem1.props.id) - parseInt(listItem2.props.id);
+    }
 }
 
 

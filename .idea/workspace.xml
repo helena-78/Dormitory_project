@@ -7,10 +7,10 @@
     <list default="true" id="aac95de3-22e8-4717-8dd6-c55d8b1ea068" name="Changes" comment="a">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-end/component/AdminPanel/List/DynamicList.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/component/AdminPanel/List/DynamicList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/component/AdminPanel/Select/DynamicSelect.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/component/AdminPanel/Select/DynamicSelect.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Rooms/EditRoom/EditRoom.css" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/AdminPanel/EditRoom/EditRoom.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Rooms/EditRoom/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/AdminPanel/EditRoom/page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/app/AdminPanel/EditRoom/EditRoom.css" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/AdminPanel/EditRoom/EditRoom.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/app/AdminPanel/EditRoom/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/AdminPanel/EditRoom/page.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Rooms/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Rooms/page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Students/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Students/page.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +62,7 @@
     &quot;Node.js.TopBar.js.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;923d43f8&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;7007c996&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;E:/SoftServe2024/front-end/public&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
@@ -71,7 +71,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.1.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -143,6 +143,9 @@
       <workItem from="1719479711875" duration="7696000" />
       <workItem from="1719501749674" duration="10155000" />
       <workItem from="1719662246723" duration="4937000" />
+      <workItem from="1719686344498" duration="4924000" />
+      <workItem from="1719742259825" duration="28248000" />
+      <workItem from="1719790379457" duration="162000" />
     </task>
     <task id="LOCAL-00001" summary="Added TopBar">
       <option name="closed" value="true" />
