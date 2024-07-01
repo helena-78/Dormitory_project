@@ -23,12 +23,12 @@ const VisuallyHiddenInput = styled('input')({
     whiteSpace: 'nowrap',
     width: 1,
 });
-
+let startData;
 
 export default function EditRoom() {
     const roomId = useSearchParams().get('id');
     const url = `${BASE_URL}${ENDPOINT}` + roomId;
-    const [data, setData] = useState([]);
+    const [currentData, setCurrentData] = useState([]);
     const [errorOccurredState, setErrorOccurredState] = useState(false);
     const [loading, setLoading] = useState('');
     const [successfulPatchState, setSuccessfulPatchState] = useState('');
@@ -42,8 +42,9 @@ export default function EditRoom() {
                 setErrorOccurredState(true);
             });
 
-        console.log(result);
-        setData(result);
+        //    console.log(result);
+        setCurrentData(result);
+        startData = result;
     }
 
     useEffect(() => {
@@ -54,19 +55,20 @@ export default function EditRoom() {
 
     if (errorOccurredState === true) {
         return (
-            <div className={'animated'} style={{position:'fixed', zIndex:2, top: '90vh', height: '10vh' ,marginRight:'3vw', left:'75%'}}>
-                <Alert sx={{width:'20vw'}} severity="error">Виникла помилка</Alert>
+            <div className={'animated'}
+                 style={{position: 'fixed', zIndex: 2, top: '90vh', height: '10vh', marginRight: '3vw', left: '75%'}}>
+                <Alert sx={{width: '20vw'}} severity="error">Виникла помилка</Alert>
             </div>
         )
     }
 
     return (
         <div style={{paddingTop: '15vh'}}>
-            {generateRoomCharacteristics()}
+            {generateRoomFields()}
         </div>
     );
 
-    function generateRoomCharacteristics() {
+    function generateRoomFields() {
         if (loading === true) {
             return <CircularProgress/>;
         }
@@ -77,7 +79,7 @@ export default function EditRoom() {
                     <h2 style={{textAlign: 'center'}}>Редагування кімнати</h2>
                     <div className={"roomFieldsContainer"}>
                         <div className={"roomField"}>
-                            Id: {data.room_id}
+                            Id: {currentData.room_id}
                         </div>
                         <div style={{
                             display: 'flex',
@@ -96,11 +98,11 @@ export default function EditRoom() {
                             <Input
                                 style={{marginLeft: '1vw'}}
                                 className={"Input"} required type={'number'}
-                                value={data.number}
+                                value={currentData.number}
                                 onChange={
                                     (e) => {
                                         if (e.target.value > 0 || e.target.value === "") {
-                                            setData((prevState) => {
+                                            setCurrentData((prevState) => {
                                                 return {...prevState, number: parseInt(e.target.value)};
                                             })
                                         }
@@ -111,11 +113,11 @@ export default function EditRoom() {
                             <Input
                                 style={{marginLeft: '1vw'}}
                                 type={'number'} required className={"Input"}
-                                value={data.price}
+                                value={currentData.price}
                                 onChange={
                                     (e) => {
                                         if (e.target.value > 0 || e.target.value === "") {
-                                            setData((prevState) => {
+                                            setCurrentData((prevState) => {
                                                 return {...prevState, price: e.target.value};
                                             })
                                         }
@@ -130,10 +132,10 @@ export default function EditRoom() {
                                 </div>
                             </div>
                             <RadioGroup
-                                defaultValue={data.gender}
+                                defaultValue={currentData.gender}
                                 sx={{width: '5vw'}}
                                 onChange={(e) => {
-                                    setData((prevState) => {
+                                    setCurrentData((prevState) => {
                                         return {...prevState, gender: e.target.value}
                                     })
                                 }}
@@ -150,11 +152,11 @@ export default function EditRoom() {
                                 type={'number'}
                                 required sx={{width: '3vw'}}
                                 aria-valuemin={0}
-                                value={data.available_places} onChange={
+                                value={currentData.available_places} onChange={
                                 (e) => {
                                     if (e.target.value > 0 || e.target.value === "") {
-                                        setData((prevState) => {
-                                            return {...prevState, available_places: e.target.value};
+                                        setCurrentData((prevState) => {
+                                            return {...prevState, available_places: parseInt(e.target.value)};
                                         })
                                     }
                                 }}
@@ -173,13 +175,13 @@ export default function EditRoom() {
                                 >
                                     Завантажити
                                     <VisuallyHiddenInput type="file"/>
-                                </Button>{data.images}
+                                </Button>{currentData.images}
                                 {generateImages()}
                             </div>
                         </div>
                     </div>
                     <div style={{display: 'flex', justifyContent: 'flex-end', paddingRight: '10vw'}}>
-                        <Button type={'submit'} variant="contained" color="primary">
+                        <Button type={'submit'} disabled={isDataEqual()} variant="contained" color="primary">
                             Зберегти
                         </Button>
                     </div>
@@ -200,10 +202,14 @@ export default function EditRoom() {
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify(data)
+                    body: JSON.stringify(currentData)
                 }).then(response => response.json());
 
                 setSuccessfulPatchState(true);
+                await fetchData();
+                setTimeout(() => {
+                    setSuccessfulPatchState(false)
+                }, 3000)
 
             } catch (error) {
                 setErrorOccurredState(true);
@@ -219,9 +225,9 @@ export default function EditRoom() {
                 sx={{width: '7vw', paddingTop: '3vh', marginLeft: '1vw'}}
                 variant="standard"
                 id="demo-simple-select-standard"
-                defaultValue={data.floor}
+                defaultValue={currentData.floor}
                 onChange={(e) => {
-                    setData((prevState) => {
+                    setCurrentData((prevState) => {
                         return {...prevState, floor: parseInt(e.target.value)}
                     })
                 }}
@@ -236,8 +242,15 @@ export default function EditRoom() {
     function appearSuccessfulAlert() {
         if (successfulPatchState === true) {
             return (
-                <div className={'animated'} style={{position:'fixed', zIndex:2, top: '90vh', height: '10vh' ,marginRight:'3vw', left:'75%'}}>
-                    <Alert sx={{width:'20vw'}} severity="success">Дані успішно збережені</Alert>
+                <div className={'animated'} style={{
+                    position: 'fixed',
+                    zIndex: 2,
+                    top: '90vh',
+                    height: '10vh',
+                    marginRight: '3vw',
+                    left: '75%'
+                }}>
+                    <Alert sx={{width: '20vw'}} severity="success">Дані успішно збережені</Alert>
                 </div>
             );
         } else {
@@ -245,13 +258,17 @@ export default function EditRoom() {
         }
     }
 
-    function generateImages()  {
+    function generateImages() {
         let images;
 
-        for (let i = 0; i < data.images?.length; i++) {
+        for (let i = 0; i < currentData.images?.length; i++) {
             images[i] = <Image src={""}/>
         }
 
         return images;
+    }
+
+    function isDataEqual() {
+        return JSON.stringify(startData) == JSON.stringify(currentData);
     }
 }
