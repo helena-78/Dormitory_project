@@ -1,0 +1,26 @@
+#topBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 10%;
+    position: fixed;
+    width: 100%;
+    background-color: white;
+    top: 0;
+    z-index: 1;
+}
+
+.topBarGroup {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.topBarButton {
+    padding: 5%;
+}
+
+#loginImage {
+    margin-right: 20px;
+}
