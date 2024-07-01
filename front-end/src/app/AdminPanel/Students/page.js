@@ -8,7 +8,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import {useEffect, useState} from "react";
 import {CircularProgress} from "@mui/material";
 
-const BASE_URL = 'http://127.0.0.1:8000';
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 const ENDPOINT = '/students/';
 
 export default function Page() {

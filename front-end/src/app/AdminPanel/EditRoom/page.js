@@ -10,7 +10,8 @@ import Button from "@mui/material/Button";
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import {styled} from "@mui/material/styles";
 
-const BASE_URL = 'http://127.0.0.1:8000';
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+
 const ENDPOINT = '/rooms/';
 const VisuallyHiddenInput = styled('input')({
     clip: 'rect(0 0 0 0)',

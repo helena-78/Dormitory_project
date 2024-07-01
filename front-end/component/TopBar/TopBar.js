@@ -5,9 +5,11 @@ import * as React from "react";
 import Button from "@mui/material/Button";
 import styles from "./TopBar.css"
 import LoginIcon from '@mui/icons-material/Login';
+import { useRouter } from 'next/navigation'
 
 export default function (props) {
     const LogoImage = () => (<Image src="/images/TopBar/LogoTopBar.png" height={70} width={70} alt=""/>);
+    const router = useRouter()
 
     return (
         <div id={'topBar'}>
@@ -20,6 +22,9 @@ export default function (props) {
                 </div>
                 <div className="topBarButton">
                     <Button>Kонтакти</Button>
+                </div>
+                <div className="topBarButton">
+                    <Button onClick={() => router.push('/AdminPanel/Rooms')}>Админ</Button>
                 </div>
             </div>
             <div className="topBarGroup">

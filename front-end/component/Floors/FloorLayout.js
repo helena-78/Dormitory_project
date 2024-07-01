@@ -119,7 +119,7 @@ const FloorLayout = () => {
   const [loading, setLoading] = useState(true);
 
   const fetchItems = async (index) => {
-    const url = `${remote_url}${ENDPOINT}/?${QUERY_PARAM}=${index + 1}`;
+    const url = `${process.env.NEXT_PUBLIC_API_URL}${ENDPOINT}/?${QUERY_PARAM}=${index + 1}`;
     fetch(url)
       .then((data) => data.json())
       .then((data) => setItems(addUndefinedItems(data)))
