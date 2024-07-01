@@ -10,8 +10,9 @@ class Application(models.Model):
         ('Rejected', 'Відхилино'),
     )
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='Submitted', verbose_name='Статус')
-    application_date = models.DateField(auto_now_add=True, verbose_name='Дата подачі заявки')
-    desired_roommates = models.TextField(blank=True, null=True, verbose_name='Бажані сусіди')
+    application_date = models.DateTimeField(auto_now_add=True)
+    desired_roommate1 = models.TextField(null=True, blank=True)
+    desired_roommate2 = models.TextField(null=True, blank=True)
     class Meta:
         verbose_name = 'Заявка'
         verbose_name_plural = 'Заявки'
