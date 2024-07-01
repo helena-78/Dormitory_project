@@ -6,125 +6,76 @@ import commonStyles from 'src/app/AdminPanel/AdminPanel.css'
 import DynamicList from "../../../../component/AdminPanel/List/DynamicList";
 import NightShelterIcon from '@mui/icons-material/NightShelter';
 import {DynamicSelect} from "../../../../component/AdminPanel/Select/DynamicSelect";
-import {useState} from "react";
+import {useState, useEffect} from "react";
+import {CircularProgress} from "@mui/material";
 
-const fakeRoomsDataFirstFloor = [
-    {
-        "room_id": 1,
-        "number": "101",
-        "available_places": "0",
-        "image": "base64 encoded",
-        "price": "19999",
-        "gender": "M"
-    },
-    {
-        "room_id": 2,
-        "number": "102",
-        "available_places": "2",
-        "image": "base64 encoded",
-        "price": "2032",
-        "gender": "F"
-    },
-    {
-        "room_id": 3,
-        "number": "103",
-        "available_places": "3",
-        "image": "base64 encoded",
-        "price": "2032",
-        "gender": "F"
-    }
-]
-
-const fakeRoomsDataSecondFloor = [
-    {
-        "room_id": 4,
-        "number": "201",
-        "available_places": "0",
-        "image": "base64 encoded",
-        "price": "19999",
-        "gender": "M"
-    },
-    {
-        "room_id": 5,
-        "number": "202",
-        "available_places": "2",
-        "image": "base64 encoded",
-        "price": "2032",
-        "gender": "F"
-    },
-    {
-        "room_id": 6,
-        "number": "203",
-        "available_places": "3",
-        "image": "base64 encoded",
-        "price": "2032",
-        "gender": "F"
-    }
-]
-
-const fakeRoomsDataThirdFloor = [
-    {
-        "room_id": 7,
-        "number": "301",
-        "available_places": "0",
-        "image": "base64 encoded",
-        "price": "19999",
-        "gender": "M"
-    },
-    {
-        "room_id": 8,
-        "number": "302",
-        "available_places": "2",
-        "image": "base64 encoded",
-        "price": "2032",
-        "gender": "F"
-    },
-    {
-        "room_id": 9,
-        "number": "303",
-        "available_places": "3",
-        "image": "base64 encoded",
-        "price": "2032",
-        "gender": "F"
-    }
-]
+const BASE_URL = 'http://127.0.0.1:8000';
+const ENDPOINT = '/rooms/floor';
+const QUERY_PARAM = 'floor';
 
 export default function Page() {
-    const [listState, setListState] = useState('0');
+    const [loading, setLoading] = useState('');
+    const [currentData, setCurrentData] = useState([]);
+    const [selectState, setSelectState] = useState(1);
+    const [errorOccurredState, setErrorOccurredState] = useState(false);
+    const url = `${BASE_URL}${ENDPOINT}/?${QUERY_PARAM}=${selectState}`;
+
+    const fetchData = async () => {
+        const result = await fetch(url)
+            .then(response => response.json())
+            .finally(() => setLoading(false)).
+            catch((reason)=>{
+                setErrorOccurredState(true);
+                console.log(reason);
+            });
+
+        setCurrentData(result);
+    }
+
+    useEffect(() => {
+            setLoading(true);
+            fetchData()
+        },
+        [selectState]);
+
+    if(errorOccurredState==true){
+        return (
+          <h1 style={{paddingTop:'15vh', color:'red', textAlign:'center'}}>Failed to fetch data</h1>
+        );
+    }
 
     return (
         <>
-            <DynamicSelect filter={setListState} title={"поверх"}
+            <DynamicSelect handleSelectChange={handleSelect} title={"поверх"}
                            options={["Перший", "Другий", "Третій"]}></DynamicSelect>
-            <Box className="list" state={listState}>
-                {filterRoomsByFloor(listState)}
+            <Box className="list">
+                {getRoomList()}
             </Box>
         </>
     );
 
-    function filterRoomsByFloor(selectedValue) {
-        let currentData;
+    function handleSelect(selectedOption) {
+        setSelectState(parseInt(selectedOption) + 1);
+    }
 
-        switch (selectedValue) {
-            case '0' :
-                currentData = fakeRoomsDataFirstFloor;
-                break;
-            case '1':
-                currentData = fakeRoomsDataSecondFloor;
-                break;
-            case '2':
-                currentData = fakeRoomsDataThirdFloor;
-                break;
+    function getRoomList() {
+        if (loading == true) {
+            return <CircularProgress/>;
         }
-
-        return (
-            <DynamicList
-                icon={<NightShelterIcon sx={{color: '#FFFFFF', transform: 'scale(1.5)'}}></NightShelterIcon>}
-                items={currentData.map((room) => room.number)} data={currentData}
-                title={"кімнат"}
-                itemName={"Кімната "}>
-            </DynamicList>
-        );
+        else {
+            return (
+                <DynamicList
+                    icon={<NightShelterIcon sx={{color: '#FFFFFF', transform: 'scale(1.5)'}}></NightShelterIcon>}
+                    itemValues={currentData.map((room) => room.number)}
+                    dataLength={currentData.length}
+                    itemIDs={currentData.map((room) => room.room_id)}
+                    title={"кімнат"}
+                    itemName={"Кімната "}
+                    editComponentUrl={'./EditRoom'}
+                >
+                </DynamicList>
+            );
+        }
     }
 }
 

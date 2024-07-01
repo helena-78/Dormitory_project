@@ -18,8 +18,8 @@ export function DynamicSelect(props) {
         </FormControl>
     );
 
-    function handleSelect(selectedItem){
-       props.filter(selectedItem.target.value);
+    function handleSelect(selectedOption){
+       props.handleSelectChange(selectedOption.target.value);
     }
 }
 
