@@ -1,8 +1,11 @@
 'use client'
 import Room from 'component/Room/Room';
-import React, { useEffect, useState } from 'react';
-import { Box, Button, Grid, CircularProgress } from '@mui/material';
-import { BorderBottom } from '@mui/icons-material';
+import React, { useEffect, useState } from 'react'
+import { Box, Button, Grid, CircularProgress } from '@mui/material'
+import { BorderBottom } from '@mui/icons-material'
+import LegendLabel from 'component/Floors/LegendLabel';
+import '@fontsource/inter';
+import './floorlayout.css';
 
 const fakeDataSet1 = [
   {
@@ -223,6 +226,12 @@ const FloorLayout = () => {
         </Button>
       </Box>
       <Box>{renderContent()}</Box>
+      <Box sx={{ display: 'flex', justifyContent: 'space-around', marginTop: 4 }}>
+      <LegendLabel color="#39b8f7" label="Кімната вільна"/>
+      <LegendLabel color="#575afa" label="Кімната має мешканців"/>
+      <LegendLabel color="#7300ff" label="Кімната заповнена"/>
+      <LegendLabel color="#525252" label="Кімната недоступна"/>
+    </Box>
     </Box>
   );
 };

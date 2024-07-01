@@ -125,7 +125,7 @@ export default function Page() {
             }
             // Remove the dismissed bill from the state
             setBills(bills.filter(bill => bill.bill_id !== billId)) 
-            setSelectedStudent(null) 
+            setSelectedStudent(zero_student) 
         } catch (error) {
             console.error("Error dismissing bill", error) 
         }
@@ -188,10 +188,6 @@ export default function Page() {
                     <TableCell>{selectedStudent.room_id}</TableCell>
                 </TableRow>
                 <TableRow>
-                    <TableCell>ID заявки</TableCell>
-                    <TableCell>{selectedStudent.application_id}</TableCell>
-                </TableRow>
-                <TableRow>
                     <TableCell>Заборгованість</TableCell>
                     <TableCell>{selectedStudent.dept}</TableCell>
                 </TableRow>
@@ -201,7 +197,7 @@ export default function Page() {
     <Button
         variant="contained"
         color="primary"
-        //onClick={() => dismissBill(selectedStudent.bill_id)}
+        onClick={() => dismissBill(selectedStudent.bill_id)}
         sx={{ mt: 2 }}
     >
         Видалити Борг
