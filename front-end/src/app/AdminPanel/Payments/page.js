@@ -12,7 +12,7 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead' 
 import TableRow from '@mui/material/TableRow' 
 import Paper from '@mui/material/Paper' 
-import DynamicList from "../../../../component/AdminPanel/List/DynamicList" 
+import ClickList from "../../../../component/AdminPanel/List/ClickList" 
 import AccountCircleIcon from '@mui/icons-material/AccountCircle' 
 
 const zero_student = 
@@ -36,6 +36,9 @@ export default function Page() {
 
     const STUDENTS_API = 'http://127.0.0.1:8000/students/' 
     const BILLS_API = 'http://127.0.0.1:8000/api/bills/' 
+
+    const STUDENTS_API_remote = 'http://174.129.65.133:8000/students/' 
+    const BILLS_API_remote = 'http://174.129.65.133:8000/api/bills/' 
 
     
     const fakeStudentsData = [
@@ -89,7 +92,7 @@ export default function Page() {
 
     const fetchStudents = async () => {
         try {
-            const response = await fetch(STUDENTS_API) 
+            const response = await fetch(STUDENTS_API_remote) 
             if (!response.ok) {
                 throw new Error('Network response was not ok')
             }
@@ -103,7 +106,7 @@ export default function Page() {
 
     const fetchBills = async () => {
         try {
-            const response = await fetch(BILLS_API) 
+            const response = await fetch(BILLS_API_remote) 
             if (!response.ok) {
                 throw new Error('Network response was not ok') 
             }
@@ -147,7 +150,7 @@ export default function Page() {
         <Box sx={{ paddingTop: '10%', paddingLeft: '10%', paddingRight: '10%' }}>
             <Grid container spacing={2} justifyContent="center" alignItems="center">
                 <Grid item xs={6}>
-                    <DynamicList
+                    <ClickList
                         icon={<AccountCircleIcon sx={{ color: '#FFFFFF', transform: 'scale(1.9)' }} />}
                         items={studentsWithBills.map((student) => `${student.name} ${student.surname} Id:${student.student_id}`)}
                         data={studentsWithBills}

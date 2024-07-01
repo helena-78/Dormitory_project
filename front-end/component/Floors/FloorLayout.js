@@ -89,6 +89,7 @@ const fakeDataSet3 = [
 ];
 
 const BASE_URL = 'http://127.0.0.1:8000';
+const remote_url = "http://174.129.65.133:8000"
 const ENDPOINT = '/rooms/floor';
 const QUERY_PARAM = 'floor';
 
@@ -118,7 +119,7 @@ const FloorLayout = () => {
   const [loading, setLoading] = useState(true);
 
   const fetchItems = async (index) => {
-    const url = `${BASE_URL}${ENDPOINT}/?${QUERY_PARAM}=${index + 1}`;
+    const url = `${remote_url}${ENDPOINT}/?${QUERY_PARAM}=${index + 1}`;
     fetch(url)
       .then((data) => data.json())
       .then((data) => setItems(addUndefinedItems(data)))
