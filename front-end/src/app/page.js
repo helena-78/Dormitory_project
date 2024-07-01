@@ -39,7 +39,6 @@ export default function Home() {
       <Box sx = {{paddingBottom: '100px', height: '1000px'}}><MainFeaturedPost images={images2} /></Box>
       <Stack
           direction="column"
-          direction="column"
           justifyContent="flex-start"
           alignItems="center"
           spacing={10}

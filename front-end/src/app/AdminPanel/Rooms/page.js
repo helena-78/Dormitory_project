@@ -10,6 +10,7 @@ import {useState, useEffect} from "react";
 import {CircularProgress} from "@mui/material";
 
 const BASE_URL = 'http://127.0.0.1:8000';
+const remote_url = process.env.NEXT_PUBLIC_API_URL;
 const ENDPOINT = '/rooms/floor';
 const QUERY_PARAM = 'floor';
 
@@ -18,7 +19,7 @@ export default function Page() {
     const [currentData, setCurrentData] = useState([]);
     const [selectState, setSelectState] = useState(1);
     const [errorOccurredState, setErrorOccurredState] = useState(false);
-    const url = `${BASE_URL}${ENDPOINT}/?${QUERY_PARAM}=${selectState}`;
+    const url = `${remote_url}${ENDPOINT}/?${QUERY_PARAM}=${selectState}`;
 
     const fetchData = async () => {
         const result = await fetch(url)

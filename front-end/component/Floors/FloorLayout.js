@@ -1,8 +1,11 @@
 'use client'
 import Room from 'component/Room/Room';
-import React, { useEffect, useState } from 'react';
-import { Box, Button, Grid, CircularProgress } from '@mui/material';
-import { BorderBottom } from '@mui/icons-material';
+import React, { useEffect, useState } from 'react'
+import { Box, Button, Grid, CircularProgress } from '@mui/material'
+import { BorderBottom } from '@mui/icons-material'
+import LegendLabel from 'component/Floors/LegendLabel';
+import '@fontsource/inter';
+import './floorlayout.css';
 
 const fakeDataSet1 = [
   {
@@ -86,6 +89,7 @@ const fakeDataSet3 = [
 ];
 
 const BASE_URL = 'http://127.0.0.1:8000';
+const remote_url = "http://174.129.65.133:8000"
 const ENDPOINT = '/rooms/floor';
 const QUERY_PARAM = 'floor';
 
@@ -115,7 +119,7 @@ const FloorLayout = () => {
   const [loading, setLoading] = useState(true);
 
   const fetchItems = async (index) => {
-    const url = `${BASE_URL}${ENDPOINT}/?${QUERY_PARAM}=${index + 1}`;
+    const url = `${process.env.NEXT_PUBLIC_API_URL}${ENDPOINT}/?${QUERY_PARAM}=${index + 1}`;
     fetch(url)
       .then((data) => data.json())
       .then((data) => setItems(addUndefinedItems(data)))
@@ -223,6 +227,12 @@ const FloorLayout = () => {
         </Button>
       </Box>
       <Box>{renderContent()}</Box>
+      <Box sx={{ display: 'flex', justifyContent: 'space-around', marginTop: 4 }}>
+      <LegendLabel color="#39b8f7" label="Кімната вільна"/>
+      <LegendLabel color="#575afa" label="Кімната має мешканців"/>
+      <LegendLabel color="#7300ff" label="Кімната заповнена"/>
+      <LegendLabel color="#525252" label="Кімната недоступна"/>
+    </Box>
     </Box>
   );
 };
