@@ -58,8 +58,9 @@ function SignIn() {
         setLoading(false);
 
         if (user) {
-          localStorage.setItem('userEmail', email);
-          router.push(`/profile/${user.student_id}`);
+          localStorage.setItem('student_id', user.student_id); // Зберігаємо тільки student_id
+          console.log('student_id', user.student_id)
+          router.push(`/profile`);
         } else {
           setError('Incorrect email or password');
         }
@@ -72,7 +73,6 @@ function SignIn() {
       setError('Connection error with server');
     }
   };
-
 
   return (
     <Container component="main" maxWidth="xs" sx={{ marginTop: 30 }}>
@@ -101,7 +101,6 @@ function SignIn() {
             name="email"
             autoComplete="email"
             autoFocus
-            
           />
           <TextField
             margin="normal"
@@ -145,7 +144,6 @@ function SignIn() {
           </Grid>
         </Box>
       </Box>
-      
     </Container>
   );
 }

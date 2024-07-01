@@ -13,6 +13,9 @@ export default function TopBar() {
     const handleProfileClick = () => {
         router.push('/profile');
     };
+    const handleMainClick = () => {
+        router.push('./');
+    };
 
     const handleLoginClick = () => {
         router.push('/login');
@@ -25,7 +28,7 @@ export default function TopBar() {
             <div className="topBarGroup">
                 <LogoImage />
                 <div className="topBarButton">
-                    <Button>Головна</Button>
+                    <Button onClick={handleMainClick}>Головна</Button>
                 </div>
                 <div className="topBarButton">
                     <Button>Контакти</Button>

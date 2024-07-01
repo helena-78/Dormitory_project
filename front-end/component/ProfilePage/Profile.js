@@ -1,10 +1,11 @@
 "use client";
 import * as React from 'react';
 import { useEffect, useState } from 'react';
+
 import { useParams } from 'next/navigation';
-import styles from '../../Profile.module.css';
+import styles from './Profile.module.css';
 
-
+const BASE_URL = 'http://127.0.0.1:8000';
 
 const Profile = () => {
   const { student_id } = useParams();
@@ -12,57 +13,37 @@ const Profile = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const BASE_URL = 'http://127.0.0.1:8000';
-
   useEffect(() => {
-    if (!student_id) {
-      console.error("student_id is not defined");
-      return;
+    const student_id = localStorage.getItem('student_id');
+    if (student_id) {
+      fetchUser(student_id);
+    } else {
+      setError('Student ID not found in local storage');
+      setLoading(false);
     }
+  }, []);
 
-    const fetchUserData = async () => {
-      try {
-        const email = localStorage.getItem('userEmail');
-        if (!email) {
-          throw new Error('Email is missing');
-        }
+  const fetchUser = async (student_id) => {
+    try {
+      const response = await fetch(`${BASE_URL}/students/${student_id}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
 
-        console.log('Fetching user data for student_id:', student_id);
-
-        const response = await fetch(`${BASE_URL}/students/${student_id}`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
-
-        console.log('Response status:', response.status);
-
-        if (!response.ok) {
-          const errorText = await response.text();
-          console.error('Failed to fetch user data:', errorText);
-          throw new Error(errorText || 'Failed to fetch user data');
-        }
-
-        const userData = await response.json();
-        console.log('User data fetched successfully:', userData);
-        setUser(userData);
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-        setError(error.message);
-      } finally {
-        setLoading(false);
+      if (response.ok) {
+        const data = await response.json();
+        setUser(data);
+      } else {
+        setError('Failed to fetch user data from server');
       }
-    };
-
-    fetchUserData();
-  }, [student_id]);
-
-  useEffect(() => {
-    if (user) {
-      console.log('User data in state:', user);
+    } catch (error) {
+      setError('Connection error with server');
+    } finally {
+      setLoading(false);
     }
-  }, [user]);
+  };
 
   if (loading) {
     return <p>Loading...</p>;
@@ -77,7 +58,6 @@ const Profile = () => {
   }
 
   return (
-    
     <div className={styles.container}>
       <div className={styles.profile}>
         <div className={styles.avatar}>
