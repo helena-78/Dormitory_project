@@ -106,7 +106,7 @@ def get_rooms_by_floor(request):
     serializer = RoomSerializer(rooms, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
-@api_view(['GET']) #переделать в гет
+@api_view(['GET']) 
 def check_room_availability(request):
     room_id = request.GET.get('room_id')
     application_id = request.GET.get('application_id')

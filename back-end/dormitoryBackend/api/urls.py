@@ -12,7 +12,7 @@ urlpatterns=[
     path("rooms/", views.get_all_rooms, name="get-all-rooms"),
     path("rooms/<int:room_id>", views.get_room_by_id, name="get-room-by-id"),    
     path("rooms/floor/", views.get_rooms_by_floor, name="rooms-by-floor"),     
-    # path('rooms/check_availability/', views.check_room_availability, name='check_room_availability'),
     path("rooms/<int:room_id>/", views.update_room, name="update-room"),
     path('rooms/<int:room_id>//', views.delete_room, name='delete-room'),
+
 ]
