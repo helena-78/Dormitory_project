@@ -106,37 +106,3 @@ def get_rooms_by_floor(request):
     serializer = RoomSerializer(rooms, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
-@api_view(['GET']) 
-def check_room_availability(request):
-    room_id = request.GET.get('room_id')
-    application_id = request.GET.get('application_id')
-
-    if not room_id:
-        return Response({'error': 'Room ID is required'}, status=status.HTTP_400_BAD_REQUEST)
-    
-    if not application_id:
-        return Response({'error': 'Application ID is required'}, status=status.HTTP_400_BAD_REQUEST)
-
-    try:
-        room = Room.objects.get(pk=room_id)
-    except Room.DoesNotExist:
-        return Response({'error': 'Room not found'}, status=status.HTTP_404_NOT_FOUND)
-
-    try:
-        application = Application.objects.get(pk=application_id)
-    except Application.DoesNotExist:
-        return Response({'error': 'Application not found'}, status=status.HTTP_404_NOT_FOUND)
-    
-    # Calculate the total spots needed
-    total_spots_needed = 1  # 1 for the student
-    if application.desired_roommate1:
-        total_spots_needed += 1
-    if application.desired_roommate2:
-        total_spots_needed += 1
-
-    if room.available_places >= total_spots_needed:
-        application.save()
-        return Response({'room is available': True},room.available_places, status=status.HTTP_200_OK)
-    else:
-        return Response({'room is available': False}, status=status.HTTP_200_OK)
-
