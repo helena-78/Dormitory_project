@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import styles from './Profile.module.css';
 
-const BASE_URL = 'http://127.0.0.1:8000';
+const BASE_URL = 'http://174.129.65.133:8000';
 
 const Profile = () => {
   const { student_id } = useParams();

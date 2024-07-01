@@ -15,7 +15,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import CircularProgress from '@mui/material/CircularProgress';
 
-const BASE_URL = 'http://127.0.0.1:8000';
+const BASE_URL = 'http://174.129.65.133:8000';
 
 function Copyright(props) {
   return (
@@ -58,7 +58,7 @@ function SignIn() {
         setLoading(false);
 
         if (user) {
-          localStorage.setItem('student_id', user.student_id); // Зберігаємо тільки student_id
+          localStorage.setItem('student_id', user.student_id); 
           console.log('student_id', user.student_id)
           router.push(`/profile`);
         } else {

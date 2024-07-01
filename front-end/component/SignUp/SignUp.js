@@ -18,7 +18,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import CircularProgress from '@mui/material/CircularProgress';
 
-const BASE_URL = 'http://127.0.0.1:8000';
+const BASE_URL = 'http://174.129.65.133:8000';
 const ENDPOINT = '/students';
 
 function Copyright(props) {
