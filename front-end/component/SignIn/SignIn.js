@@ -183,6 +183,10 @@ function SignIn() {
             name="email"
             autoComplete="email"
             autoFocus
+            inputProps={{
+              pattern: "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+              title: "Введіть правильну email адресу"
+            }}
           />
           <TextField
             margin="normal"

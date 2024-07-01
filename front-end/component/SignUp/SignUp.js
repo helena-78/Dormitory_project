@@ -143,6 +143,10 @@ function SignUp() {
                 label="Email адреса"
                 name="email"
                 autoComplete="email"
+                inputProps={{
+                  pattern: "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+                  title: "Введіть правильну email адресу"
+                }}
               />
             </Grid>
             <Grid item xs={12}>
@@ -153,6 +157,7 @@ function SignUp() {
                 label="Номер телефону"
                 name="phone"
                 autoComplete="phone"
+             
               />
             </Grid>
             <Grid item xs={12}>
@@ -164,6 +169,10 @@ function SignUp() {
                 type="password"
                 id="password"
                 autoComplete="new-password"
+                inputProps={{
+                  pattern: "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{10,}$",
+                  title: "Пароль повинен містити  10 символів, включаючи хоча б одну букву"
+                }}
               />
             </Grid>
           </Grid>

@@ -105,7 +105,7 @@ const Profile = () => {
               </div>
               <div className={styles.formGroup}>
                 <label className={styles.profileLabel}>Телефон</label>
-                <p className={styles.textBox}>{user.contact_number}</p>
+                <p className={styles.textBox}>+(380){user.contact_number}</p>
               </div>
             </div>
             <div className={styles.formGroup}>

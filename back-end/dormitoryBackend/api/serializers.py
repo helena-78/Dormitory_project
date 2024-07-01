@@ -9,8 +9,8 @@ class StudentSerializer(serializers.ModelSerializer):
 
     def validate_contact_number(self, value):
         # Check if contact number is a valid 10-digit number
-        if not re.fullmatch(r'\d{10}', str(value)):
-            raise serializers.ValidationError("Contact number must be a valid 10-digit number.")
+        if not re.fullmatch(r'\d{9}', str(value)):
+            raise serializers.ValidationError("Contact number must be a valid 9-digit number.")
         return value
     
     def validate_password(self, value):
