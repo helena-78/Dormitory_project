@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import {useBooking} from '../../component/context/BookingContext';
 import './room.css';
 
 const Room = (props) => {
@@ -11,12 +12,13 @@ const Room = (props) => {
   const [coordinates, setCoordinates] = useState({ x: 0, y: 0 });
   const [roomColor, setRoomColor] = useState('');
   const router = useRouter();
+  const { setBookingDetails } = useBooking();
 
   useEffect(() => {
     if (props.item.available_places === 'undefined') {
       setRoomColor('#525252');
       setIsUndefined(true);
-    } else if (props.item.available_places === '3') {
+    } else if (props.item.available_places === 3) {
       setRoomColor('#39b8f7');
     } else if (props.item.available_places > 0) {
       setRoomColor('#575afa');
@@ -32,17 +34,27 @@ const Room = (props) => {
   };
 
   const handleBookingClick = () => {
-    const params = new URLSearchParams({
+    // const params = new URLSearchParams({
+    //   room_id: props.item.room_id.toString(),
+    //   number: props.item.number,
+    //   available_places: props.item.available_places,
+    //   price: props.item.price,
+    //   gender: props.item.gender,
+    //   floor: props.item.floor.toString(),
+    // });
+
+    // router.push(`/order/booking_detail?${params.toString()}`);
+
+    setBookingDetails({
       room_id: props.item.room_id.toString(),
       number: props.item.number,
       available_places: props.item.available_places,
       price: props.item.price,
       gender: props.item.gender,
       floor: props.item.floor.toString(),
-    });
-
-    router.push(`/order/booking_detail?${params.toString()}`);
-  };
+    })
+    router.push(`/order/booking_detail`)
+  }
 
   return (
     <div className='room-container'>

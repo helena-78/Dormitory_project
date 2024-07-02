@@ -1,35 +1,52 @@
 import { useSearchParams } from 'next/navigation';
 import styles from './BookingDetailPage.module.css';
 import { useState } from 'react';
+import {useBooking} from '../../component/context/BookingContext';
 
 const BookingDetailPage = () => {
-  const searchParams = useSearchParams();
-  const floor = searchParams.get('floor');
-  const number = searchParams.get('number');
-  const gender = searchParams.get('gender');
-  const available_places = searchParams.get('available_places');
-  const price = searchParams.get('price');
+  const { bookingDetails } = useBooking();
+  //const searchParams = useSearchParams();
+  // const floor = searchParams.get('floor');
+  // const number = searchParams.get('number');
+  // const gender = searchParams.get('gender');
+  // const available_places = searchParams.get('available_places');
+  // const price = searchParams.get('price');
+
+  const floor = bookingDetails.floor;
+  const number = bookingDetails.number;
+  const gender = bookingDetails.gender;
+  const available_places = bookingDetails.available_places;
+  const price = bookingDetails.price;
+
+  const base_url=process.env.NEXT_PUBLIC_API_URL
 
   const [loading, setLoading] = useState(false);
 
   const handleBooking = async () => {
     setLoading(true);
+    const studentId = localStorage.getItem('student_id');
+    const applicationData = {
+      application_id: studentId,
+      student_id: studentId,
+      room_id: bookingDetails.room_id,
+      status: 'Submitted',
+    }
 
-    const bookingData = {
-      booking_id: 3, // generate a random booking id
-      student_id: 3, // replace with the actual student id
-      room_id: parseInt(number), // assuming 'number' is the room_id
-      booking_date: new Date().toISOString(),
-      confirmation_status: "Pending",
-    };
+    // const bookingData = {
+    //   booking_id: 3, // generate a random booking id
+    //   student_id: 3, // replace with the actual student id
+    //   room_id: parseInt(number), // assuming 'number' is the room_id
+    //   booking_date: new Date().toISOString(),
+    //   confirmation_status: "Pending",
+    // };
 
     try {
-      const response = await fetch('http://localhost:8000/bookings/create/', {
+      const response = await fetch(`${base_url}/bookings/create/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(bookingData),
+        body: JSON.stringify(applicationData),
       });
 
       if (!response.ok) {
@@ -40,10 +57,28 @@ const BookingDetailPage = () => {
       const result = await response.json();
       console.log(result);
       alert('Booking successful!');
+
+      const patchResponse = await fetch(`${base_url}/students/${studentId}/`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ application_id: result.application_id }),
+      });
+  
+      if (!patchResponse.ok) {
+        const errorText = await patchResponse.text();
+        throw new Error(`Network response was not ok: ${errorText}`);
+      }
+  
+      const patchResult = await patchResponse.json();
+      console.log('Student application_id updated:', patchResult);
+
     } catch (error) {
       console.error('Error during booking:', error);
       alert(`Booking failed, please try again. Error: ${error.message}`);
     } finally {
+
       setLoading(false);
     }
   };
