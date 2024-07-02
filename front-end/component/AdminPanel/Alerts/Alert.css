@@ -1,0 +1,19 @@
+.animated{
+    animation:fadeOut ;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+    position: fixed;
+    z-index: 2;
+    top: 90vh;
+    height: 10vh;
+    margin-right: 3vw;
+    left: 75%
+}
+
+@keyframes fadeOut {
+    0% 	{ opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; transform: translateY(0px);}
+    99% { opacity: 0; transform: translateY(-30px);}
+    100% { opacity: 0; }
+}
