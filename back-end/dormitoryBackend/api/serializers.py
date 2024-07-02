@@ -9,8 +9,8 @@ class StudentSerializer(serializers.ModelSerializer):
 
     def validate_contact_number(self, value):
         # Check if contact number is a valid 10-digit number
-        if not re.fullmatch(r'\d{9}', str(value)):
-            raise serializers.ValidationError("Contact number must be a valid 9-digit number.")
+        if not re.fullmatch(r'\d{10}', str(value)):
+            raise serializers.ValidationError("Contact number must be a valid 10-digit number.")
         return value
     
     def validate_password(self, value):
@@ -27,6 +27,11 @@ class RoomSerializer(serializers.ModelSerializer):
     class Meta:
         model = Room
         fields = '__all__'
+
+    def validate_number(self, value):
+        if Room.objects.filter(number=value).exists():
+            raise serializers.ValidationError("Room with this number already exists.")
+        return value
 
 class ApplicationSerializer(serializers.ModelSerializer):
     class Meta:

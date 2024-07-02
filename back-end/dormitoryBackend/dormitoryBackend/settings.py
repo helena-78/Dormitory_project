@@ -35,7 +35,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    "corsheaders",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -49,7 +48,6 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-      'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -80,9 +78,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'dormitoryBackend.wsgi.application'
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-]
+
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 

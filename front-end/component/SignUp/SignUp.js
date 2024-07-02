@@ -70,7 +70,7 @@ function SignUp() {
       const result = await response.json();
       console.log('New user registered:', result);
       setLoading(false);
-      router.push('/profile');
+      router.push('/login');
     } catch (error) {
       console.error('Error:', error);
       setError('Failed to register. Please try again.');

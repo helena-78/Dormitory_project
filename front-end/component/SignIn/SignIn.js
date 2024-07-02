@@ -60,7 +60,7 @@ function SignIn() {
         if (user) {
           localStorage.setItem('student_id', user.student_id); 
           console.log('student_id', user.student_id)
-          router.push(`/profile`);
+          router.push(`./`);
         } else {
           setError('Incorrect email or password');
         }
