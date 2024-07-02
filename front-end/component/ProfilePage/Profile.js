@@ -62,7 +62,7 @@ const Profile = () => {
       <div className={styles.profile}>
         <div className={styles.avatar}>
           <img className={styles.avatar} src="/profilephoto.png" alt="Avatar" />
-          <button className={styles.editProfileButton}>Редагувати профіль</button>
+          {/* <button className={styles.editProfileButton}>Редагувати профіль</button> */}
         </div>
 
         <div className={styles.userData}>
