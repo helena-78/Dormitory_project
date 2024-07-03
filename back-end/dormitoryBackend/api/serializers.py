@@ -25,7 +25,8 @@ class StudentSerializer(serializers.ModelSerializer):
         return value
     
 class RoomSerializer(serializers.ModelSerializer):
-    images = serializers.SerializerMethodField()
+    images = serializers.SerializerMethodField()#read-only field images. 
+    #Does not directly correspond to field in model Room. It is a custom field.
 
     class Meta:
         model = Room
@@ -37,22 +38,24 @@ class RoomSerializer(serializers.ModelSerializer):
         return value
     
     def get_images(self, obj):
-        return base64.b64encode(obj.images).decode('utf-8') if obj.images else None
-
+        return obj.images
+    
     def create(self, validated_data):
-        image_data = self.initial_data.get('images')
+        image_data = validated_data.pop('images', None)
+        instance = super().create(validated_data)
         if image_data:
-            image_data = base64.b64decode(image_data)
-        validated_data['images'] = image_data
-        return super().create(validated_data)
-
+            instance.images = image_data
+            instance.save()
+        return instance
+    
     def update(self, instance, validated_data):
-        image_data = self.initial_data.get('images')
+        image_data = validated_data.pop('images', None)
+        instance = super().update(instance, validated_data)
         if image_data:
-            image_data = base64.b64decode(image_data)
-        validated_data['images'] = image_data
-        return super().update(instance, validated_data)
-
+            instance.images = image_data
+            instance.save()
+        return instance
+    
 class ApplicationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Application
