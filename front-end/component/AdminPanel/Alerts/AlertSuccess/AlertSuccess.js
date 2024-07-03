@@ -11,7 +11,7 @@ export default function AlertError(){
         return (
             <div className={'animated'}
                  style={{position: 'fixed', zIndex: 2, top: '90vh', height: '10vh', marginRight: '3vw', left: '75%'}}>
-                <Alert sx={{width: '20vw'}} severity="success">Дані успішно збережені</Alert>
+                <Alert sx={{width: '20vw'}} severity="success">Дані успішно змінені</Alert>
             </div>
         );
     }

@@ -1,8 +1,9 @@
 'use client'
 
-import {useSearchParams} from "next/navigation";
+import {useRouter, useSearchParams} from "next/navigation";
 import {useContext, useEffect, useState} from "react";
 import {Input, MenuItem, Radio, RadioGroup, Select} from "@mui/material";
+import DeleteIcon from '@mui/icons-material/Delete';
 import * as React from "react";
 import './EditRoom.css';
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -34,6 +35,7 @@ export default function EditRoom() {
     const [currentData, setCurrentData] = useState([]);
     const alertContext = useContext(AlertContext);
     const loadingContext = useContext(LoadingContext);
+    const router = useRouter();
 
     const fetchData = async () => {
         const result = await fetch(url)
@@ -107,9 +109,17 @@ export default function EditRoom() {
                         {generateImageBlock()}
                     </div>
                     <div style={{display: 'flex', justifyContent: 'flex-end', paddingRight: '10vw'}}>
-                        <Button type={'submit'} disabled={isDataEqual()} variant="contained" color="primary">
-                            Зберегти
-                        </Button>
+                        <div style={{paddingRight: '2vw'}}>
+                            <Button variant="outlined" onClick={handleDeleteButtonClick} sx={{color: 'red'}}
+                                    startIcon={<DeleteIcon/>}>
+                                Видалити кімнату
+                            </Button>
+                        </div>
+                        <div>
+                            <Button type={'submit'} disabled={isDataEqual()} variant="contained" color="primary">
+                                Зберегти
+                            </Button>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -128,16 +138,44 @@ export default function EditRoom() {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify(currentData)
-                }).then(response => response.json());
-
-                showSuccessfulAlert();
+                }).then((response) => {
+                    if (response.ok) {
+                        showSuccessfulAlert();
+                    }else {
+                        showErrorAlert();
+                    }
+                });
                 await fetchData();
             } catch (error) {
                 showErrorAlert();
             }
         }
-console.log(currentData)
+        console.log(JSON.stringify(currentData))
         patchData();
+    }
+
+    function handleDeleteButtonClick(e) {
+        const url = `${BASE_URL}${ENDPOINT}` + roomId + '//';
+
+        const deleteData = async () => {
+            try {
+                await fetch(url, {
+                    method: 'DELETE',
+                }).then((response) => {
+                    if (response.ok) {
+                        showSuccessfulAlert();
+                        router.push('/AdminPanel/Rooms')
+                    }else {
+                        showErrorAlert();
+                    }
+                });
+            } catch (error) {
+                console.log(error)
+                showErrorAlert();
+            }
+        }
+
+        deleteData();
     }
 
     function generateFloorSelect() {
@@ -206,7 +244,7 @@ console.log(currentData)
         return (
             <div className={"roomField"}>
                 Зображення:
-                <div style={{paddingTop:"2vh"}}>
+                <div style={{paddingTop: "2vh"}}>
                     {image}
                 </div>
                 <div style={{paddingTop: '3vh'}}>

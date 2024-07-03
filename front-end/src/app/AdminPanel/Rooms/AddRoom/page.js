@@ -10,6 +10,7 @@ import * as React from "react";
 import styles from '@/app/AdminPanel/Rooms/EditRoom/EditRoom.css'
 import {AlertContext} from "../../../../../component/AdminPanel/Alerts/AlertContext";
 import Image from "next/image";
+import {useRouter} from "next/navigation";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 const ENDPOINT = '/rooms';
@@ -36,6 +37,7 @@ export default function AddRoom() {
         gender: "Female"
     });
     const alertContext = useContext(AlertContext);
+    const router = useRouter();
 
     return (
         <div style={{paddingTop: '15vh'}}>
@@ -107,7 +109,7 @@ export default function AddRoom() {
                     },
                     body: JSON.stringify(data)
                 }).then(response => response.json());
-
+                router.push('/AdminPanel/Rooms')
                 showSuccessfulAlert();
             } catch (error) {
                 showErrorAlert();

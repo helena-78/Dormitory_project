@@ -127,3 +127,7 @@ W
 'back-end/dormitoryBackend/api/models.py,2\1\21c566b80c34235accff72516bf39e15eb0f3a6e
 U
 %back-end/dormitoryBackend/api/urls.py,f\3\f3cb912ca37bb57050eb4cc8f4a7de8cc783a6b5
+o
+?front-end/src/app/AdminPanel/LoadingAndAlertContextFunctions.js,4\1\413713066a13568a667bd8b1c310d467f11d32ec
+Å
+Q.idea/sonarlint/securityhotspotstore/4/1/413713066a13568a667bd8b1c310d467f11d32ec,d\4\d4a0db6bda65ba6239c6699196a243d27e26c0bd
