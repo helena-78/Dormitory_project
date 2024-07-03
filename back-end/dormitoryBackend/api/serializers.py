@@ -38,18 +38,18 @@ class RoomSerializer(serializers.ModelSerializer):
     
     def get_images(self, obj):
         return base64.b64encode(obj.images).decode('utf-8') if obj.images else None
-
-    def create(self, validated_data):
+   
+    def create(self, validated_data): 
         image_data = self.initial_data.get('images')
         if image_data:
-            image_data = base64.b64decode(image_data)
+            image_data = base64.b64decode(image_data.split(',')[1])  # Remove the prefix
         validated_data['images'] = image_data
         return super().create(validated_data)
 
     def update(self, instance, validated_data):
         image_data = self.initial_data.get('images')
         if image_data:
-            image_data = base64.b64decode(image_data)
+            image_data = base64.b64decode(image_data.split(',')[1])  # Remove the prefix
         validated_data['images'] = image_data
         return super().update(instance, validated_data)
 

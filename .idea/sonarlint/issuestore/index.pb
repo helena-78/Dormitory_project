@@ -131,3 +131,11 @@ o
 ?front-end/src/app/AdminPanel/LoadingAndAlertContextFunctions.js,4\1\413713066a13568a667bd8b1c310d467f11d32ec
 Å
 Q.idea/sonarlint/securityhotspotstore/4/1/413713066a13568a667bd8b1c310d467f11d32ec,d\4\d4a0db6bda65ba6239c6699196a243d27e26c0bd
+w
+G.idea/sonarlint/issuestore/2/6/26939763a7808978a1434edaed29b642fb55672a,f\2\f2047af79370157d34091c76b586d9434c883f84
+w
+G.idea/sonarlint/issuestore/d/4/d4a0db6bda65ba6239c6699196a243d27e26c0bd,7\1\7178819d604452da34f0785ffca7284347772a92
+Å
+Q.idea/sonarlint/securityhotspotstore/d/4/d4a0db6bda65ba6239c6699196a243d27e26c0bd,1\6\16cdb6799273a4587c35a4d586a0214191890e89
+Å
+Q.idea/sonarlint/securityhotspotstore/2/6/26939763a7808978a1434edaed29b642fb55672a,8\5\850487afdfc7036c1ba84f84eb95656ffc107d10

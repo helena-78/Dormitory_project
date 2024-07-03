@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aac95de3-22e8-4717-8dd6-c55d8b1ea068" name="Changes" comment="preparing to merge">
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/f/ef09486c70c94c76fdb4a2eb9d6c67d7c98a4ba4" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/f/ef09486c70c94c76fdb4a2eb9d6c67d7c98a4ba4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Rooms/EditRoom/EditRoom.css" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Rooms/EditRoom/EditRoom.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Rooms/EditRoom/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Rooms/EditRoom/page.js" afterDir="false" />
-    </list>
+    <list default="true" id="aac95de3-22e8-4717-8dd6-c55d8b1ea068" name="Changes" comment="preparing to merge" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -249,7 +244,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720002721798</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="preparing to merge">
+      <option name="closed" value="true" />
+      <created>1720022397782</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1720022397782</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
