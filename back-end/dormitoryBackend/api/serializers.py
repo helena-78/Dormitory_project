@@ -28,6 +28,11 @@ class RoomSerializer(serializers.ModelSerializer):
         model = Room
         fields = '__all__'
 
+    def validate_number(self, value):
+        if Room.objects.filter(number=value).exists():
+            raise serializers.ValidationError("Room with this number already exists.")
+        return value
+
 class ApplicationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Application
