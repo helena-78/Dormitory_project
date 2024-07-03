@@ -35,31 +35,23 @@ class RoomSerializer(serializers.ModelSerializer):
         if Room.objects.filter(number=value).exists():
             raise serializers.ValidationError("Room with this number already exists.")
         return value
-    #serialization - objects are converted to data format like json or binary
-   # self allows the method to access other methods and attributes defined within the class.
-        #When the serializer serializes a queryset or an instance of Room, each instance is passed as obj to this method.
-    # obj.images refers to the images field of this instance.
-    #base64.b64encode() accepts binary image data and returns the Base64 format.
-    #.decode('utf-8') converts the Base64 back into a UTF-8 string representation of the Base64 data.
-#то есть get images - возвращаю UTF-8 string
+    
     def get_images(self, obj):
         return base64.b64encode(obj.images).decode('utf-8') if obj.images else None
    
-    def create(self, validated_data): # create a new instance of the Room model
-        image_data = self.initial_data.get('images')# retrieve the Base64-encoded image data from the incoming data.
+    def create(self, validated_data): 
+        image_data = self.initial_data.get('images')
         if image_data:
-            image_data = base64.b64decode(image_data) #decodes it in original binary format.
+            image_data = base64.b64decode(image_data.split(',')[1])  # Remove the prefix
         validated_data['images'] = image_data
         return super().create(validated_data)
-    # то есть ввожу Base64-encoded image и отправляю в базу обычный binary format.
 
     def update(self, instance, validated_data):
-        image_data = self.initial_data.get('images')#retrieve the Base64-encoded image data from the incoming data.
+        image_data = self.initial_data.get('images')
         if image_data:
-            image_data = base64.b64decode(image_data)
+            image_data = base64.b64decode(image_data.split(',')[1])  # Remove the prefix
         validated_data['images'] = image_data
         return super().update(instance, validated_data)
-    # то есть ввожу Base64-encoded image и отправляю в базу обычный binary format.
 
 class ApplicationSerializer(serializers.ModelSerializer):
     class Meta:
