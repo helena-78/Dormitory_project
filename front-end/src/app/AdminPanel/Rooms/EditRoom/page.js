@@ -68,6 +68,7 @@ export default function EditRoom() {
             <div className={'formContainer'}>
                 <form onSubmit={handleSubmit}>
                     <h2 style={{textAlign: 'center'}}>Редагування кімнати</h2>
+                    <div style={{display:'flex', flexDirection:"row"}}>
                     <div className={"roomFieldsContainer"}>
                         <div className={"roomField"}>
                             Id: <span style={{fontWeight: 'normal'}}>{currentData.room_id}</span>
@@ -91,7 +92,6 @@ export default function EditRoom() {
                                 value={currentData.price}
                                 onChange={validateInputNumber}
                             />
-                        </div>
                         {generateRadioGroup()}
                         <div className={"roomField"}>
                             Кількість вільних місць:
@@ -106,9 +106,11 @@ export default function EditRoom() {
                                 onChange={validateInputNumber}
                             />
                         </div>
+                    </div>
+                    </div>
                         {generateImageBlock()}
                     </div>
-                    <div style={{display: 'flex', justifyContent: 'flex-end', paddingRight: '10vw'}}>
+                    <div style={{display: 'flex', justifyContent: 'flex-end', paddingRight: '10vw', paddingTop:'2vh'}}>
                         <div style={{paddingRight: '2vw'}}>
                             <Button variant="outlined" onClick={handleDeleteButtonClick} sx={{color: 'red'}}
                                     startIcon={<DeleteIcon/>}>
@@ -242,7 +244,7 @@ export default function EditRoom() {
         }
 
         return (
-            <div className={"roomField"}>
+            <div className={"roomField"} style={{paddingLeft:'10vw'}}>
                 Зображення:
                 <div style={{paddingTop: "2vh"}}>
                     {image}
