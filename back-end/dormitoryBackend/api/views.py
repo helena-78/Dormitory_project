@@ -42,6 +42,16 @@ def update_student(request, student_id):
         return Response(serializer.data, status=status.HTTP_200_OK)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)  
 
+@api_view(['DELETE'])
+def delete_student(request, student_id):
+    try:
+        student = Student.objects.get(pk=student_id)
+    except Student.DoesNotExist:
+        return Response({'error': 'Student not found'}, status=status.HTTP_404_NOT_FOUND)
+
+    student.delete()
+    return Response(status=status.HTTP_204_NO_CONTENT)
+
 @api_view(['POST'])
 def create_room(request):
     serializer = RoomSerializer(data=request.data)
@@ -78,6 +88,16 @@ def update_room(request, room_id):
         serializer.save()
         return Response(serializer.data, status=status.HTTP_200_OK)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)  
+
+@api_view(['DELETE'])
+def delete_room(request, room_id):
+    try:
+        room = Room.objects.get(pk=room_id)
+    except Room.DoesNotExist:
+        return Response({'error': 'Room not found'}, status=status.HTTP_404_NOT_FOUND)
+
+    room.delete()
+    return Response(status=status.HTTP_204_NO_CONTENT)
 
 @api_view(['GET'])
 def get_rooms_by_floor(request):
