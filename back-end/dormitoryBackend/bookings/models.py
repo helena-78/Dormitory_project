@@ -1,10 +1,10 @@
 from django.db import models
-
+from api.models import Student, Room
 
 class Booking(models.Model):
     booking_id = models.BigAutoField(primary_key=True, verbose_name='Booking ID')
-    student_id = models.BigIntegerField(blank=True, null=True, verbose_name='Student ID')
-    room_id = models.BigIntegerField(blank=True, null=True, verbose_name='Room ID')
+    room = models.ForeignKey(Room, related_name='bookings_bookings', on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, related_name='bookings_bookings', on_delete=models.CASCADE)
     booking_date = models.DateTimeField(auto_now_add=True, verbose_name='Booking Date')
     CONFIRMATION_STATUS_CHOICES = (
         ('Confirmed', 'Confirmed'),
