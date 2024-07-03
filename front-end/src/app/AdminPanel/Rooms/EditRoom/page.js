@@ -13,6 +13,7 @@ import {styled} from "@mui/material/styles";
 import {AlertContext} from "../../../../../component/AdminPanel/Alerts/AlertContext";
 import {LoadingContext} from "../../../../../component/Loading/LoadingContext";
 import Image from "next/image";
+import Divider from "@mui/material/Divider";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 const ENDPOINT = '/rooms/';
@@ -44,11 +45,12 @@ export default function EditRoom() {
             .catch((reason) => {
                 console.log(reason);
                 showErrorAlert();
-            });'data:image/jpeg;base64,'
+            });
 
-        setCurrentData({...result, images: 'data:image/jpeg;base64,'+result.images});
-        startData = result;
-        console.log(result)
+        let fetchedData = {...result, images: 'data:image/jpeg;base64,'+result.images };
+        setCurrentData(fetchedData);
+        startData = fetchedData;
+        console.log(fetchedData)
     }
 
     useEffect(() => {
@@ -73,7 +75,9 @@ export default function EditRoom() {
                         <div className={"roomField"}>
                             Id: <span style={{fontWeight: 'normal'}}>{currentData.room_id}</span>
                         </div>
+                        <Divider sx={{borderColor: '#сссссс'}}></Divider>
                         {generateFloorSelect()}
+                        <Divider sx={{borderColor: '#сссссс'}}></Divider>
                         <div className={"roomField"}>
                             Номер кімнати:
                             <Input
@@ -83,6 +87,7 @@ export default function EditRoom() {
                                 value={currentData.number}
                                 onChange={validateInputNumber}/>
                         </div>
+                        <Divider sx={{borderColor: '#сссссс'}}></Divider>
                         <div className={"roomField"}>
                             Ціна:
                             <Input
@@ -92,7 +97,10 @@ export default function EditRoom() {
                                 value={currentData.price}
                                 onChange={validateInputNumber}
                             />
+                        </div>
+                        <Divider sx={{borderColor: '#сссссс'}}></Divider>
                         {generateRadioGroup()}
+                        <Divider sx={{borderColor: '#сссссс'}}></Divider>
                         <div className={"roomField"}>
                             Кількість вільних місць:
                             <Input
@@ -106,7 +114,6 @@ export default function EditRoom() {
                                 onChange={validateInputNumber}
                             />
                         </div>
-                    </div>
                     </div>
                         {generateImageBlock()}
                     </div>
@@ -260,7 +267,7 @@ export default function EditRoom() {
                         startIcon={<CloudUploadIcon />}
                     >
                         Завантажити
-                        <VisuallyHiddenInput onChange={handleImageUpload} type="file"/>
+                        <VisuallyHiddenInput accept={".jpg"} onChange={handleImageUpload} type="file"/>
                     </Button>
                 </div>
             </div>

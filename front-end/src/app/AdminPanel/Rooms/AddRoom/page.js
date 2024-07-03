@@ -11,6 +11,7 @@ import styles from '@/app/AdminPanel/Rooms/EditRoom/EditRoom.css'
 import {AlertContext} from "../../../../../component/AdminPanel/Alerts/AlertContext";
 import Image from "next/image";
 import {useRouter} from "next/navigation";
+import Divider from "@mui/material/Divider";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 const ENDPOINT = '/rooms';
@@ -32,7 +33,7 @@ export default function AddRoom() {
         number: '',
         floor: 1,
         available_places: 3,
-        images: null,
+        images: '/images/emptyImage.jpg',
         price: "",
         gender: "Female"
     });
@@ -50,40 +51,46 @@ export default function AddRoom() {
             <div className={'formContainer'}>
                 <form onSubmit={handleSubmit}>
                     <h2 style={{textAlign: 'center'}}>Створення кімнати</h2>
-                    <div className={"roomFieldsContainer"}>
-                        {generateFloorSelect()}
-                        <div className={"roomField"}>
-                            Номер кімнати:
-                            <Input
-                                id="roomNumberInput"
-                                style={{marginLeft: '1vw'}}
-                                className={"Input"} required type={'number'}
-                                value={data.number}
-                                onChange={validateInputNumber}/>
-                        </div>
-                        <div className={"roomField"}>
-                            Ціна:
-                            <Input
-                                id="roomPriceInput"
-                                style={{marginLeft: '1vw'}}
-                                type={'number'} required className={"Input"}
-                                value={data.price}
-                                onChange={validateInputNumber}
-                            />
-                        </div>
-                        {generateRadioGroup()}
-                        <div className={"roomField"}>
-                            Кількість вільних місць:
-                            <Input
-                                id="availablePlacesInput"
-                                style={{marginLeft: '1vw'}}
-                                className={"Input"}
-                                type={'number'}
-                                required sx={{width: '3vw'}}
-                                aria-valuemin={0}
-                                value={data.available_places}
-                                onChange={validateInputNumber}
-                            />
+                    <div style={{display: 'flex', flexDirection: "row"}}>
+                        <div className={"roomFieldsContainer"}>
+                            {generateFloorSelect()}
+                            <Divider sx={{borderColor: '#сссссс'}}></Divider>
+                            <div className={"roomField"}>
+                                Номер кімнати:
+                                <Input
+                                    id="roomNumberInput"
+                                    style={{marginLeft: '1vw'}}
+                                    className={"Input"} required type={'number'}
+                                    value={data.number}
+                                    onChange={validateInputNumber}/>
+                            </div>
+                            <Divider sx={{borderColor: '#сссссс'}}></Divider>
+                            <div className={"roomField"}>
+                                Ціна:
+                                <Input
+                                    id="roomPriceInput"
+                                    style={{marginLeft: '1vw'}}
+                                    type={'number'} required className={"Input"}
+                                    value={data.price}
+                                    onChange={validateInputNumber}
+                                />
+                            </div>
+                            <Divider sx={{borderColor: '#сссссс'}}></Divider>
+                            {generateRadioGroup()}
+                            <Divider sx={{borderColor: '#сссссс'}}></Divider>
+                            <div className={"roomField"}>
+                                Кількість вільних місць:
+                                <Input
+                                    id="availablePlacesInput"
+                                    style={{marginLeft: '1vw'}}
+                                    className={"Input"}
+                                    type={'number'}
+                                    required sx={{width: '3vw'}}
+                                    aria-valuemin={0}
+                                    value={data.available_places}
+                                    onChange={validateInputNumber}
+                                />
+                            </div>
                         </div>
                         {generateImageBlock()}
                     </div>
@@ -158,7 +165,7 @@ export default function AddRoom() {
         }
 
         return (
-            <div className={"roomField"}>
+            <div className={"roomField"} style={{paddingLeft:'10vw'}}>
                 Зображення:
                 <div style={{paddingTop: "2vh"}}>
                     {image}
@@ -172,7 +179,7 @@ export default function AddRoom() {
                         startIcon={<CloudUploadIcon/>}
                     >
                         Завантажити
-                        <VisuallyHiddenInput accept={".jpg, .png"} onChange={handleImageUpload} type="file"/>
+                        <VisuallyHiddenInput accept={".jpg"} onChange={handleImageUpload} type="file"/>
                     </Button>
                 </div>
             </div>

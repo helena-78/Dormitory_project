@@ -1,0 +1,9 @@
+
+ javascript:S6478
+"RMove this component definition out of the parent component and pass data as props.(¿ªýÎùÿÿÿÿ8®è«Í‡2J$5988aea4-57e7-4ed8-b77a-7ac8400b4376
+‘javascript:S6848"ÂAvoid non-native interactive elements. If using native HTML is not possible, add an appropriate role and support for tabbing, mouse, keyboard, and touch inputs to an interactive content element.(Šöýçýÿÿÿÿ8¯è«Í‡2J$74a0c236-031c-4b6c-91ce-1a3c46144078
+­javascript:S1082"_Visible, non-interactive elements with click handlers must have at least one keyboard listener.(Šöýçýÿÿÿÿ8¯è«Í‡2J$c7b203bb-a45b-4774-af75-2d1a5ec7746d
+‘javascript:S6848("ÂAvoid non-native interactive elements. If using native HTML is not possible, add an appropriate role and support for tabbing, mouse, keyboard, and touch inputs to an interactive content element.(ãæ¶Šûÿÿÿÿ8¯è«Í‡2J$5f249ed2-e489-4035-ba2f-e7372e438a9f
+­javascript:S1082("_Visible, non-interactive elements with click handlers must have at least one keyboard listener.(ãæ¶Šûÿÿÿÿ8¯è«Í‡2J$78ba350c-1f35-46c7-8e0e-ca1dab03d7eb
+xjavascript:S6774("*'showPopUp' is missing in props validation(ãæ¶Šûÿÿÿÿ8¯è«Í‡2J$c450db9c-3efa-40ee-8eb3-b02b554746df
+yjavascript:S6774("+'visibility' is missing in props validation(ãæ¶Šûÿÿÿÿ8¯è«Í‡2J$1eef3b7a-fa33-4874-aca5-194b473bd926
