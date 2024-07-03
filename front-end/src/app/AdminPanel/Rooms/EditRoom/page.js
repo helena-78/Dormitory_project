@@ -44,9 +44,9 @@ export default function EditRoom() {
             .catch((reason) => {
                 console.log(reason);
                 showErrorAlert();
-            });
+            });'data:image/jpeg;base64,'
 
-        setCurrentData(result);
+        setCurrentData({...result, images: 'data:image/jpeg;base64,'+result.images});
         startData = result;
         console.log(result)
     }
