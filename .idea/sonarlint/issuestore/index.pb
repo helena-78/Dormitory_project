@@ -115,3 +115,15 @@ i
 0front-end/src/app/AdminPanel/ContextFunctions.js,4\e\4e4c57b2ad30bc10508bb30d49f4c8d8fde301f9
 q
 Afront-end/src/app/AdminPanel/Students/EditStudent/EditStudent.css,a\0\a0bbbf2f90d49176c6f7362d5934c9f71e409c1f
+}
+Mback-end/dormitoryBackend/api/migrations/0010_alter_student_contact_number.py,d\9\d905e67dec422b7637745be331e4801c51613d65
+V
+&back-end/dormitoryBackend/api/views.py,8\0\802b0658b98a7870549cb21c6164cac84d23bb52
+T
+$back-end/dormitoryBackend/.gitignore,d\5\d5fd158e2590e6dad0325192e7e99b504b756a53
+\
+,back-end/dormitoryBackend/api/serializers.py,d\2\d289a79c9325ff71aca05dc18caf7cd2410310c5
+W
+'back-end/dormitoryBackend/api/models.py,2\1\21c566b80c34235accff72516bf39e15eb0f3a6e
+U
+%back-end/dormitoryBackend/api/urls.py,f\3\f3cb912ca37bb57050eb4cc8f4a7de8cc783a6b5

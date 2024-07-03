@@ -6,7 +6,7 @@ class Student(models.Model):
     name = models.TextField()
     surname = models.TextField()
     email = models.EmailField(unique=True,max_length=255)
-    contact_number = models.BigIntegerField(null=True, blank=True)
+    contact_number = models.CharField(max_length=10, null=True, blank=True)   
     gender = models.TextField(choices=[('Male', 'Male'), ('Female', 'Female')])
     room = models.ForeignKey('Room', null=True, blank=True, on_delete=models.SET_NULL)
     application = models.ForeignKey('Application', null=True, blank=True, on_delete=models.SET_NULL, related_name='students')

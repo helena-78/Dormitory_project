@@ -4,53 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aac95de3-22e8-4717-8dd6-c55d8b1ea068" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Students/EditStudent/EditStudent.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Students/EditStudent/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/7/27e4752c3620f08e4d4d7804dcbd1267261347ab" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/7/27e4752c3620f08e4d4d7804dcbd1267261347ab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/e/2e0a42957460ddbd6b9951715db26e3b488ab606" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/1/31807a73150311500d51158f97cb5a84eb46ba3a" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/1/31807a73150311500d51158f97cb5a84eb46ba3a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/4/34b834e69878f53d4e7fcd31c411b3e4b757b5e3" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/4/34b834e69878f53d4e7fcd31c411b3e4b757b5e3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/7/37afb27930a613c48891d8bebf204f11eff1d160" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/b/4bd50eb918769ca45271696030a228e962c2fc51" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/0/50b17aa3adf31717f8c31d7c551ef5ecf0090e8b" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/3/531704630bd5e0b848d841234c7293281ba5f32c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/4/547bc7545ff67cc25b2f636d2688ad21a7319603" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/8/58dba0d6d8adbc3dccaf92b75500e793e507e704" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/a/5a7eb2063016ac464edf81781c4bb9c78de713cd" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/a/5a7eb2063016ac464edf81781c4bb9c78de713cd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/d/6d782888af9c4c77cebebef73e9dd32bf1e42bec" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/f/7fa41be335568342bf401d619d7e21b88fa3ee56" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/f/7fa41be335568342bf401d619d7e21b88fa3ee56" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/9/89917e41efe3161aae54b75b98387459162254c8" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/c/8c8c15d7efd22d88beeacc600ca888bf27bdd636" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/c/8c8c15d7efd22d88beeacc600ca888bf27bdd636" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/a/9a1f0f287235ea21b72767f32c191db08914a394" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/6/a6ff381e4f24d407b0c5786af7bd9dda68b18a07" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/6/a6ff381e4f24d407b0c5786af7bd9dda68b18a07" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/a/aae3dadfdb43da5c24923328b5b76540e6d18008" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/a/aae3dadfdb43da5c24923328b5b76540e6d18008" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/b/e/be9632d9755e932f907c8023af4f03c1687355e7" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/6/c69e47e9020c0416cc56e27911cdb97c7a1b8f6e" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/6/c6c37a0105dc93b0d8e38b7e345685530a87afe1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/f/df650f0d8146cca393adb4dd45e8af009583926b" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/f/ef09486c70c94c76fdb4a2eb9d6c67d7c98a4ba4" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/f/ef09486c70c94c76fdb4a2eb9d6c67d7c98a4ba4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/2/e/2e0a42957460ddbd6b9951715db26e3b488ab606" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/3/7/37afb27930a613c48891d8bebf204f11eff1d160" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/4/b/4bd50eb918769ca45271696030a228e962c2fc51" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/5/0/50b17aa3adf31717f8c31d7c551ef5ecf0090e8b" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/5/3/531704630bd5e0b848d841234c7293281ba5f32c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/5/4/547bc7545ff67cc25b2f636d2688ad21a7319603" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/5/8/58dba0d6d8adbc3dccaf92b75500e793e507e704" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/6/d/6d782888af9c4c77cebebef73e9dd32bf1e42bec" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/8/9/89917e41efe3161aae54b75b98387459162254c8" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/9/a/9a1f0f287235ea21b72767f32c191db08914a394" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/b/e/be9632d9755e932f907c8023af4f03c1687355e7" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/c/6/c69e47e9020c0416cc56e27911cdb97c7a1b8f6e" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/c/6/c6c37a0105dc93b0d8e38b7e345685530a87afe1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/d/f/df650f0d8146cca393adb4dd45e8af009583926b" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Rooms/AddRoom/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Rooms/AddRoom/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Rooms/EditRoom/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Rooms/EditRoom/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Students/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Students/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/AdminPanel/layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/AdminPanel/layout.js" afterDir="false" />
+    <list default="true" id="aac95de3-22e8-4717-8dd6-c55d8b1ea068" name="Changes" comment="preparing to merge">
+      <change afterPath="$PROJECT_DIR$/back-end/dormitoryBackend/api/migrations/0010_alter_student_contact_number.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/dormitoryBackend/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/dormitoryBackend/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/dormitoryBackend/api/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/dormitoryBackend/api/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/dormitoryBackend/api/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/dormitoryBackend/api/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/dormitoryBackend/api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/dormitoryBackend/api/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/dormitoryBackend/api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/dormitoryBackend/api/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,26 +57,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Node.js.TopBar.js.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;shapovalenko&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/SoftServe2024/front-end/src/app/AdminPanel/Students&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.1.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Node.js.TopBar.js.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "git-widget-placeholder": "Merging shapovalenko",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "E:/SoftServe2024/front-end/src/app/AdminPanel/Students",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.1.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\SoftServe2024\front-end\public" />
@@ -193,7 +153,7 @@
       <workItem from="1719841640901" duration="9885000" />
       <workItem from="1719904069769" duration="21116000" />
       <workItem from="1719951508986" duration="6306000" />
-      <workItem from="1719997361426" duration="3729000" />
+      <workItem from="1719997361426" duration="4055000" />
     </task>
     <task id="LOCAL-00001" summary="Added TopBar">
       <option name="closed" value="true" />
@@ -283,7 +243,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719944748043</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="preparing to merge">
+      <option name="closed" value="true" />
+      <created>1720002721798</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1720002721798</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -312,6 +280,7 @@
     <MESSAGE value="added room editing page,&#10;error handling for requests,&#10;fake data for students page admin panel was replaces with server requests" />
     <MESSAGE value="merged" />
     <MESSAGE value="added context for alerts and loading &#10;&#10;code refactoring" />
-    <option name="LAST_COMMIT_MESSAGE" value="added context for alerts and loading &#10;&#10;code refactoring" />
+    <MESSAGE value="preparing to merge" />
+    <option name="LAST_COMMIT_MESSAGE" value="preparing to merge" />
   </component>
 </project>
