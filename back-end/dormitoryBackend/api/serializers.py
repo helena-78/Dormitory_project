@@ -31,8 +31,12 @@ class RoomSerializer(serializers.ModelSerializer):
         model = Room
         fields = '__all__'
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.is_create = self.context.get('is_create', False)
+
     def validate_number(self, value):
-        if Room.objects.filter(number=value).exists():
+        if self.is_create and Room.objects.filter(number=value).exists():
             raise serializers.ValidationError("Room with this number already exists.")
         return value
 <<<<<<< HEAD

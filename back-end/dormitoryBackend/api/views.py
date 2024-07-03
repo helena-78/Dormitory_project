@@ -54,7 +54,7 @@ def delete_student(request, student_id):
 
 @api_view(['POST'])
 def create_room(request): #create(self, validated_data)
-    serializer = RoomSerializer(data=request.data)
+    serializer = RoomSerializer(data=request.data, context={'is_create': True})
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -83,7 +83,7 @@ def update_room(request, room_id): #update(self, instance, validated_data)
     except Room.DoesNotExist:
         return Response({'error': 'Room not found'}, status=status.HTTP_404_NOT_FOUND)
     
-    serializer = RoomSerializer(room, data=request.data, partial=True)
+    serializer = RoomSerializer(room, data=request.data, partial=True, context={'is_create': False})
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_200_OK)
