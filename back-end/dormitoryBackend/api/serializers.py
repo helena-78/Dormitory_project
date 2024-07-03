@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import Student, Room, Application, Booking
 import re
+import base64
 
 class StudentSerializer(serializers.ModelSerializer):
     class Meta:
@@ -24,6 +25,8 @@ class StudentSerializer(serializers.ModelSerializer):
         return value
     
 class RoomSerializer(serializers.ModelSerializer):
+    images = serializers.SerializerMethodField()
+
     class Meta:
         model = Room
         fields = '__all__'
@@ -32,6 +35,23 @@ class RoomSerializer(serializers.ModelSerializer):
         if Room.objects.filter(number=value).exists():
             raise serializers.ValidationError("Room with this number already exists.")
         return value
+    
+    def get_images(self, obj):
+        return base64.b64encode(obj.images).decode('utf-8') if obj.images else None
+
+    def create(self, validated_data):
+        image_data = self.initial_data.get('images')
+        if image_data:
+            image_data = base64.b64decode(image_data)
+        validated_data['images'] = image_data
+        return super().create(validated_data)
+
+    def update(self, instance, validated_data):
+        image_data = self.initial_data.get('images')
+        if image_data:
+            image_data = base64.b64decode(image_data)
+        validated_data['images'] = image_data
+        return super().update(instance, validated_data)
 
 class ApplicationSerializer(serializers.ModelSerializer):
     class Meta:
