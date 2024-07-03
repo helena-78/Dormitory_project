@@ -4,6 +4,7 @@ import Room from 'component/Room/Room';
 import React, { useEffect, useState } from 'react'
 import { Box, Button, Grid, CircularProgress } from '@mui/material'
 import { BorderBottom } from '@mui/icons-material'
+import {useBooking} from '../../component/context/BookingContext';
 import LegendLabel from 'component/Floors/LegendLabel';
 import '@fontsource/inter';
 import './floorlayout.css';
@@ -115,9 +116,11 @@ const addUndefinedItems = (data) => {
 };
 
 const FloorLayout = () => {
+  const {bookingDetails} = useBooking()
   const [contentIndex, setContentIndex] = useState(0);
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [auth, setAuth] = useState(false);
 
   const fetchItems = async (index) => {
     const url = `${process.env.NEXT_PUBLIC_API_URL}${ENDPOINT}/?${QUERY_PARAM}=${index + 1}`;
@@ -153,6 +156,9 @@ const FloorLayout = () => {
 
   useEffect(() => {
     fetchItems(contentIndex);
+    if (bookingDetails.student_id) {
+      setAuth(true);
+    }
   }, [contentIndex]);
 
   const handleButtonClick = (index) => {
@@ -185,7 +191,7 @@ const FloorLayout = () => {
           {firstRowItems.map((item, idx) => (
             <Grid item xs={1} key={item.room_id + idx} sx={getContentStyle(idx === firstRowItems.length - 1)}>
               <Box sx={{ width: '100%', height: '220px', paddingRight: '6px', paddingBottom: '6px', paddingLeft: '3px', paddingTop: '3px' }}>
-                <Room item={item} />
+                <Room item={item} auth={auth} />
               </Box>
             </Grid>
           ))}
@@ -195,7 +201,7 @@ const FloorLayout = () => {
           {secondRowItems.map((item, idx) => (
             <Grid item xs={1} key={item.room_id + idx} sx={getContentStyle(idx === secondRowItems.length - 1)}>
               <Box sx={{ width: '100%', height: '220px', paddingRight: '6px', paddingBottom: '6px', paddingLeft: '3px', paddingTop: '3px' }}>
-                <Room item={item} />
+                <Room item={item} auth={auth}  />
               </Box>
             </Grid>
           ))}

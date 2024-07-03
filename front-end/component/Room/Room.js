@@ -12,7 +12,7 @@ const Room = (props) => {
   const [coordinates, setCoordinates] = useState({ x: 0, y: 0 });
   const [roomColor, setRoomColor] = useState('');
   const router = useRouter();
-  const { setBookingDetails } = useBooking();
+  const {setBookingDetails } = useBooking();
 
   useEffect(() => {
     if (props.item.available_places === 'undefined') {
@@ -33,6 +33,18 @@ const Room = (props) => {
     setCoordinates({ x: clientX, y: clientY });
   };
 
+  const addToBookingDetails = () => {
+    setBookingDetails(prevBookingDetails => ({
+      ...prevBookingDetails,
+      room_id: props.item.room_id.toString(),
+      number: props.item.number,
+      available_places: props.item.available_places,
+      price: props.item.price,
+      gender: props.item.gender,
+      floor: props.item.floor.toString(),
+    }));
+  };
+
   const handleBookingClick = () => {
     // const params = new URLSearchParams({
     //   room_id: props.item.room_id.toString(),
@@ -45,14 +57,7 @@ const Room = (props) => {
 
     // router.push(`/order/booking_detail?${params.toString()}`);
 
-    setBookingDetails({
-      room_id: props.item.room_id.toString(),
-      number: props.item.number,
-      available_places: props.item.available_places,
-      price: props.item.price,
-      gender: props.item.gender,
-      floor: props.item.floor.toString(),
-    })
+    addToBookingDetails();
     router.push(`/order/booking_detail`)
   }
 
@@ -84,9 +89,15 @@ const Room = (props) => {
             width={150}
             height={150}
           />
+          {props.auth ?
           <button className='room-button' onClick={handleBookingClick}>
             Забронювати кімнату
           </button>
+          :
+          <button className='room-button'>
+            Потрібна аутентефікація
+          </button>
+          }
         </div>
       )}
       {props.item && (

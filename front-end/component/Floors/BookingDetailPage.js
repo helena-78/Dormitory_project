@@ -17,6 +17,7 @@ const BookingDetailPage = () => {
   const gender = bookingDetails.gender;
   const available_places = bookingDetails.available_places;
   const price = bookingDetails.price;
+  const sId = bookingDetails.student_id;
 
   const base_url=process.env.NEXT_PUBLIC_API_URL
 
@@ -24,10 +25,9 @@ const BookingDetailPage = () => {
 
   const handleBooking = async () => {
     setLoading(true);
-    const studentId = localStorage.getItem('student_id');
+    const studentId = bookingDetails.student_id;
     const applicationData = {
-      application_id: studentId,
-      student_id: studentId,
+      student: bookingDetails.student_id,
       room_id: bookingDetails.room_id,
       status: 'Submitted',
     }
@@ -41,7 +41,7 @@ const BookingDetailPage = () => {
     // };
 
     try {
-      const response = await fetch(`${base_url}/bookings/create/`, {
+      const response = await fetch(`${base_url}/applications/create/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
