@@ -1,3 +1,4 @@
+from decimal import Decimal
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
@@ -7,6 +8,8 @@ from .models import Payment
 from .serializers import PaymentSerializer
 from dormitoryBackend import settings
 from .utils import PDF
+from bills.models import Bill
+from api.models import Student
 import stripe
 import io
 
@@ -14,10 +17,13 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 
 @api_view(['GET'])
 def get_all_payments(request):
-    payments = Payment.objects.all()
-    serializer = PaymentSerializer(payments, many=True)
-
-    return Response(serializer.data, status=status.HTTP_200_OK)
+    try:
+        payments = Payment.objects.all()
+        serializer = PaymentSerializer(payments, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    except Exception as e:
+        print(f"Error: {e}")
+        return Response({'error': 'An error occurred while retrieving payments'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 @api_view(['GET'])
 def get_student_payments(request, id):
@@ -77,7 +83,8 @@ def checkout(request):
         )
         return Response({'sessionUrl': session.url}, status=status.HTTP_200_OK)
     except Exception as e:
-        return Response({'error': str(e)}, status=400)
+        print(f"Error: {e}")
+        return Response({'error': 'An error occurred while creating the checkout session'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 @api_view(['GET'])
 def success(request):
@@ -88,19 +95,41 @@ def success(request):
     if not room_number or not room_price or not student_id:
         return Response({"error": "missing parameter!"}, status=status.HTTP_400_BAD_REQUEST)
     
-    pdf = PDF()
-    pdf.add_page()
+    try:
+        student_id = int(student_id)
+        room_price = Decimal(room_price)
+        room_number = int(room_number)
+        
+        bill = Bill.objects.get(student_id=student_id)
+        bill.debt -= room_price
+        bill.save()
+    
+        pdf = PDF("./payments/static/maximising-user-satisfaction-1.jpg")
+        pdf.add_page()
 
-    pdf.add_room_info(room_number=room_number, room_price=room_price, student_id=student_id)
-    pdf_output = io.BytesIO()
-    pdf.output(pdf_output)
-    pdf_data = pdf_output.getvalue()
+        pdf.add_room_info(room_number=room_number, room_price=room_price, student_id=student_id)
+        pdf_output = io.BytesIO()
+        pdf_content = pdf.output(dest='S').encode('latin1')
+        pdf_output.write(pdf_content)
+        pdf_output.seek(0)
+        pdf_data = pdf_output.getvalue()
 
-    payment = Payment(student_id=student_id, receipt=pdf_data)
-    payment.save()
+        student = Student.objects.get(student_id=student_id)
 
-    return render(request, 'success_payment.html')
+        payment = Payment(student_id=student, receipt=pdf_data)
+        payment.save()
+
+        return render(request, 'success_payment.html')
+    except Bill.DoesNotExist:
+        return Response({'error': 'Bill not found'}, status=status.HTTP_404_NOT_FOUND)
+    except Exception as e:
+        print(f"Error: {e}")
+        return Response({'error': 'An error occurred while processing the payment success'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 @api_view(['GET'])
-def cancell(request):
-    return render(request, 'cancel_payment.html')
+def cancel(request):
+    try:
+        return render(request, 'cancel_payment.html')
+    except Exception as e:
+        print(f"Error: {e}")
+        return Response({'error': 'An error occurred while processing the payment cancellation'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

@@ -49,7 +49,17 @@
     <div class="container">
         <h1>Payment Successful</h1>
         <p>Thank you for your payment.</p>
-        <a href="/" class="btn">Back to Home</a>
+        <a href="/" class="btn" id="backBtn">Back to Home</a>
     </div>
+
+    <script>
+        var backBtn = document.getElementById('backBtn');
+
+        backBtn.addEventListener('click', function(event) {
+            event.preventDefault();
+
+            window.location.href = 'http://localhost:3000';
+        });
+    </script>
 </body>
 </html>
