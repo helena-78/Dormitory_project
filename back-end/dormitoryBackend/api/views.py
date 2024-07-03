@@ -53,21 +53,21 @@ def delete_student(request, student_id):
     return Response(status=status.HTTP_204_NO_CONTENT)
 
 @api_view(['POST'])
-def create_room(request):
-    serializer = RoomSerializer(data=request.data)
+def create_room(request): #create(self, validated_data)
+    serializer = RoomSerializer(data=request.data, context={'is_create': True})
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET'])
-def get_all_rooms(request):
+def get_all_rooms(request): #get_images(self, obj)
     rooms = Room.objects.all()
     serializer = RoomSerializer(rooms, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
 @api_view(['GET'])
-def get_room_by_id(request, room_id):
+def get_room_by_id(request, room_id): #get_images(self, obj)
     try:
         room = Room.objects.get(pk=room_id)
     except Room.DoesNotExist:
@@ -77,13 +77,13 @@ def get_room_by_id(request, room_id):
     return Response(serializer.data, status=status.HTTP_200_OK)
 
 @api_view(['PATCH'])
-def update_room(request, room_id):
+def update_room(request, room_id): #update(self, instance, validated_data)
     try:
         room = Room.objects.get(pk=room_id)
     except Room.DoesNotExist:
         return Response({'error': 'Room not found'}, status=status.HTTP_404_NOT_FOUND)
     
-    serializer = RoomSerializer(room, data=request.data, partial=True)
+    serializer = RoomSerializer(room, data=request.data, partial=True, context={'is_create': False})
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_200_OK)

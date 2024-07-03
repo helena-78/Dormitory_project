@@ -31,25 +31,29 @@ class RoomSerializer(serializers.ModelSerializer):
         model = Room
         fields = '__all__'
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.is_create = self.context.get('is_create', False)
+
     def validate_number(self, value):
-        if Room.objects.filter(number=value).exists():
+        if self.is_create and Room.objects.filter(number=value).exists():
             raise serializers.ValidationError("Room with this number already exists.")
         return value
     
     def get_images(self, obj):
         return base64.b64encode(obj.images).decode('utf-8') if obj.images else None
-
-    def create(self, validated_data):
+   
+    def create(self, validated_data): 
         image_data = self.initial_data.get('images')
         if image_data:
-            image_data = base64.b64decode(image_data)
+            image_data = base64.b64decode(image_data.split(',')[1])  # Remove the prefix
         validated_data['images'] = image_data
         return super().create(validated_data)
 
     def update(self, instance, validated_data):
         image_data = self.initial_data.get('images')
         if image_data:
-            image_data = base64.b64decode(image_data)
+            image_data = base64.b64decode(image_data.split(',')[1])  # Remove the prefix
         validated_data['images'] = image_data
         return super().update(instance, validated_data)
 
