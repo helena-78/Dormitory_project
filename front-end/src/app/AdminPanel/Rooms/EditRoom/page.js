@@ -35,7 +35,11 @@ export default function EditRoom() {
     const [currentData, setCurrentData] = useState([]);
     const alertContext = useContext(AlertContext);
     const loadingContext = useContext(LoadingContext);
+<<<<<<< HEAD
     const router = useRouter();
+=======
+    const [imageError, setImageError] = useState('');
+>>>>>>> origin/Lipko
 
     const fetchData = async () => {
         const result = await fetch(url)
@@ -127,6 +131,8 @@ export default function EditRoom() {
             </div>
         );
     }
+
+   
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -236,6 +242,7 @@ export default function EditRoom() {
         );
     }
 
+<<<<<<< HEAD
     function generateImageBlock() {
         let image;
 
@@ -243,25 +250,74 @@ export default function EditRoom() {
             image = <Image src={currentData.images} alt={""} height={"400"} width={"400"}/>;
         }
 
+=======
+    function generateImages() {
+        const imageUrl = currentData.images ? `data:image/jpeg;base64,${currentData.images}` : '';
+    
+>>>>>>> origin/Lipko
         return (
             <div className={"roomField"} style={{paddingLeft:'10vw'}}>
                 Зображення:
+<<<<<<< HEAD
                 <div style={{paddingTop: "2vh"}}>
                     {image}
                 </div>
+=======
+                {imageUrl && (
+                    <img src = {imageUrl} />
+                )}
+                {imageError && <p style={{color: 'red'}}>{imageError}</p>}
+>>>>>>> origin/Lipko
                 <div style={{paddingTop: '3vh'}}>
                     <Button
                         component="label"
                         role={undefined}
                         variant="contained"
                         tabIndex={-1}
-                        startIcon={<CloudUploadIcon/>}
+                        startIcon={<CloudUploadIcon />}
                     >
                         Завантажити
+<<<<<<< HEAD
                         <VisuallyHiddenInput onChange={handleImageUpload} type="file"/>
+=======
+                        <VisuallyHiddenInput type="file" onChange={handleImageUpload} />
+>>>>>>> origin/Lipko
                     </Button>
                 </div>
-            </div>);
+            </div>
+        );
+    }
+
+    //TODO: add image upload(incomplete for now)
+    
+    async function handleImageUpload(e) {
+        const file = e.target.files[0];
+    
+        if (file) {
+            const fileType = file.type.split('/')[0];
+            const fileSize = file.size;
+    
+            if (fileType !== 'image') {
+                setImageError('The selected file is not an image.');
+                return;
+            }
+    
+            if (fileSize > 200 * 1024) { // 200 KB
+                setImageError('The image size should not exceed 200 KB.');
+                return;
+            }
+    
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                const base64String = reader.result.replace('data:', '').replace(/^.+,/, '');
+                setCurrentData((prevState) => ({
+                    ...prevState,
+                    images: base64String
+                }));
+                setImageError('');
+            };
+            reader.readAsDataURL(file);
+        }
     }
 
     function handleImageUpload(e) {
