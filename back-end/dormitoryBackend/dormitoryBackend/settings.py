@@ -38,7 +38,6 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 INSTALLED_APPS = [
     'corsheaders',
-    'status_check',
     'bookings',
     'booking_applications',
     'django.contrib.admin',
