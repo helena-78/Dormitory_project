@@ -5,23 +5,24 @@ import Box from '@mui/material/Box';
 import DynamicList from "../../../../component/AdminPanel/List/DynamicList";
 import commonStyles from 'src/app/AdminPanel/AdminPanel.css'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import {useEffect, useState} from "react";
-import {CircularProgress} from "@mui/material";
+import {useContext, useEffect, useState} from "react";
+import {AlertContext} from "../../../../component/AdminPanel/Alerts/AlertContext";
+import {LoadingContext} from "../../../../component/Loading/LoadingContext";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 const ENDPOINT = '/students/';
 
 export default function Page() {
-    const [loading, setLoading] = useState('');
     const [currentData, setCurrentData] = useState([]);
-    const [errorOccurredState, setErrorOccurredState] = useState(false);
     const url = `${BASE_URL}${ENDPOINT}`;
+    const alertContext = useContext(AlertContext);
+    const loadingContext = useContext(LoadingContext);
 
     const fetchData = async () => {
         const result = await fetch(url)
             .then(response => response.json())
-            .finally(() => setLoading(false)).catch((reason) => {
-                setErrorOccurredState(true);
+            .finally(() => changeLoadingProcessState(false)).catch((reason) => {
+                showErrorAlert();
                 console.log(reason);
             });
 
@@ -29,16 +30,10 @@ export default function Page() {
     }
 
     useEffect(() => {
-            setLoading(true);
+            changeLoadingProcessState(true);
             fetchData()
         },
         []);
-
-    if (errorOccurredState == true) {
-        return (
-            <h1 style={{paddingTop: '15vh', color: 'red', textAlign: 'center'}}>Failed to fetch data</h1>
-        );
-    }
 
     return (
         <Box className="list">
@@ -47,10 +42,6 @@ export default function Page() {
     );
 
     function generateList() {
-        if (loading == true) {
-            return <CircularProgress/>;
-        }
-        else {
             return (
                 <DynamicList
                     icon={<AccountCircleIcon sx={{color: '#FFFFFF', transform: 'scale(1.9)'}}></AccountCircleIcon>}
@@ -62,7 +53,14 @@ export default function Page() {
                     editComponentUrl={'./EditStudent'}
                 </DynamicList>
             );
-        }
+    }
+
+    function showErrorAlert() {
+        alertContext.setErrorOccurredState();
+    }
+
+    function changeLoadingProcessState(state) {
+        loadingContext.setLoadingState(state);
     }
 }
 

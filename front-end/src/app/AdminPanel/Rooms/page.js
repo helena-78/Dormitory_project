@@ -6,8 +6,11 @@ import commonStyles from 'src/app/AdminPanel/AdminPanel.css'
 import DynamicList from "../../../../component/AdminPanel/List/DynamicList";
 import NightShelterIcon from '@mui/icons-material/NightShelter';
 import {DynamicSelect} from "../../../../component/AdminPanel/Select/DynamicSelect";
-import {useState, useEffect} from "react";
-import {CircularProgress} from "@mui/material";
+import {useState, useEffect, useContext} from "react";
+import Button from "@mui/material/Button";
+import {useRouter} from "next/navigation";
+import {AlertContext} from "../../../../component/AdminPanel/Alerts/AlertContext";
+import {LoadingContext} from "../../../../component/Loading/LoadingContext";
 
 const BASE_URL = 'http://127.0.0.1:8000';
 const remote_url = process.env.NEXT_PUBLIC_API_URL;
@@ -15,18 +18,18 @@ const ENDPOINT = '/rooms/floor';
 const QUERY_PARAM = 'floor';
 
 export default function Page() {
-    const [loading, setLoading] = useState('');
     const [currentData, setCurrentData] = useState([]);
     const [selectState, setSelectState] = useState(1);
-    const [errorOccurredState, setErrorOccurredState] = useState(false);
     const url = `${remote_url}${ENDPOINT}/?${QUERY_PARAM}=${selectState}`;
+    const router = useRouter();
+    const alertContext = useContext(AlertContext);
+    const loadingContext = useContext(LoadingContext);
 
     const fetchData = async () => {
         const result = await fetch(url)
             .then(response => response.json())
-            .finally(() => setLoading(false)).
-            catch((reason)=>{
-                setErrorOccurredState(true);
+            .finally(() => changeLoadingProcessState(false)).catch((reason) => {
+                showErrorAlert();
                 console.log(reason);
             });
 
@@ -34,16 +37,11 @@ export default function Page() {
     }
 
     useEffect(() => {
-            setLoading(true);
+            changeLoadingProcessState(true);
             fetchData()
         },
         [selectState]);
 
-    if(errorOccurredState==true){
-        return (
-          <h1 style={{paddingTop:'15vh', color:'red', textAlign:'center'}}>Failed to fetch data</h1>
-        );
-    }
 
     return (
         <>
@@ -52,6 +50,15 @@ export default function Page() {
             <Box className="list">
                 {getRoomList()}
             </Box>
+            <div>
+                <div style={{display: 'flex', justifyContent: 'flex-end', paddingRight: '5vw'}}>
+                    <Button onClick={() => {
+                        router.push('/AdminPanel/Rooms/AddRoom')
+                    }} variant="contained" color="primary">
+                        Створити кімнату
+                    </Button>
+                </div>
+            </div>
         </>
     );
 
@@ -60,10 +67,6 @@ export default function Page() {
     }
 
     function getRoomList() {
-        if (loading == true) {
-            return <CircularProgress/>;
-        }
-        else {
             return (
                 <DynamicList
                     icon={<NightShelterIcon sx={{color: '#FFFFFF', transform: 'scale(1.5)'}}></NightShelterIcon>}
@@ -72,11 +75,18 @@ export default function Page() {
                     itemIDs={currentData.map((room) => room.room_id)}
                     title={"кімнат"}
                     itemName={"Кімната "}
-                    editComponentUrl={'./EditRoom'}
+                    editComponentUrl={'/AdminPanel/Rooms/EditRoom'}
                 >
                 </DynamicList>
             );
-        }
+    }
+
+    function showErrorAlert() {
+        alertContext.setErrorOccurredState();
+    }
+
+    function changeLoadingProcessState(state) {
+        loadingContext.setLoadingState(state);
     }
 }
 
