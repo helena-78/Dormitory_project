@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'status_check',
     'bookings',
+    'booking_applications',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
