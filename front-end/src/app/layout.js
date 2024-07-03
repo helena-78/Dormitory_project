@@ -22,7 +22,6 @@ export default function RootLayout({children}) {
         <body className={inter.className}>
         <BookingProvider>
         <TopBar showPopUp={setPopUpState} visibility={popUpState}/>
-        <SignIn hidePopUp={setPopUpState} visibility={popUpState}/>
         {children}
         </BookingProvider>
         </body>

@@ -14,6 +14,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import CircularProgress from '@mui/material/CircularProgress';
+import {useBooking} from '../../component/context/BookingContext';
 
 const BASE_URL = 'http://174.129.65.133:8000';
 
@@ -34,6 +35,7 @@ function SignIn() {
   const router = useRouter();
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState('');
+  const { setBookingDetails } = useBooking();
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -58,7 +60,10 @@ function SignIn() {
         setLoading(false);
 
         if (user) {
-          localStorage.setItem('student_id', user.student_id); 
+          setBookingDetails({
+            student_id: user.student_id
+          })
+          //localStorage.setItem('student_id', user.student_id); 
           console.log('student_id', user.student_id)
           router.push(`./`);
         } else {

@@ -33,6 +33,7 @@ export default function EditRoom() {
     const [currentData, setCurrentData] = useState([]);
     const alertContext = useContext(AlertContext);
     const loadingContext = useContext(LoadingContext);
+    const [imageError, setImageError] = useState('');
 
     const fetchData = async () => {
         const result = await fetch(url)
@@ -113,6 +114,8 @@ export default function EditRoom() {
             </div>
         );
     }
+
+   
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -195,29 +198,61 @@ export default function EditRoom() {
     }
 
     function generateImages() {
-        let images;
-
-        for (let i = 0; i < currentData.images?.length; i++) {
-            images[i] = <Image src={""}/>
-        }
-
+        const imageUrl = currentData.images ? `data:image/jpeg;base64,${currentData.images}` : '';
+    
         return (
             <div className={"roomField"}>
                 Зображення:
-                {images}
+                {imageUrl && (
+                    <img src = {imageUrl} />
+                )}
+                {imageError && <p style={{color: 'red'}}>{imageError}</p>}
                 <div style={{paddingTop: '3vh'}}>
                     <Button
                         component="label"
                         role={undefined}
                         variant="contained"
                         tabIndex={-1}
-                        startIcon={<CloudUploadIcon/>}
+                        startIcon={<CloudUploadIcon />}
                     >
                         Завантажити
-                        <VisuallyHiddenInput type="file"/>
+                        <VisuallyHiddenInput type="file" onChange={handleImageUpload} />
                     </Button>
                 </div>
-            </div>);
+            </div>
+        );
+    }
+
+    //TODO: add image upload(incomplete for now)
+    
+    async function handleImageUpload(e) {
+        const file = e.target.files[0];
+    
+        if (file) {
+            const fileType = file.type.split('/')[0];
+            const fileSize = file.size;
+    
+            if (fileType !== 'image') {
+                setImageError('The selected file is not an image.');
+                return;
+            }
+    
+            if (fileSize > 200 * 1024) { // 200 KB
+                setImageError('The image size should not exceed 200 KB.');
+                return;
+            }
+    
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                const base64String = reader.result.replace('data:', '').replace(/^.+,/, '');
+                setCurrentData((prevState) => ({
+                    ...prevState,
+                    images: base64String
+                }));
+                setImageError('');
+            };
+            reader.readAsDataURL(file);
+        }
     }
 
     function validateInputNumber(e) {

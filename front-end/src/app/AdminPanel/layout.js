@@ -17,7 +17,6 @@ export default function Layout({children}) {
         <AlertContext>
             <LoadingContext>
                 <TopBar showPopUp={setPopUpState} visibility={popUpState}/>
-                <SignIn hidePopUp={setPopUpState} visibility={popUpState}/>
                 <Loading></Loading>
                 {children}
                 <AlertError></AlertError>
