@@ -14,6 +14,7 @@ export default function Layout({children}) {
     const [popUpState, setPopUpState] = useState(false);
 
     return (
+        <div>
         <AlertContext>
             <LoadingContext>
                 <TopBar showPopUp={setPopUpState} visibility={popUpState}/>
@@ -24,5 +25,6 @@ export default function Layout({children}) {
                 <AlertSuccess></AlertSuccess>
             </LoadingContext>
         </AlertContext>
+        </div>
     );
 }

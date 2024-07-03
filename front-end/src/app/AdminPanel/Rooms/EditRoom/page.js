@@ -11,6 +11,7 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import {styled} from "@mui/material/styles";
 import {AlertContext} from "../../../../../component/AdminPanel/Alerts/AlertContext";
 import {LoadingContext} from "../../../../../component/Loading/LoadingContext";
+import Image from "next/image";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 const ENDPOINT = '/rooms/';
@@ -45,6 +46,7 @@ export default function EditRoom() {
 
         setCurrentData(result);
         startData = result;
+        console.log(result)
     }
 
     useEffect(() => {
@@ -102,7 +104,7 @@ export default function EditRoom() {
                                 onChange={validateInputNumber}
                             />
                         </div>
-                        {generateImages()}
+                        {generateImageBlock()}
                     </div>
                     <div style={{display: 'flex', justifyContent: 'flex-end', paddingRight: '10vw'}}>
                         <Button type={'submit'} disabled={isDataEqual()} variant="contained" color="primary">
@@ -134,7 +136,7 @@ export default function EditRoom() {
                 showErrorAlert();
             }
         }
-
+console.log(currentData)
         patchData();
     }
 
@@ -194,17 +196,19 @@ export default function EditRoom() {
         );
     }
 
-    function generateImages() {
-        let images;
+    function generateImageBlock() {
+        let image;
 
-        for (let i = 0; i < currentData.images?.length; i++) {
-            images[i] = <Image src={""}/>
+        if (currentData.images !== null) {
+            image = <Image src={currentData.images} alt={""} height={"400"} width={"400"}/>;
         }
 
         return (
             <div className={"roomField"}>
                 Зображення:
-                {images}
+                <div style={{paddingTop:"2vh"}}>
+                    {image}
+                </div>
                 <div style={{paddingTop: '3vh'}}>
                     <Button
                         component="label"
@@ -214,10 +218,22 @@ export default function EditRoom() {
                         startIcon={<CloudUploadIcon/>}
                     >
                         Завантажити
-                        <VisuallyHiddenInput type="file"/>
+                        <VisuallyHiddenInput onChange={handleImageUpload} type="file"/>
                     </Button>
                 </div>
             </div>);
+    }
+
+    function handleImageUpload(e) {
+        let reader = new FileReader();
+
+        reader.onloadend = function () {
+            setCurrentData((prevState) => {
+                return {...prevState, images: reader.result}
+            })
+        }
+
+        reader.readAsDataURL(e.target.files[0]);
     }
 
     function validateInputNumber(e) {

@@ -42,17 +42,18 @@ export default function Page() {
     );
 
     function generateList() {
-            return (
-                <DynamicList
-                    icon={<AccountCircleIcon sx={{color: '#FFFFFF', transform: 'scale(1.9)'}}></AccountCircleIcon>}
-                    itemValues={currentData.map((student) => student.name + " " + student.surname + " Id:" + student.student_id)}
-                    itemIDs={currentData.map((student) => student.student_id)}
-                    dataLength={currentData.length}
-                    title={"студентів"}
-                    itemName={"Студент "}>
-                    editComponentUrl={'./EditStudent'}
-                </DynamicList>
-            );
+        return (
+            <DynamicList
+                icon={<AccountCircleIcon sx={{color: '#FFFFFF', transform: 'scale(1.9)'}}></AccountCircleIcon>}
+                itemValues={currentData.map((student) => student.name + " " + student.surname + " Id:" + student.student_id)}
+                itemIDs={currentData.map((student) => student.student_id)}
+                dataLength={currentData.length}
+                title={"студентів"}
+                itemName={"Студент "}
+                editComponentUrl={'/AdminPanel/Students/EditStudent'}
+            >
+            </DynamicList>
+        );
     }
 
     function showErrorAlert() {

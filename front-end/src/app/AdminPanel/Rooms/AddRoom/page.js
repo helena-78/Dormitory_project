@@ -9,6 +9,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import * as React from "react";
 import styles from '@/app/AdminPanel/Rooms/EditRoom/EditRoom.css'
 import {AlertContext} from "../../../../../component/AdminPanel/Alerts/AlertContext";
+import Image from "next/image";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 const ENDPOINT = '/rooms';
@@ -82,7 +83,7 @@ export default function AddRoom() {
                                 onChange={validateInputNumber}
                             />
                         </div>
-                        {generateImages()}
+                        {generateImageBlock()}
                     </div>
                     <div style={{display: 'flex', justifyContent: 'flex-end', paddingRight: '10vw'}}>
                         <Button type={'submit'} variant="contained" color="primary">
@@ -96,7 +97,7 @@ export default function AddRoom() {
 
     function handleSubmit(e) {
         e.preventDefault();
-
+        console.log(data)
         const postData = async () => {
             try {
                 await fetch(url, {
@@ -112,7 +113,7 @@ export default function AddRoom() {
                 showErrorAlert();
             }
         }
-
+        console.log(data);
         postData();
     }
 
@@ -147,17 +148,19 @@ export default function AddRoom() {
         );
     }
 
-    function generateImages() {
-        let images;
+    function generateImageBlock() {
+        let image;
 
-        for (let i = 0; i < data.images?.length; i++) {
-            images[i] = <Image src={""}/>
+        if (data.images !== null) {
+            image = <Image src={data.images} alt={""} height={"400"} width={"400"}/>;
         }
 
         return (
             <div className={"roomField"}>
                 Зображення:
-                {images}
+                <div style={{paddingTop: "2vh"}}>
+                    {image}
+                </div>
                 <div style={{paddingTop: '3vh'}}>
                     <Button
                         component="label"
@@ -167,10 +170,23 @@ export default function AddRoom() {
                         startIcon={<CloudUploadIcon/>}
                     >
                         Завантажити
-                        <VisuallyHiddenInput type="file"/>
+                        <VisuallyHiddenInput accept={".jpg, .png"} onChange={handleImageUpload} type="file"/>
                     </Button>
                 </div>
-            </div>);
+            </div>
+        );
+
+        function handleImageUpload(e) {
+            let reader = new FileReader();
+
+            reader.onloadend = function () {
+                setData((prevState) => {
+                    return {...prevState, images: reader.result}
+                })
+            }
+
+            reader.readAsDataURL(e.target.files[0]);
+        }
     }
 
     function generateRadioGroup() {
@@ -201,7 +217,7 @@ export default function AddRoom() {
     function validateInputNumber(e) {
         if (e.target.value > 0 || e.target.value === "") {
             setData((prevState) => {
-                switch (e.target.id){
+                switch (e.target.id) {
                     case 'roomNumberInput':
                         return {...prevState, number: parseInt(e.target.value)}
                         break;
