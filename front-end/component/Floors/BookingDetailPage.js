@@ -1,10 +1,11 @@
 import { useSearchParams } from 'next/navigation';
 import styles from './BookingDetailPage.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from "react";
 import {useBooking} from '../../component/context/BookingContext';
 
 const BookingDetailPage = () => {
   const { bookingDetails } = useBooking();
+  const [studentId, setStudentId] = useState(null);
   //const searchParams = useSearchParams();
   // const floor = searchParams.get('floor');
   // const number = searchParams.get('number');
@@ -17,7 +18,12 @@ const BookingDetailPage = () => {
   const gender = bookingDetails.gender;
   const available_places = bookingDetails.available_places;
   const price = bookingDetails.price;
-  const sId = bookingDetails.student_id;
+
+  useEffect(() => {
+    const sId = localStorage.getItem('student_id');
+    setStudentId(sId);
+  })
+
 
   const base_url=process.env.NEXT_PUBLIC_API_URL
 
@@ -25,10 +31,10 @@ const BookingDetailPage = () => {
 
   const handleBooking = async () => {
     setLoading(true);
-    const studentId = bookingDetails.student_id;
+    const studentId = localStorage.getItem('student_id');
     const applicationData = {
-      student: bookingDetails.student_id,
-      room_id: bookingDetails.room_id,
+      student: studentId,
+      room: bookingDetails.room_id,
       status: 'Submitted',
     }
 
@@ -63,7 +69,7 @@ const BookingDetailPage = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ application_id: result.application_id }),
+        body: JSON.stringify({application: result.application_id}),
       });
   
       if (!patchResponse.ok) {

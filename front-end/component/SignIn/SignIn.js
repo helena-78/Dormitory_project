@@ -63,9 +63,9 @@ function SignIn() {
           setBookingDetails({
             student_id: user.student_id
           })
-          //localStorage.setItem('student_id', user.student_id); 
+          localStorage.setItem('student_id', user.student_id); 
           console.log('student_id', user.student_id)
-          router.push(`./`);
+          router.push(`./`,undefined);
         } else {
           setError('Incorrect email or password');
         }

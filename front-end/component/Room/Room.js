@@ -36,7 +36,7 @@ const Room = (props) => {
   const addToBookingDetails = () => {
     setBookingDetails(prevBookingDetails => ({
       ...prevBookingDetails,
-      room_id: props.item.room_id.toString(),
+      room_id: props.item.room_id,
       number: props.item.number,
       available_places: props.item.available_places,
       price: props.item.price,

@@ -155,8 +155,9 @@ const FloorLayout = () => {
   };
 
   useEffect(() => {
+    const sId = localStorage.getItem('student_id');
     fetchItems(contentIndex);
-    if (bookingDetails.student_id) {
+    if (sId) {
       setAuth(true);
     }
   }, [contentIndex]);
