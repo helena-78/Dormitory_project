@@ -12,11 +12,9 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 from dotenv import load_dotenv
-<<<<<<< HEAD
 import os
-=======
 
->>>>>>> origin/main
+
 
 load_dotenv()
 
@@ -33,13 +31,9 @@ SECRET_KEY = 'django-insecure-fuasxhs&o5q#a*q(*c+@gyi^n3a6fv369m(0%gb!*7_lrp9wk2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-<<<<<<< HEAD
-ALLOWED_HOSTS = [
-]
-=======
+
 ALLOWED_HOSTS = ['174.129.65.133', '127.0.0.1', 'localhost']
 CORS_ALLOW_ALL_ORIGINS = True
->>>>>>> origin/main
 
 
 # Application definition
@@ -56,14 +50,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'dormitoryBackend.scheduler.SchedulerConfig',
     'rest_framework',
-<<<<<<< HEAD
-    'corsheaders',
-=======
     'bills',
     'payments',
     'api'
-
->>>>>>> origin/main
 ]
 
 MIDDLEWARE = [
@@ -158,7 +147,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY')
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/main

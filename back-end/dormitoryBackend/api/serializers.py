@@ -39,7 +39,6 @@ class RoomSerializer(serializers.ModelSerializer):
         if self.is_create and Room.objects.filter(number=value).exists():
             raise serializers.ValidationError("Room with this number already exists.")
         return value
-<<<<<<< HEAD
     
     def get_images(self, obj):
         return base64.b64encode(obj.images).decode('utf-8') if obj.images else None
@@ -57,8 +56,6 @@ class RoomSerializer(serializers.ModelSerializer):
             image_data = base64.b64decode(image_data.split(',')[1])  # Remove the prefix
         validated_data['images'] = image_data
         return super().update(instance, validated_data)
-=======
->>>>>>> origin/Lipko
 
 class ApplicationSerializer(serializers.ModelSerializer):
     class Meta:

@@ -1,7 +1,8 @@
-<<<<<<< HEAD
-from django.urls import path
 from status_check.views import create_application,  get_application, update_application_status, ApplicationsAPIView, delete_application
 from bookings import views
+from django.contrib import admin
+from django.urls import include, path
+
 
 urlpatterns = [
     path('applications/', ApplicationsAPIView.as_view(), name='applications-list'),
@@ -14,7 +15,12 @@ urlpatterns = [
     path('bookings/<int:pk>/', views.get_booking, name='get_booking'),
     path('bookings/<int:pk>/update/', views.update_booking, name='update_booking'),
     path('bookings/<int:pk>/', views.delete_booking, name='delete_booking'),
-=======
+    path('admin/', admin.site.urls),
+    path('api/', include('bills.urls')),
+    path('api/', include('payments.urls')),
+    path('', include("api.urls")),
+    path('', include("bookings.urls")),
+    path('', include("status_check.urls"))]
 
 """
 URL configuration for dormitoryBackend project.
@@ -32,19 +38,4 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-
-from django.contrib import admin
-from django.urls import include, path
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/', include('bills.urls')),
-    path('api/', include('payments.urls')),
-    path('', include("api.urls")),
-    path('', include("bookings.urls")),
-    path('', include("status_check.urls")),
-
->>>>>>> origin/main
-]
-
 

@@ -4,7 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aac95de3-22e8-4717-8dd6-c55d8b1ea068" name="Changes" comment="preparing to merge" />
+    <list default="true" id="aac95de3-22e8-4717-8dd6-c55d8b1ea068" name="Changes" comment="preparing to merge">
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/7/17e29e90a50f3b5fc35cfd854639e2c3244e40eb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/7/17e29e90a50f3b5fc35cfd854639e2c3244e40eb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/f/7fa41be335568342bf401d619d7e21b88fa3ee56" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/f/7fa41be335568342bf401d619d7e21b88fa3ee56" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/e/ce53cf12b5ef3bcf27d8e17367ac00820e853abd" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/e/ce53cf12b5ef3bcf27d8e17367ac00820e853abd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/4/d4a0db6bda65ba6239c6699196a243d27e26c0bd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/f/ef09486c70c94c76fdb4a2eb9d6c67d7c98a4ba4" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/f/ef09486c70c94c76fdb4a2eb9d6c67d7c98a4ba4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/d/4/d4a0db6bda65ba6239c6699196a243d27e26c0bd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/dormitoryBackend/.env" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/dormitoryBackend/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/dormitoryBackend/api/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/dormitoryBackend/api/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/dormitoryBackend/api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/dormitoryBackend/api/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/dormitoryBackend/dormitoryBackend/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/dormitoryBackend/dormitoryBackend/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/dormitoryBackend/dormitoryBackend/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/dormitoryBackend/dormitoryBackend/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/.env.local" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/.env.local" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/component/AdminPanel/List/ClickList.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/component/AdminPanel/List/ClickList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Applications/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Applications/page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Payments/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Payments/page.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -147,6 +166,7 @@
       <workItem from="1719904069769" duration="21116000" />
       <workItem from="1719951508986" duration="6306000" />
       <workItem from="1719997361426" duration="13366000" />
+      <workItem from="1720085472185" duration="9100000" />
     </task>
     <task id="LOCAL-00001" summary="Added TopBar">
       <option name="closed" value="true" />

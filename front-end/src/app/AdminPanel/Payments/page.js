@@ -156,6 +156,7 @@ export default function Page() {
                         data={studentsWithBills}
                         title={"студентів"}
                         itemName={"Студент "}
+                        itemIDs={studentsWithBills.map((student)=> student.student_id)}
                         onItemClick={handleItemClick}
                     />
                 </Grid>
