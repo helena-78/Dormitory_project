@@ -30,7 +30,7 @@ useEffect(() => {
 
  }, [props.item.available_places])
 
-const showRoomInfo = (event) => {
+const showRoomInfo = (event, room_id) => {
     setIsVisible(!isVisible)
 
     const {clientX, clientY} = event
@@ -66,7 +66,7 @@ return (
             </div>
         )}
         {props.item &&(
-        <div className='room-block' onClick={showRoomInfo} style={{backgroundColor: `${roomColor}`}}>
+        <div className='room-block'  onClick={showRoomInfo}style={{backgroundColor: `${roomColor}`}}>
             {!isUndefined &&(
                 <div className='room-number'>№{props.item.number}</div>
             )

@@ -8,11 +8,47 @@ import NightShelterIcon from '@mui/icons-material/NightShelter';
 import {DynamicSelect} from "../../../../component/AdminPanel/Select/DynamicSelect";
 import {useState} from "react";
 
+const fakeStudentsData = [
+    {
+        "student_id": 1,
+        "name": "Вася",
+        "surname": "Іванов",
+        "email": "sdasdsad@gmail.com",
+        "contact_number": "+38065654412",
+        "gender": "Male",
+        "room_id": 1,
+        "application_id": "1",
+        "password": "dsadasfdas"
+    },
+    {
+        "student_id": 2,
+        "name": "Петя",
+        "surname": "Коваленко",
+        "email": "sdasdsad@i.ua",
+        "contact_number": "+380645423374",
+        "gender": "Male",
+        "room_id": 1,
+        "application_id": "2",
+        "password": "adsadasfgfg"
+    },
+    {
+        "student_id": 3,
+        "name": "Маша",
+        "surname": "Шевченко",
+        "email": "masha@gmail.com",
+        "contact_number": "+38065654412",
+        "gender": "Female",
+        "room_id": 3,
+        "application_id": "3",
+        "password": "weqrqewrter"
+    }
+]
+
 const fakeRoomsDataFirstFloor = [
     {
         "room_id": 1,
         "number": "101",
-        "available_places": "0",
+        "available_places": "1",
         "image": "base64 encoded",
         "price": "19999",
         "gender": "M"
@@ -20,7 +56,7 @@ const fakeRoomsDataFirstFloor = [
     {
         "room_id": 2,
         "number": "102",
-        "available_places": "2",
+        "available_places": "3",
         "image": "base64 encoded",
         "price": "2032",
         "gender": "F"
@@ -28,7 +64,7 @@ const fakeRoomsDataFirstFloor = [
     {
         "room_id": 3,
         "number": "103",
-        "available_places": "3",
+        "available_places": "2",
         "image": "base64 encoded",
         "price": "2032",
         "gender": "F"
@@ -92,6 +128,16 @@ const fakeRoomsDataThirdFloor = [
 export default function Page() {
     const [listState, setListState] = useState('0');
 
+    function getStudentByRoom(roomsOnFloor) {
+        return (
+            roomsOnFloor.map(
+                (room) => {
+                    return fakeStudentsData.filter(student => student.room_id === room.room_id).map(student => student.surname).join(", ");
+                }
+            )
+        );
+    }
+
     return (
         <>
             <DynamicSelect filter={setListState} title={"поверх"}
@@ -120,7 +166,8 @@ export default function Page() {
         return (
             <DynamicList
                 icon={<NightShelterIcon sx={{color: '#FFFFFF', transform: 'scale(1.5)'}}></NightShelterIcon>}
-                items={currentData.map((room) => room.number)} data={currentData}
+                items={currentData.map((room) => room)} data={currentData}
+                student={getStudentByRoom(currentData)}
                 title={"кімнат"}
                 itemName={"Кімната "}>
             </DynamicList>

@@ -1,3 +1,5 @@
+'use client'
+
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import DynamicList from "../../../../component/AdminPanel/List/DynamicList";
@@ -88,7 +90,8 @@ export default function Page() {
             <Box className="list">
                 <DynamicList
                     icon={<ArticleIcon sx={{color: '#FFFFFF', transform: 'scale(1.4)'}}></ArticleIcon>}
-                    items={getStudentById()}
+                    student={getStudentById()}
+                    room={getRoomById()}
                     data={fakeApplicationsData} title={"заяв"} itemName={"Заява "}></DynamicList>
             </Box>
         </>
@@ -102,6 +105,20 @@ function getStudentById() {
                 for (let i = 0; i < fakeStudentsData.length; i++) {
                     if (fakeStudentsData[i].student_id === application.student_id) {
                         return fakeStudentsData[i].name + " " + fakeStudentsData[i].surname;
+                    }
+                }
+            }
+        )
+    );
+}
+
+function getRoomById() {
+    return (
+        fakeApplicationsData.map(
+            (application) => {
+                for (let i = 0; i < fakeStudentsData.length; i++) {
+                    if (fakeStudentsData[i].student_id === application.student_id) {
+                        return "Кімната " + fakeRoomsData[i].number;
                     }
                 }
             }
