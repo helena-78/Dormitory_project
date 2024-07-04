@@ -2,8 +2,8 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework import generics
 from rest_framework.response import Response
-from .models import Student, Room, Booking, Application
-from .serializers import StudentSerializer, BookingSerializer, RoomSerializer, ApplicationSerializer
+from .models import Student, Room, Booking
+from .serializers import StudentSerializer, BookingSerializer, RoomSerializer
 
 @api_view(['POST'])
 def create_student(request):
