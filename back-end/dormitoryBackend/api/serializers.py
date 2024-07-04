@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Student, Room, Application, Booking
+from .models import Student, Room, Booking
 import re
 import base64
 
@@ -56,11 +56,6 @@ class RoomSerializer(serializers.ModelSerializer):
             image_data = base64.b64decode(image_data.split(',')[1])  # Remove the prefix
         validated_data['images'] = image_data
         return super().update(instance, validated_data)
-
-class ApplicationSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Application
-        fields = '__all__'
 
 class BookingSerializer(serializers.ModelSerializer):
     class Meta:
