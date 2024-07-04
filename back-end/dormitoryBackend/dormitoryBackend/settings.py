@@ -32,6 +32,14 @@ DEBUG = True
 ALLOWED_HOSTS = ['174.129.65.133', '127.0.0.1', 'localhost']
 CORS_ALLOW_ALL_ORIGINS = True
 
+CORS_ALLOW_METHODS = (
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+)
 
 # Application definition
 
