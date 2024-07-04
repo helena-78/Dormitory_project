@@ -16,22 +16,22 @@ export default function (props) {
                     <LogoImage></LogoImage>
                 </div>
                 <div className="topBarButton">
-                    <Link href={{pathname: './Rooms'}} style={{all: 'unset', width: '100%', height: '100%'}}>
+                    <Link href={{pathname: '/AdminPanel/Rooms'}} style={{all: 'unset', width: '100%', height: '100%'}}>
                         <Button>Кімнати</Button>
                     </Link>
                 </div>
                 <div className="topBarButton">
-                    <Link href={{pathname: './Students'}} style={{all: 'unset', width: '100%', height: '100%'}}>
+                    <Link href={{pathname: '/AdminPanel/Students'}} style={{all: 'unset', width: '100%', height: '100%'}}>
                         <Button>Студенти</Button>
                     </Link>
                 </div>
                 <div className="topBarButton">
-                    <Link href={{pathname: './Applications'}} style={{all: 'unset', width: '100%', height: '100%'}}>
+                    <Link href={{pathname: '/AdminPanel/Applications'}} style={{all: 'unset', width: '100%', height: '100%'}}>
                         <Button>Заяви</Button>
                     </Link>
                 </div>
                 <div className="topBarButton">
-                    <Link href={{pathname: './Payments'}} style={{all: 'unset', width: '100%', height: '100%'}}>
+                    <Link href={{pathname: '/AdminPanel/Payments'}} style={{all: 'unset', width: '100%', height: '100%'}}>
                         <Button>Оплати</Button>
                     </Link>
                 </div>

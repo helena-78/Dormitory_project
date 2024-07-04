@@ -1,6 +1,6 @@
-'use client';
-
+"use client";
 import * as React from 'react';
+import { useRouter } from 'next/navigation';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -13,113 +13,144 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import {createTheme, ThemeProvider} from '@mui/material/styles';
-import styles from './SignIn.css';
-import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded';
+import CircularProgress from '@mui/material/CircularProgress';
+import {useBooking} from '../../component/context/BookingContext';
+
+const BASE_URL = 'http://174.129.65.133:8000';
 
 function Copyright(props) {
-    return (
-        <Typography variant="body2" color="text.secondary" align="center" {...props}>
-            {'Copyright © '}
-            <Link color="inherit" href="https://mui.com/">
-                Your Website
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
+  return (
+    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+      {'Copyright © '}
+      <Link color="inherit" href="https://mui.com/">
+        Your Website
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
+function SignIn() {
+  const router = useRouter();
+  const [loading, setLoading] = React.useState(false);
+  const [error, setError] = React.useState('');
+  const { setBookingDetails } = useBooking();
 
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    setLoading(true);
+    setError('');
+    const data = new FormData(event.currentTarget);
+    const email = data.get('email');
+    const password = data.get('password');
 
-export default function SignIn(props) {
-    if (props.visibility===true) {
-        return signInBlock(props);
-    } else {
-        return null;
+    try {
+      const response = await fetch(`${BASE_URL}/students/`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+
+      if (response.ok) {
+        const students = await response.json();
+        const user = students.find(student => student.email === email && student.password === password);
+
+        setLoading(false);
+
+        if (user) {
+          setBookingDetails({
+            student_id: user.student_id
+          })
+          localStorage.setItem('student_id', user.student_id); 
+          console.log('student_id', user.student_id)
+          router.push(`./`,undefined);
+        } else {
+          setError('Incorrect email or password');
+        }
+      } else {
+        setLoading(false);
+        setError('Failed to fetch users from server');
+      }
+    } catch (error) {
+      setLoading(false);
+      setError('Connection error with server');
     }
+  };
+
+  return (
+    <Container component="main" maxWidth="xs" sx={{ marginTop: 30 }}>
+      <CssBaseline />
+      <Box
+        sx={{
+          marginTop: 8,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Авторизація
+        </Typography>
+        <Box component="form" onSubmit={handleLogin} noValidate sx={{ mt: 1 }}>
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            label="Email Адреса"
+            name="email"
+            autoComplete="email"
+            autoFocus
+          />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            name="password"
+            label="Пароль"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+          />
+          <FormControlLabel
+            control={<Checkbox value="remember" color="primary" />}
+            label="Запам'ятати мене"
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+            disabled={loading}
+          >
+            {loading ? <CircularProgress size={24} /> : 'Увійти'}
+          </Button>
+          {error && (
+            <Typography color="error" variant="body2" align="center">
+              {error}
+            </Typography>
+          )}
+          <Grid container>
+            <Grid item xs>
+              <Link href="#" variant="body2">
+                Забули пароль?
+              </Link>
+            </Grid>
+            <Grid item>
+              <Link href="/register" variant="body2">
+                {"Немає акаунту? Реєстрація"}
+              </Link>
+            </Grid>
+          </Grid>
+        </Box>
+      </Box>
+    </Container>
+  );
 }
 
-const signInBlock = (props) => {
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
-    };
-
-    return (
-        <div id="signInBlock">
-            <Container sx={{backgroundColor:"#FFFFFF", width:'100%', zIndex: "3", position:"fixed", top:"10%", left: "50%", transform: "translate(-50%)"}} component="main">
-                <CssBaseline/>
-                <Box
-                    sx={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                    }}
-                >
-                    <div id="closeButtonContainer">
-                       <Button sx={{borderRadius:'30px'}} onClick={()=>props.hidePopUp(!props.visibility)}> <HighlightOffRoundedIcon id="closeButton" sx={{color: '#1976d2', width: "45px", height: "45px", cursor: 'pointer'}}/></Button>
-                    </div>
-                    <Avatar sx={{m: 1, bgcolor: 'secondary.main', justifyContent: 'center'}}>
-                        <LockOutlinedIcon/>
-                    </Avatar>
-                    <Typography component="h1" variant="h5">
-                        Sign in
-                    </Typography>
-                    <Box component="form" onSubmit={handleSubmit} noValidate sx={{mt: 1}}>
-                        <TextField
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="email"
-                            label="Email Address"
-                            name="email"
-                            autoComplete="email"
-                            autoFocus
-                        />
-                        <TextField
-                            margin="normal"
-                            required
-                            fullWidth
-                            name="password"
-                            label="Password"
-                            type="password"
-                            id="password"
-                            autoComplete="current-password"
-                        />
-                        <FormControlLabel
-                            control={<Checkbox value="remember" color="primary"/>}
-                            label="Remember me"
-                        />
-                        <Button
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            sx={{mt: 3, mb: 2}}
-                        >
-                            Sign In
-                        </Button>
-                        <Grid container>
-                            <Grid item xs>
-                                <Link href="#" variant="body2">
-                                    Forgot password?
-                                </Link>
-                            </Grid>
-                            <Grid item>
-                                <Link href="#" variant="body2">
-                                    {"Don't have an account? Sign Up"}
-                                </Link>
-                            </Grid>
-                        </Grid>
-                    </Box>
-                </Box>
-                <Copyright sx={{mt: 8, mb: 4}}/>
-            </Container>
-        </div>
-    );
-}
+export default SignIn;

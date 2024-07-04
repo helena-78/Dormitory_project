@@ -1,0 +1,70 @@
+.bookingDetailPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  min-height: 100vh; /* Ensure full height for vertical centering */
+}
+
+.roomInformation {
+  margin-bottom: 20px;
+}
+
+.roomInformation h2 {
+  font-size: 28px; /* Increased font size */
+  margin-bottom: 10px;
+}
+
+.roomDetails {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start; /* Align items to the start vertically */
+  justify-content: center; /* Center content horizontally */
+}
+
+.roomImage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 20px; /* Moved to the right */
+}
+
+.roomImage img {
+  width: 150px; /* Increased image size */
+  height: 150px;
+  object-fit: cover; /* Maintain aspect ratio and cover the entire area */
+}
+
+.roomInfo {
+  flex: 1; /* Take up remaining space */
+}
+
+.roomDetail {
+  margin-bottom: 15px; /* Increased margin for spacing */
+}
+
+.roomLabel {
+  font-size: 18px; /* Increased font size */
+  font-weight: bold;
+  margin-right: 5px;
+  text-align: left; /* Align text to the left */
+}
+
+
+.roomValue {
+  font-size: 18px; /* Increased font size */
+}
+
+.roomLabelImage {
+  font-size: 18px; /* Increased font size */
+  margin-bottom: 5px;
+}
+
+.reservationButton button {
+  padding: 15px 30px; /* Increased padding for a larger button */
+  font-size: 1.2em; /* Increased font size */
+  margin-top: 30px; /* Increased margin top */
+}

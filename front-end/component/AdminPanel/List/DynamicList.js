@@ -1,3 +1,4 @@
+'use client'
 import Typography from "@mui/material/Typography";
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
@@ -193,6 +194,10 @@ function generateListItems(props, title) {
         }
     }
     return listItemsArray;
+
+    function sortList(listItem1, listItem2){
+        return parseInt(listItem1.props.id) - parseInt(listItem2.props.id);
+    }
 }
 
 

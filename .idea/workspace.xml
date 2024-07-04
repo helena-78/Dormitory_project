@@ -4,15 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aac95de3-22e8-4717-8dd6-c55d8b1ea068" name="Changes" comment="added rooms, students and application pages to the admin panel&#10;&#10;added layout to the admin panel&#10;changed layout for the main page">
+    <list default="true" id="aac95de3-22e8-4717-8dd6-c55d8b1ea068" name="Changes" comment="merged">
+      <change afterPath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Rooms/EditRoom/page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/8/2828a28b0554c64df5c5dc97d4c12fd3c7c3cdf6" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/8/2828a28b0554c64df5c5dc97d4c12fd3c7c3cdf6" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/1/31807a73150311500d51158f97cb5a84eb46ba3a" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/1/31807a73150311500d51158f97cb5a84eb46ba3a" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/e/ce53cf12b5ef3bcf27d8e17367ac00820e853abd" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/e/ce53cf12b5ef3bcf27d8e17367ac00820e853abd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/component/AdminPanel/List/DynamicList.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/component/AdminPanel/List/DynamicList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/component/AdminPanel/Select/DynamicSelect.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/component/AdminPanel/Select/DynamicSelect.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Applications/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Applications/page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/component/AdminPanel/TopBar/TopBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/component/AdminPanel/TopBar/TopBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/app/AdminPanel/EditRoom/EditRoom.css" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Rooms/EditRoom/EditRoom.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/app/AdminPanel/EditRoom/page.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/app/AdminPanel/EditStudent/EditStudent.css" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Students/EditStudent/EditStudent.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/app/AdminPanel/EditStudent/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Students/EditStudent/page.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Rooms/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Rooms/page.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Students/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Students/page.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-end/src/app/AdminPanel/layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/AdminPanel/layout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/layout.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,8 +29,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -59,35 +66,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Node.js.TopBar.js.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;shapovalenko&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/SoftServe2024/front-end/public&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.1.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Node.js.TopBar.js.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "git-widget-placeholder": "shapovalenko",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "E:/SoftServe2024/front-end/src/app/AdminPanel/Students",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.1.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\SoftServe2024\front-end\public" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\SoftServe2024\front-end\src\app\AdminPanel\MainPage" />
-      <recent name="E:\SoftServe2024\front-end\component\SignIn" />
-      <recent name="E:\SoftServe2024\front-end\public\images" />
-      <recent name="E:\SoftServe2024\front-end\public\Footer" />
-      <recent name="E:\SoftServe2024\front-end\public\TopBar" />
+      <recent name="E:\SoftServe2024\front-end\src\app\AdminPanel\Students" />
+      <recent name="E:\SoftServe2024\front-end\src\app\AdminPanel\Rooms" />
+      <recent name="E:\SoftServe2024\front-end\component\Loading\Loading" />
+      <recent name="E:\SoftServe2024\front-end\component\Loading" />
+      <recent name="E:\SoftServe2024\front-end\component\AdminPanel\Alerts" />
     </key>
   </component>
   <component name="RunManager">
@@ -139,7 +147,20 @@
       <workItem from="1719141608860" duration="8887000" />
       <workItem from="1719213097949" duration="3935000" />
       <workItem from="1719356032085" duration="153000" />
-      <workItem from="1719386012166" duration="12871000" />
+      <workItem from="1719386012166" duration="15295000" />
+      <workItem from="1719405697166" duration="538000" />
+      <workItem from="1719411389876" duration="10057000" />
+      <workItem from="1719479711875" duration="7696000" />
+      <workItem from="1719501749674" duration="10155000" />
+      <workItem from="1719662246723" duration="4937000" />
+      <workItem from="1719686344498" duration="4924000" />
+      <workItem from="1719742259825" duration="28248000" />
+      <workItem from="1719790379457" duration="638000" />
+      <workItem from="1719791040555" duration="53000" />
+      <workItem from="1719791107927" duration="31000" />
+      <workItem from="1719817715764" duration="5474000" />
+      <workItem from="1719841640901" duration="9885000" />
+      <workItem from="1719904069769" duration="20803000" />
     </task>
     <task id="LOCAL-00001" summary="Added TopBar">
       <option name="closed" value="true" />
@@ -197,7 +218,31 @@
       <option name="project" value="LOCAL" />
       <updated>1719153377370</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="added filtering with select for rooms page in admin panel">
+      <option name="closed" value="true" />
+      <created>1719402980593</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1719402980593</updated>
+    </task>
+    <task id="LOCAL-00009" summary="added room editing page,&#10;error handling for requests,&#10;fake data for students page admin panel was replaces with server requests">
+      <option name="closed" value="true" />
+      <created>1719790753365</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1719790753365</updated>
+    </task>
+    <task id="LOCAL-00010" summary="added room editing page,&#10;error handling for requests,&#10;fake data for students page admin panel was replaces with server requests">
+      <option name="closed" value="true" />
+      <created>1719790855493</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1719790855493</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -222,6 +267,9 @@
     <MESSAGE value="removed unnecessary images" />
     <MESSAGE value="added a sign in pop up&#10;sign in component was changed" />
     <MESSAGE value="added rooms, students and application pages to the admin panel&#10;&#10;added layout to the admin panel&#10;changed layout for the main page" />
-    <option name="LAST_COMMIT_MESSAGE" value="added rooms, students and application pages to the admin panel&#10;&#10;added layout to the admin panel&#10;changed layout for the main page" />
+    <MESSAGE value="added filtering with select for rooms page in admin panel" />
+    <MESSAGE value="added room editing page,&#10;error handling for requests,&#10;fake data for students page admin panel was replaces with server requests" />
+    <MESSAGE value="merged" />
+    <option name="LAST_COMMIT_MESSAGE" value="merged" />
   </component>
 </project>

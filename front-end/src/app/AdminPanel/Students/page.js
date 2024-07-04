@@ -5,54 +5,62 @@ import Box from '@mui/material/Box';
 import DynamicList from "../../../../component/AdminPanel/List/DynamicList";
 import commonStyles from 'src/app/AdminPanel/AdminPanel.css'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import {useContext, useEffect, useState} from "react";
+import {AlertContext} from "../../../../component/AdminPanel/Alerts/AlertContext";
+import {LoadingContext} from "../../../../component/Loading/LoadingContext";
+
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+const ENDPOINT = '/students/';
 
 export default function Page() {
-    const fakeStudentsData = [
-        {
-            "student_id": 1,
-            "name": "Вася",
-            "surname": "Іванов",
-            "email": "sdasdsad@gmail.com",
-            "contact_number": "+38065654412",
-            "gender": "Male",
-            "room_id": "1",
-            "application_id": "1",
-            "password": "dsadasfdas"
+    const [currentData, setCurrentData] = useState([]);
+    const url = `${BASE_URL}${ENDPOINT}`;
+    const alertContext = useContext(AlertContext);
+    const loadingContext = useContext(LoadingContext);
+
+    const fetchData = async () => {
+        const result = await fetch(url)
+            .then(response => response.json())
+            .finally(() => changeLoadingProcessState(false)).catch((reason) => {
+                showErrorAlert();
+                console.log(reason);
+            });
+
+        setCurrentData(result);
+    }
+
+    useEffect(() => {
+            changeLoadingProcessState(true);
+            fetchData()
         },
-        {
-            "student_id": 2,
-            "name": "Петя",
-            "surname": "Коваленко",
-            "email": "sdasdsad@i.ua",
-            "contact_number": "+380645423374",
-            "gender": "Male",
-            "room_id": "2",
-            "application_id": "2",
-            "password": "adsadasfgfg"
-        },
-        {
-            "student_id": 3,
-            "name": "Маша",
-            "surname": "Шевченко",
-            "email": "masha@gmail.com",
-            "contact_number": "+38065654412",
-            "gender": "Female",
-            "room_id": "3",
-            "application_id": "3",
-            "password": "weqrqewrter"
-        }
-    ]
+        []);
+
     return (
-        <>
-            <Box className="list">
+        <Box className="list">
+            {generateList()}
+        </Box>
+    );
+
+    function generateList() {
+            return (
                 <DynamicList
                     icon={<AccountCircleIcon sx={{color: '#FFFFFF', transform: 'scale(1.9)'}}></AccountCircleIcon>}
-                    items={fakeStudentsData.map((student) => student)}
-                    data={fakeStudentsData} title={"студентів"} itemName={"Студент "}
-                >    
+                    itemValues={currentData.map((student) => student.name + " " + student.surname + " Id:" + student.student_id)}
+                    itemIDs={currentData.map((student) => student.student_id)}
+                    dataLength={currentData.length}
+                    title={"студентів"}
+                    itemName={"Студент "}>
+                    editComponentUrl={'./EditStudent'}
                 </DynamicList>
-            </Box>
-        </>
-    );
+            );
+    }
+
+    function showErrorAlert() {
+        alertContext.setErrorOccurredState();
+    }
+
+    function changeLoadingProcessState(state) {
+        loadingContext.setLoadingState(state);
+    }
 }
 

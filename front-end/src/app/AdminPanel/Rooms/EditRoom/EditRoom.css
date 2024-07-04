@@ -1,0 +1,39 @@
+.roomField {
+    padding-top: 4vh;
+   font-weight: bold;
+}
+
+.roomFieldsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.Input{
+   width: 5vw;
+    padding-left: 1vw;
+}
+
+.formContainer{
+    padding-left: 7vw;
+}
+
+Input::-webkit-outer-spin-button,
+Input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.animated{
+   animation:fadeOut ;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeOut {
+    0% 	{ opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; transform: translateY(0px);}
+    99% { opacity: 0; transform: translateY(-30px);}
+    100% { opacity: 0; }
+}

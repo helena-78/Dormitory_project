@@ -1,8 +1,13 @@
 'use client'
+
 import Room from 'component/Room/Room';
-import React, { useEffect, useState } from 'react';
-import { Box, Button, Grid, CircularProgress } from '@mui/material';
-import { BorderBottom } from '@mui/icons-material';
+import React, { useEffect, useState } from 'react'
+import { Box, Button, Grid, CircularProgress } from '@mui/material'
+import { BorderBottom } from '@mui/icons-material'
+import {useBooking} from '../../component/context/BookingContext';
+import LegendLabel from 'component/Floors/LegendLabel';
+import '@fontsource/inter';
+import './floorlayout.css';
 
 const fakeDataSet1 = [
   {
@@ -86,6 +91,7 @@ const fakeDataSet3 = [
 ];
 
 const BASE_URL = 'http://127.0.0.1:8000';
+const remote_url = "http://174.129.65.133:8000"
 const ENDPOINT = '/rooms/floor';
 const QUERY_PARAM = 'floor';
 
@@ -110,12 +116,14 @@ const addUndefinedItems = (data) => {
 };
 
 const FloorLayout = () => {
+  const {bookingDetails} = useBooking()
   const [contentIndex, setContentIndex] = useState(0);
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [auth, setAuth] = useState(false);
 
   const fetchItems = async (index) => {
-    const url = `${BASE_URL}${ENDPOINT}/?${QUERY_PARAM}=${index + 1}`;
+    const url = `${process.env.NEXT_PUBLIC_API_URL}${ENDPOINT}/?${QUERY_PARAM}=${index + 1}`;
     fetch(url)
       .then((data) => data.json())
       .then((data) => setItems(addUndefinedItems(data)))
@@ -142,25 +150,27 @@ const FloorLayout = () => {
     const midIndex = Math.ceil(items.length / 2); // Round up to ensure the first array gets the extra item if the length is odd
     const firstRowItems = items.slice(0, midIndex);
     let secondRowItems = items.slice(midIndex).reverse();
-    
+
     return { firstRowItems, secondRowItems };
   };
 
   useEffect(() => {
+    const sId = localStorage.getItem('student_id');
     fetchItems(contentIndex);
+    if (sId) {
+      setAuth(true);
+    }
   }, [contentIndex]);
 
   const handleButtonClick = (index) => {
-    if(index !== contentIndex)
-    {
+    if(index !== contentIndex) {
       setLoading(true);
       setContentIndex(index);
     }
   };
 
   const renderContent = () => {
-    const {firstRowItems, secondRowItems} = divideArray(items);
-
+    const { firstRowItems, secondRowItems } = divideArray(items);
 
     const getContentStyle = (isLast) => ({
       borderTop: '4px solid black',
@@ -178,29 +188,21 @@ const FloorLayout = () => {
 
     return (
       <Box>
-        <Grid container spacing={2} columns={firstRowItems.length} sx={{}}>
+        <Grid container spacing={2} columns={firstRowItems.length}>
           {firstRowItems.map((item, idx) => (
             <Grid item xs={1} key={item.room_id + idx} sx={getContentStyle(idx === firstRowItems.length - 1)}>
-              <Box sx ={{ width: '100%', height: '220px',paddingRight : '6px',paddingBottom : '6px',paddingLeft : '3px',paddingTop : '3px'  }}>
-                <Room item ={item}/>
-                {/* <div>{`Room № ${item.number}`}</div>
-                <div>{`Places left: ${item.available_places}`}</div>
-                <div>{`price: ${item.price}`}</div>
-                <div>{`Gender: ${item.gender}`}</div> */}
+              <Box sx={{ width: '100%', height: '220px', paddingRight: '6px', paddingBottom: '6px', paddingLeft: '3px', paddingTop: '3px' }}>
+                <Room item={item} auth={auth} />
               </Box>
             </Grid>
           ))}
         </Grid>
-        <Box sx={{ height: 50, }} /> {/* Empty gap between the two rows */}
+        <Box sx={{ height: 50 }} /> {/* Empty gap between the two rows */}
         <Grid container spacing={2} columns={secondRowItems.length}>
           {secondRowItems.map((item, idx) => (
             <Grid item xs={1} key={item.room_id + idx} sx={getContentStyle(idx === secondRowItems.length - 1)}>
-              <Box sx ={{ width: '100%', height: '220px',paddingRight : '6px',paddingBottom : '6px',paddingLeft : '3px',paddingTop : '3px' }}>
-                <Room item ={item}/>
-                {/* <div>{`Room № ${item.number}`}</div>
-                <div>{`Places left: ${item.available_places}`}</div>
-                <div>{`price: ${item.price}`}</div>
-                <div>{`Gender: ${item.gender}`}</div> */}
+              <Box sx={{ width: '100%', height: '220px', paddingRight: '6px', paddingBottom: '6px', paddingLeft: '3px', paddingTop: '3px' }}>
+                <Room item={item} auth={auth}  />
               </Box>
             </Grid>
           ))}
@@ -212,7 +214,7 @@ const FloorLayout = () => {
   return (
     <Box sx={{ paddingTop: '10%', paddingLeft: '10%', paddingRight: '10%' }}>
       <Box sx={{ display: 'flex', justifyContent: 'center', marginBottom: 2, marginRight: 2, paddingBottom: '5vh' }}>
-        <Button variant="outlined" onClick={() => handleButtonClick(0)} sx={{ marginRight:10 }}>
+        <Button variant="outlined" onClick={() => handleButtonClick(0)} sx={{ marginRight: 10 }}>
           Поверх 1
         </Button>
         <Button variant="outlined" onClick={() => handleButtonClick(1)} sx={{ marginRight: 10 }}>
@@ -223,6 +225,12 @@ const FloorLayout = () => {
         </Button>
       </Box>
       <Box>{renderContent()}</Box>
+      <Box sx={{ display: 'flex', justifyContent: 'space-around', marginTop: 4 }}>
+      <LegendLabel color="#39b8f7" label="Кімната вільна"/>
+      <LegendLabel color="#575afa" label="Кімната має мешканців"/>
+      <LegendLabel color="#7300ff" label="Кімната заповнена"/>
+      <LegendLabel color="#525252" label="Кімната недоступна"/>
+    </Box>
     </Box>
   );
 };

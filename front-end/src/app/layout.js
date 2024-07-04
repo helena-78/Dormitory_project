@@ -6,6 +6,7 @@ import "./globals.css";
 import SignIn from "../../component/SignIn/SignIn";
 import * as React from "react";
 import {useState} from "react";
+import { BookingProvider } from '../../component/context/BookingContext';
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -19,9 +20,10 @@ export default function RootLayout({children}) {
     return (
         <html lang="en">
         <body className={inter.className}>
+        <BookingProvider>
         <TopBar showPopUp={setPopUpState} visibility={popUpState}/>
-        <SignIn hidePopUp={setPopUpState} visibility={popUpState}/>
         {children}
+        </BookingProvider>
         </body>
         </html>
     );
