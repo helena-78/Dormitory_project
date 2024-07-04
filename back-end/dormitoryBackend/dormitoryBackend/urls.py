@@ -23,8 +23,8 @@ from bookings import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('bills.urls')),
-    path('api/', include('payments.urls')),
+    path('', include('bills.urls')),
+    path('', include('payments.urls')),
     path('', include("api.urls")),
     path('applications/', ApplicationsAPIView.as_view(), name='applications-list'),
     path('applications/create/', create_application, name='create-application'),

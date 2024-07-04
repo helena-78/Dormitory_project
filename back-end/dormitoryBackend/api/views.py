@@ -37,6 +37,7 @@ def update_student(request, student_id):
         return Response({'error': 'Student not found'}, status=status.HTTP_404_NOT_FOUND)
     
     serializer = StudentSerializer(student, data=request.data, partial=True)
+
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_200_OK)
