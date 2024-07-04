@@ -9,7 +9,7 @@ class Student(models.Model):
     contact_number = models.CharField(max_length=10, null=True, blank=True)   
     gender = models.TextField(choices=[('Male', 'Male'), ('Female', 'Female')])
     room = models.ForeignKey('Room', null=True, blank=True, on_delete=models.SET_NULL)
-    application_id = models.ForeignKey('Application', null=True, blank=True, on_delete=models.SET_NULL, db_column="application_id")
+    application = models.ForeignKey('Application', null=True, blank=True, on_delete=models.SET_NULL, related_name='students')
     password = models.TextField()
 
 class Room(models.Model):
@@ -23,7 +23,7 @@ class Room(models.Model):
 
 class Application(models.Model):
     application_id = models.BigAutoField(primary_key=True)
-    student_id = models.ForeignKey(Student, on_delete=models.CASCADE, db_column="student_id")
+    student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='applications')
     room = models.ForeignKey(Room, null=True, blank=True, on_delete=models.CASCADE)
     status = models.TextField(choices=[('Submitted', 'Submitted'), ('Approved', 'Approved'), ('Rejected', 'Rejected')])
     application_date = models.DateTimeField(auto_now_add=True)
