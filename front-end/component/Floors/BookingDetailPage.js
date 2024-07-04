@@ -5,7 +5,11 @@ import {useBooking} from '../../component/context/BookingContext';
 
 const BookingDetailPage = () => {
   const { bookingDetails } = useBooking();
+  const {roomData, setRoomData} = useState({});
   const [studentId, setStudentId] = useState(null);
+  const [roomId, setRoomId] = useState(null);
+  const [item, setItem] = useState({});
+  const ENDPOINT = '/rooms';
   //const searchParams = useSearchParams();
   // const floor = searchParams.get('floor');
   // const number = searchParams.get('number');
@@ -13,15 +17,33 @@ const BookingDetailPage = () => {
   // const available_places = searchParams.get('available_places');
   // const price = searchParams.get('price');
 
-  const floor = bookingDetails.floor;
-  const number = bookingDetails.number;
-  const gender = bookingDetails.gender;
-  const available_places = bookingDetails.available_places;
-  const price = bookingDetails.price;
+  const floor = item.floor;
+  const number = item.number;
+  const gender = item.gender;
+  const available_places = item.available_places;
+  const price = item.price;
 
   useEffect(() => {
     const sId = localStorage.getItem('student_id');
+    const rId = localStorage.getItem('room_id');
     setStudentId(sId);
+    setRoomId(rId);
+
+    const url = `${process.env.NEXT_PUBLIC_API_URL}${ENDPOINT}/${rId}/`;
+    fetch(url)
+      .then((data) => data.json())
+      .then((data) => {
+        // Modify the images field in the data
+        const modifiedData = data.map(item => {
+          if (item.images) {
+            item.images = `data:image/jpeg;base64,${item.images}`;
+          }
+          return item;
+        });
+        return modifiedData;
+      })
+      .then((modifiedData) => setItem(modifiedData))
+
   })
 
 
@@ -31,10 +53,9 @@ const BookingDetailPage = () => {
 
   const handleBooking = async () => {
     setLoading(true);
-    const studentId = localStorage.getItem('student_id');
     const applicationData = {
       student: studentId,
-      room: bookingDetails.room_id,
+      room: roomId,
       status: 'Submitted',
     }
 
@@ -119,7 +140,7 @@ const BookingDetailPage = () => {
         </div>
         <div className={styles.roomImage}>
           <span className={`${styles.roomLabel} ${styles.roomLabelImage}`}>Кімната:</span>
-          <img src='/images/room2.jpg' alt="Room Image" width={100} height={100} />
+          <img src={item.images ? item.images : '/images/room2.jpg'} alt="Room Image" width={100} height={100} />
         </div>
       </div>
       <div className={styles.reservationButton}>

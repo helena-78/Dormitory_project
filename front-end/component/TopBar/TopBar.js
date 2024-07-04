@@ -29,9 +29,6 @@ export default function (props) {
                 <div className="topBarButton">
                     <Button onClick={() => router.push('/')}>Головна</Button>
                 </div>
-                <div className="topBarButton">
-                    <Button>Kонтакти</Button>
-                </div>
               { studentId === 1 &&( 
                 <div className="topBarButton">
                     <Button onClick={() => router.push('/AdminPanel/Rooms')}>Админ</Button>

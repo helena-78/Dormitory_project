@@ -84,13 +84,16 @@ const Room = (props) => {
             {3 - props.item.available_places}/3 мешканців
           </p>
           <Image
-            src={'/images/room/img_121.jpg'}
+            src={props.item.images ? props.item.images : '/images/room/img_121.jpg'}
             alt='room-component'
             width={150}
             height={150}
           />
           {props.auth ?
-          <button className='room-button' onClick={handleBookingClick}>
+          <button className='room-button' onClick={() => {
+            localStorage.setItem('room_id', props.item.room_id);
+            router.push('/order/booking_detail')
+          }}>
             Забронювати кімнату
           </button>
           :

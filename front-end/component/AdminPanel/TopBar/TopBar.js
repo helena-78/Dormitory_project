@@ -4,15 +4,17 @@ import Image from "next/image";
 import * as React from "react";
 import Button from "@mui/material/Button";
 import LoginIcon from '@mui/icons-material/Login';
+import { useRouter } from 'next/navigation'
 import Link from "next/link";
 
 export default function (props) {
     const LogoImage = () => (<Image src="/images/TopBar/LogoTopBar.png" height={70} width={70} alt=""/>);
+    const router = useRouter()
 
     return (
         <div id={'topBar'}>
             <div className="topBarGroup">
-                <div onClick={() => window.open("https://www.nmu.org.ua/ua/")}>
+                <div onClick={() => router.push('/')}>
                     <LogoImage></LogoImage>
                 </div>
                 <div className="topBarButton">
@@ -33,6 +35,11 @@ export default function (props) {
                 <div className="topBarButton">
                     <Link href={{pathname: '/AdminPanel/Payments'}} style={{all: 'unset', width: '100%', height: '100%'}}>
                         <Button>Оплати</Button>
+                    </Link>
+                </div>
+                <div className="topBarButton">
+                    <Link href={{pathname: '/AdminPanel/Bookings'}} style={{all: 'unset', width: '100%', height: '100%'}}>
+                        <Button>Резервації</Button>
                     </Link>
                 </div>
             </div>
