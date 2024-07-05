@@ -89,18 +89,19 @@ const Room = (props) => {
             width={150}
             height={150}
           />
-          {props.auth ?
+          {props.auth &&(
           <button className='room-button' onClick={() => {
             localStorage.setItem('room_id', props.item.room_id);
             router.push('/order/booking_detail')
           }}>
             Забронювати кімнату
           </button>
-          :
+          )}
+          {!props.auth &&(
           <button className='room-button'>
             Потрібна аутентефікація
           </button>
-          }
+          )}
         </div>
       )}
       {props.item && (

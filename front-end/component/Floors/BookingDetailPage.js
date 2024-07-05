@@ -17,11 +17,6 @@ const BookingDetailPage = () => {
   // const available_places = searchParams.get('available_places');
   // const price = searchParams.get('price');
 
-  const floor = item.floor;
-  const number = item.number;
-  const gender = item.gender;
-  const available_places = item.available_places;
-  const price = item.price;
 
   useEffect(() => {
     const sId = localStorage.getItem('student_id');
@@ -29,20 +24,15 @@ const BookingDetailPage = () => {
     setStudentId(sId);
     setRoomId(rId);
 
-    const url = `${process.env.NEXT_PUBLIC_API_URL}${ENDPOINT}/${rId}/`;
+    const url = `${process.env.NEXT_PUBLIC_API_URL}${ENDPOINT}/${rId}`;
     fetch(url)
       .then((data) => data.json())
       .then((data) => {
-        // Modify the images field in the data
-        const modifiedData = data.map(item => {
-          if (item.images) {
-            item.images = `data:image/jpeg;base64,${item.images}`;
-          }
-          return item;
-        });
+        const modifiedData = { ...data, images: `data:image/jpeg;base64,${data.images}` };
         return modifiedData;
       })
       .then((modifiedData) => setItem(modifiedData))
+      .catch((error) => console.error('Error:', error));
 
   })
 
@@ -119,23 +109,23 @@ const BookingDetailPage = () => {
         <div className={styles.roomInfo}>
           <div className={styles.roomDetail}>
             <span className={styles.roomLabel}>Поверх:</span>
-            <span className={styles.roomValue}>{floor}</span>
+            <span className={styles.roomValue}>{item.floor}</span>
           </div>
           <div className={styles.roomDetail}>
             <span className={styles.roomLabel}>Номер:</span>
-            <span className={styles.roomValue}>{number}</span>
+            <span className={styles.roomValue}>{item.number}</span>
           </div>
           <div className={styles.roomDetail}>
             <span className={styles.roomLabel}>Стать:</span>
-            <span className={styles.roomValue}>{gender}</span>
+            <span className={styles.roomValue}>{item.gender}</span>
           </div>
           <div className={styles.roomDetail}>
             <span className={styles.roomLabel}>Доступних місць:</span>
-            <span className={styles.roomValue}>{available_places}</span>
+            <span className={styles.roomValue}>{item.available_places}</span>
           </div>
           <div className={styles.roomDetail}>
             <span className={styles.roomLabel}>Ціна:</span>
-            <span className={styles.roomValue}>{price}$</span>
+            <span className={styles.roomValue}>{item.price}$</span>
           </div>
         </div>
         <div className={styles.roomImage}>

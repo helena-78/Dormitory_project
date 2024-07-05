@@ -126,7 +126,17 @@ const FloorLayout = () => {
     const url = `${process.env.NEXT_PUBLIC_API_URL}${ENDPOINT}/?${QUERY_PARAM}=${index + 1}`;
     fetch(url)
       .then((data) => data.json())
-      .then((data) => setItems(addUndefinedItems(data)))
+      .then((data) => {
+        // Modify the images field in the data
+        const modifiedData = data.map(item => {
+          if (item.images) {
+            item.images = `data:image/jpeg;base64,${item.images}`;
+          }
+          return item;
+        });
+        return modifiedData;
+      })
+      .then((modifiedData) => setItems(addUndefinedItems(modifiedData)))
       .finally(() => {setLoading(false)})
       // let data;
       // switch (index) {
@@ -157,7 +167,11 @@ const FloorLayout = () => {
   useEffect(() => {
     const sId = localStorage.getItem('student_id');
     fetchItems(contentIndex);
-    if (sId) {
+    if (sId === 'null') {
+      setAuth(false);
+    }
+    else if (sId !== 'null') {
+      console.log(sId)
       setAuth(true);
     }
   }, [contentIndex]);

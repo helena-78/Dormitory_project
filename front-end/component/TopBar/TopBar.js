@@ -29,21 +29,21 @@ export default function (props) {
                 <div className="topBarButton">
                     <Button onClick={() => router.push('/')}>Головна</Button>
                 </div>
-              { studentId === 1 &&( 
+              { studentId === '1' &&( 
                 <div className="topBarButton">
                     <Button onClick={() => router.push('/AdminPanel/Rooms')}>Админ</Button>
                 </div>
               )} 
             </div>
             <div className="topBarGroup">     
-                {studentId === null && (
+                {studentId === 'null' && (
                     <Button onClick={() => router.push('/login')}>
                         <div id={'loginImage'}>
                             <LoginIcon sx={{color: '#1976d2'}}></LoginIcon>
                         </div>
                     </Button>
                 )}
-                {studentId !== null && (
+                {studentId !== 'null' && (
                     <div className="topBarGroup">   
                     <Button onClick={() => {router.push('/profile')}}>
                         Профіль
