@@ -6,57 +6,52 @@ import TextField from '@mui/material/TextField';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import Image from 'next/image';
-import styles from './EditStudent.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useParams } from 'next/navigation';
-const fakeStudentsData = [
-    {
-        "student_id": 1,
-        "name": "Вася",
-        "surname": "Іванов",
-        "email": "sdasdsad@gmail.com",
-        "contact_number": "+38065654412",
-        "gender": "Male",
-        "room_id": "1",
-        "application_id": "1",
-        "password": "dsadasfdas"
-    },
-    {
-        "student_id": 2,
-        "name": "Петя",
-        "surname": "Коваленко",
-        "email": "sdasdsad@i.ua",
-        "contact_number": "+380645423374",
-        "gender": "Male",
-        "room_id": "2",
-        "application_id": "2",
-        "password": "adsadasfgfg"
-    },
-    {
-        "student_id": 3,
-        "name": "Маша",
-        "surname": "Шевченко",
-        "email": "masha@gmail.com",
-        "contact_number": "+38065654412",
-        "gender": "Female",
-        "room_id": "3",
-        "application_id": "3",
-        "password": "weqrqewrter"
-    }
-]
+
+import {AlertContext} from "../../../../../../component/AdminPanel/Alerts/AlertContext";
+import {LoadingContext} from "../../../../../../component/Loading/LoadingContext";
+
+
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+const ENDPOINT = '/students/';
 
 const EditStudent = () => {
+    const alertContext = useContext(AlertContext);
+    const loadingContext = useContext(LoadingContext);
+
+    const [currentData, setCurrentData] = useState([]);
+    const url = `${BASE_URL}${ENDPOINT}`;
     const params = useParams()
     const studentId = parseInt(params.studentId, 10); // Преобразуем roomId в число
     const [student, setStudent] = useState(null);
 
+    const fetchData = async () => {
+        try {
+          const response = await fetch(url);
+          const result = await response.json();
+          setCurrentData(result);
+          console.log("Students data fetched:", result); // Log fetched data
+        } catch (reason) {
+          showErrorAlert();
+          console.log("Error fetching students data:", reason);
+        } finally {
+          changeLoadingProcessState(false);
+        }
+      };
+
+      useEffect(() => {
+        changeLoadingProcessState(true);
+        fetchData()
+    },
+    []);
+
     useEffect(() => {
         if (studentId) {
-            const foundStudent = fakeStudentsData.find(student => student.student_id === studentId);
+            const foundStudent = currentData.find(student => student.student_id === studentId);
             setStudent(foundStudent);
         }
-    }, [studentId]);
+    }, [studentId, currentData]);
 
     if (!student) {
         return <div style={{marginTop:"100px"}}>Loading...</div>;
@@ -169,6 +164,15 @@ const EditStudent = () => {
             </Grid>
         </Box>
     </div>
-  )
+
+    
+    )
+    function showErrorAlert() {
+            alertContext.setErrorOccurredState();
+    }
+
+    function changeLoadingProcessState(state) {
+        loadingContext.setLoadingState(state);
+    }
 }
 export default EditStudent

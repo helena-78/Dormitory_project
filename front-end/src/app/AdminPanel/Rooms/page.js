@@ -47,7 +47,7 @@ export default function Page() {
         return (
             roomsOnFloor.map(
                 (room) => {
-                    return fakeStudentsData.filter(student => student.room_id === room.room_id).map(student => student.surname).join(", ");
+                    return currentData.filter(student => student.room_id === room.room_id).map(student => student.surname).join(", ");
                 }
             )
         );
@@ -80,7 +80,8 @@ export default function Page() {
             return (
                 <DynamicList
                     icon={<NightShelterIcon sx={{color: '#FFFFFF', transform: 'scale(1.5)'}}></NightShelterIcon>}
-                    itemValues={currentData.map((room) => room.number)}
+                    items={currentData.map((room) => room)}
+                    student={getStudentByRoom(currentData)}
                     dataLength={currentData.length}
                     itemIDs={currentData.map((room) => room.room_id)}
                     title={"кімнат"}
@@ -97,15 +98,6 @@ export default function Page() {
 
     function changeLoadingProcessState(state) {
         loadingContext.setLoadingState(state);
-        return (
-            <DynamicList
-                icon={<NightShelterIcon sx={{color: '#FFFFFF', transform: 'scale(1.5)'}}></NightShelterIcon>}
-                items={currentData.map((room) => room)} data={currentData}
-                student={getStudentByRoom(currentData)}
-                title={"кімнат"}
-                itemName={"Кімната "}>
-            </DynamicList>
-        );
     }
 }
 

@@ -100,7 +100,7 @@ function generateListItems(props, title) {
     let listItemsArray = [];
     console.log(props)
     if(title === 'кімнат') {
-        for (let i = 0; i < props.data.length; i++) {
+        for (let i = 0; i < props.dataLength; i++) {
             listItemsArray[i] =
                 <TableRow key={props.items[i].room_id}>
                     <TableCell component="th" scope="row">{ i + 1}</TableCell>
@@ -143,7 +143,7 @@ function generateListItems(props, title) {
         }
     }
     else if(title === 'студентів') {
-        for (let i = 0; i < props.data.length; i++) {
+        for (let i = 0; i < props.dataLength; i++) {
             listItemsArray[i] =
                 <TableRow key={props.items[i].student_id}>
                     <TableCell component="th" scope="row">{ i + 1}</TableCell>

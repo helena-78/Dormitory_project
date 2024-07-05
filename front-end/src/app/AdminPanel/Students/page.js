@@ -45,7 +45,7 @@ export default function Page() {
             return (
                 <DynamicList
                     icon={<AccountCircleIcon sx={{color: '#FFFFFF', transform: 'scale(1.9)'}}></AccountCircleIcon>}
-                    itemValues={currentData.map((student) => student.name + " " + student.surname + " Id:" + student.student_id)}
+                    items={currentData.map((student) => student)}
                     itemIDs={currentData.map((student) => student.student_id)}
                     dataLength={currentData.length}
                     title={"студентів"}

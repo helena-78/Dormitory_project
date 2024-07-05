@@ -10,9 +10,11 @@ import styles from './EditRoom.css';
 import Image from 'next/image';
 import { styled } from '@mui/material/styles';
 import { useParams} from 'next/navigation';
-import { useState, useEffect } from 'react'; 
+import {useState, useEffect, useContext} from "react";
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import StudentList from './StudentList';
+import {AlertContext} from "../../../../../../component/AdminPanel/Alerts/AlertContext";
+import {LoadingContext} from "../../../../../../component/Loading/LoadingContext";
 
 const VisuallyHiddenInput = styled('input')({
   clip: 'rect(0 0 0 0)',
@@ -26,126 +28,57 @@ const VisuallyHiddenInput = styled('input')({
   width: 1,
 });
 
-const fakeStudentsData = [
-    {
-        "student_id": 1,
-        "name": "Вася",
-        "surname": "Іванов",
-        "email": "sdasdsad@gmail.com",
-        "contact_number": "+38065654412",
-        "gender": "Male",
-        "room_id": 1,
-        "application_id": "1",
-        "password": "dsadasfdas"
-    },
-    {
-        "student_id": 2,
-        "name": "Петя",
-        "surname": "Коваленко",
-        "email": "sdasdsad@i.ua",
-        "contact_number": "+380645423374",
-        "gender": "Male",
-        "room_id": 1,
-        "application_id": "2",
-        "password": "adsadasfgfg"
-    },
-    {
-        "student_id": 3,
-        "name": "Маша",
-        "surname": "Шевченко",
-        "email": "masha@gmail.com",
-        "contact_number": "+38065654412",
-        "gender": "Female",
-        "room_id": 3,
-        "application_id": "3",
-        "password": "weqrqewrter"
-    }
-]
+const BASE_URL = 'http://127.0.0.1:8000';
+const remote_url = process.env.NEXT_PUBLIC_API_URL;
+const ENDPOINT = '/rooms/';
 
-const fakeRoomsDataFirstFloor = [
-    {
-        "room_id": 1,
-        "number": "101",
-        "available_places": "1",
-        "image": "base64 encoded",
-        "price": "19999",
-        "gender": "M"
-    },
-    {
-        "room_id": 2,
-        "number": "102",
-        "available_places": "3",
-        "image": "base64 encoded",
-        "price": "2032",
-        "gender": "F"
-    },
-    {
-        "room_id": 3,
-        "number": "103",
-        "available_places": "2",
-        "image": "base64 encoded",
-        "price": "2032",
-        "gender": "F"
-    }
-]
+const BASE_URL_STUDENT = process.env.NEXT_PUBLIC_API_URL;
+const ENDPOINT_STUDENT = '/students/';
 
-const fakeRoomsDataSecondFloor = [
-    {
-        "room_id": 4,
-        "number": "201",
-        "available_places": "0",
-        "image": "base64 encoded",
-        "price": "19999",
-        "gender": "M"
-    },
-    {
-        "room_id": 5,
-        "number": "202",
-        "available_places": "2",
-        "image": "base64 encoded",
-        "price": "2032",
-        "gender": "F"
-    },
-    {
-        "room_id": 6,
-        "number": "203",
-        "available_places": "3",
-        "image": "base64 encoded",
-        "price": "2032",
-        "gender": "F"
-    }
-]
+export default function EditRoom(){   
+    const [currentDataRoom, setCurrentDataRoom] = useState([]);
+    // const [selectState, setSelectState] = useState(1);
+    const urlRoom = `${remote_url}${ENDPOINT}`;
+    const alertContext = useContext(AlertContext);
+    const loadingContext = useContext(LoadingContext);
 
-const fakeRoomsDataThirdFloor = [
-    {
-        "room_id": 7,
-        "number": "301",
-        "available_places": "0",
-        "image": "base64 encoded",
-        "price": "19999",
-        "gender": "M"
-    },
-    {
-        "room_id": 8,
-        "number": "302",
-        "available_places": "2",
-        "image": "base64 encoded",
-        "price": "2032",
-        "gender": "F"
-    },
-    {
-        "room_id": 9,
-        "number": "303",
-        "available_places": "3",
-        "image": "base64 encoded",
-        "price": "2032",
-        "gender": "F"
-    }
-]
+    const [currentDataStudent, setCurrentDataStudent] = useState([]);
+    // const [selectState, setSelectState] = useState(1);
+    const urlStudent = `${BASE_URL_STUDENT}${ENDPOINT_STUDENT}`;
 
+    const fetchDataRoom = async () => {
+        try {
+          const response = await fetch(urlRoom);
+          const result = await response.json();
+          setCurrentDataRoom(result);
+        } catch (reason) {
+          showErrorAlert();
+          console.log("Error fetching rooms data:", reason);
+        } finally {
+          changeLoadingProcessState(false);
+        }
+      };
 
+      const fetchDataStudent = async () => {
+        try {
+          const response = await fetch(urlStudent);
+          const result = await response.json();
+          setCurrentDataStudent(result);
+          console.log("Students data fetched:", result); // Log fetched data
+        } catch (reason) {
+          showErrorAlert();
+          console.log("Error fetching students data:", reason);
+        } finally {
+          changeLoadingProcessState(false);
+        }
+      };
 
-export default function EditRoom(){
+    useEffect(() => {
+            changeLoadingProcessState(true);
+            fetchDataRoom()
+            fetchDataStudent()
+        },
+        []);
     const params = useParams()
     const roomId = parseInt(params.roomId, 10); // Преобразуем roomId в число
     const [room, setRoom] = useState(null);
@@ -153,13 +86,13 @@ export default function EditRoom(){
     const [students, setStudents] = useState([]);
 
     useEffect(() => {
-        if (roomId) {
-            const foundRoom = fakeRoomsDataFirstFloor.find(room => room.room_id === roomId);
+        if (roomId && currentDataRoom.length > 0) {
+            const foundRoom = currentDataRoom.find(room => room.room_id === roomId);
             setRoom(foundRoom);
-            const studentsInRoom = fakeStudentsData.filter(student => student.room_id === roomId);
+            const studentsInRoom = currentDataStudent.filter(student => student.room_id === roomId);
             setStudents(studentsInRoom);
         }
-    }, [roomId]);
+    }, [roomId, currentDataRoom]);
 
     if (!room) {
         return <div style={{marginTop:"100px"}}>Loading...</div>;
@@ -262,4 +195,11 @@ export default function EditRoom(){
             {showStudents && <StudentList students={students} />}
         </div>
     )
+    function showErrorAlert() {
+        alertContext.setErrorOccurredState();
+    }
+
+    function changeLoadingProcessState(state) {
+        loadingContext.setLoadingState(state);
+    }
 }

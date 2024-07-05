@@ -54,10 +54,6 @@ const Room = (props) => {
     //   gender: props.item.gender,
     //   floor: props.item.floor.toString(),
     // });
-const showRoomInfo = (event, room_id) => {
-    setIsVisible(!isVisible)
-
-    // router.push(`/order/booking_detail?${params.toString()}`);
 
     addToBookingDetails();
     router.push(`/order/booking_detail`)
