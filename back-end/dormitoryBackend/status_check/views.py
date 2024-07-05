@@ -42,7 +42,7 @@ def delete_application(request, pk):
     try:
         application = Application.objects.get(pk=pk)
     except Application.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
+        return Response({'error': 'Application not found'}, status=status.HTTP_404_NOT_FOUND)
 
     application.delete()
     return Response(status=status.HTTP_204_NO_CONTENT)
