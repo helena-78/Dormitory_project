@@ -57,5 +57,11 @@ function generateListItems(props) {
             </div>
     }
 
+    listItemsArray= listItemsArray.sort(sortList);
+
     return listItemsArray;
+
+    function sortList(listItem1, listItem2){
+        return parseInt(listItem1.props.id) - parseInt(listItem2.props.id);
+    }
 }

@@ -33,7 +33,7 @@ let startData;
 export default function EditRoom() {
     const roomId = useSearchParams().get('id');
     const url = `${BASE_URL}${ENDPOINT}` + roomId;
-    const [currentData, setCurrentData] = useState([]);
+    const [currentData, setCurrentData] = useState({});
     const alertContext = useContext(AlertContext);
     const loadingContext = useContext(LoadingContext);
     const router = useRouter();
@@ -41,16 +41,15 @@ export default function EditRoom() {
     const fetchData = async () => {
         const result = await fetch(url)
             .then(response => response.json())
-            .finally(() => changeLoadingProcessState(false))
             .catch((reason) => {
                 console.log(reason);
                 showErrorAlert();
             });
 
-        let fetchedData = {...result, images: 'data:image/jpeg;base64,'+result.images };
-        setCurrentData(fetchedData);
+        let fetchedData = {...result, images: 'data:image/jpeg;base64,' + result.images};
         startData = fetchedData;
-        console.log(fetchedData)
+        setCurrentData(fetchedData);
+        changeLoadingProcessState(false);
     }
 
     useEffect(() => {
@@ -70,54 +69,54 @@ export default function EditRoom() {
             <div className={'formContainer'}>
                 <form onSubmit={handleSubmit}>
                     <h2 style={{textAlign: 'center'}}>Редагування кімнати</h2>
-                    <div style={{display:'flex', flexDirection:"row"}}>
-                    <div className={"roomFieldsContainer"}>
-                        <div className={"roomField"}>
-                            Id: <span style={{fontWeight: 'normal'}}>{currentData.room_id}</span>
+                    <div style={{display: 'flex', flexDirection: "row"}}>
+                        <div className={"roomFieldsContainer"}>
+                            <div className={"roomField"}>
+                                Id: <span style={{fontWeight: 'normal'}}>{currentData.room_id}</span>
+                            </div>
+                            <Divider sx={{borderColor: '#сссссс'}}></Divider>
+                            {generateFloorSelect()}
+                            <Divider sx={{borderColor: '#сссссс'}}></Divider>
+                            <div className={"roomField"}>
+                                Номер кімнати:
+                                <Input
+                                    id="roomNumberInput"
+                                    style={{marginLeft: '1vw'}}
+                                    className={"Input"} required type={'number'}
+                                    value={currentData.number}
+                                    onChange={validateInputNumber}/>
+                            </div>
+                            <Divider sx={{borderColor: '#сссссс'}}></Divider>
+                            <div className={"roomField"}>
+                                Ціна:
+                                <Input
+                                    id="roomPriceInput"
+                                    style={{marginLeft: '1vw'}}
+                                    type={'number'} required className={"Input"}
+                                    value={currentData.price}
+                                    onChange={validateInputNumber}
+                                />
+                            </div>
+                            <Divider sx={{borderColor: '#сссссс'}}></Divider>
+                            {generateRadioGroup()}
+                            <Divider sx={{borderColor: '#сссссс'}}></Divider>
+                            <div className={"roomField"}>
+                                Кількість вільних місць:
+                                <Input
+                                    id="availablePlacesInput"
+                                    style={{marginLeft: '1vw'}}
+                                    className={"Input"}
+                                    type={'number'}
+                                    required sx={{width: '3vw'}}
+                                    aria-valuemin={0}
+                                    value={currentData.available_places}
+                                    onChange={validateInputNumber}
+                                />
+                            </div>
                         </div>
-                        <Divider sx={{borderColor: '#сссссс'}}></Divider>
-                        {generateFloorSelect()}
-                        <Divider sx={{borderColor: '#сссссс'}}></Divider>
-                        <div className={"roomField"}>
-                            Номер кімнати:
-                            <Input
-                                id="roomNumberInput"
-                                style={{marginLeft: '1vw'}}
-                                className={"Input"} required type={'number'}
-                                value={currentData.number}
-                                onChange={validateInputNumber}/>
-                        </div>
-                        <Divider sx={{borderColor: '#сссссс'}}></Divider>
-                        <div className={"roomField"}>
-                            Ціна:
-                            <Input
-                                id="roomPriceInput"
-                                style={{marginLeft: '1vw'}}
-                                type={'number'} required className={"Input"}
-                                value={currentData.price}
-                                onChange={validateInputNumber}
-                            />
-                        </div>
-                        <Divider sx={{borderColor: '#сссссс'}}></Divider>
-                        {generateRadioGroup()}
-                        <Divider sx={{borderColor: '#сссссс'}}></Divider>
-                        <div className={"roomField"}>
-                            Кількість вільних місць:
-                            <Input
-                                id="availablePlacesInput"
-                                style={{marginLeft: '1vw'}}
-                                className={"Input"}
-                                type={'number'}
-                                required sx={{width: '3vw'}}
-                                aria-valuemin={0}
-                                value={currentData.available_places}
-                                onChange={validateInputNumber}
-                            />
-                        </div>
-                    </div>
                         {generateImageBlock()}
                     </div>
-                    <div style={{display: 'flex', justifyContent: 'flex-end', paddingRight: '10vw', paddingTop:'2vh'}}>
+                    <div style={{display: 'flex', justifyContent: 'flex-end', paddingRight: '10vw', paddingTop: '2vh'}}>
                         <div style={{paddingRight: '2vw'}}>
                             <Button variant="outlined" onClick={handleDeleteButtonClick} sx={{color: 'red'}}
                                     startIcon={<DeleteIcon/>}>
@@ -135,11 +134,10 @@ export default function EditRoom() {
         );
     }
 
-   
-
     function handleSubmit(e) {
         e.preventDefault();
         const url = `${BASE_URL}${ENDPOINT}` + roomId + '/';
+        let requestBody = getAllDistinctFields();
 
         const patchData = async () => {
             try {
@@ -148,11 +146,11 @@ export default function EditRoom() {
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify(currentData)
+                    body: JSON.stringify(requestBody)
                 }).then((response) => {
                     if (response.ok) {
                         showSuccessfulAlert();
-                    }else {
+                    } else {
                         showErrorAlert();
                     }
                 });
@@ -161,14 +159,14 @@ export default function EditRoom() {
                 showErrorAlert();
             }
         }
-        console.log(JSON.stringify(currentData))
+
         patchData();
     }
 
     function handleDeleteButtonClick(e) {
         const url = `${BASE_URL}${ENDPOINT}` + roomId + '//';
 
-        const deleteData = async () => {
+        const deleteRoom = async () => {
             try {
                 await fetch(url, {
                     method: 'DELETE',
@@ -176,7 +174,7 @@ export default function EditRoom() {
                     if (response.ok) {
                         showSuccessfulAlert();
                         router.push('/AdminPanel/Rooms')
-                    }else {
+                    } else {
                         showErrorAlert();
                     }
                 });
@@ -186,7 +184,7 @@ export default function EditRoom() {
             }
         }
 
-        deleteData();
+        deleteRoom();
     }
 
     function generateFloorSelect() {
@@ -253,7 +251,7 @@ export default function EditRoom() {
         }
 
         return (
-            <div className={"roomField"} style={{paddingLeft:'10vw'}}>
+            <div className={"roomField"} style={{paddingLeft: '10vw'}}>
                 Зображення:
                 <div style={{paddingTop: "2vh"}}>
                     {image}
@@ -264,7 +262,7 @@ export default function EditRoom() {
                         role={undefined}
                         variant="contained"
                         tabIndex={-1}
-                        startIcon={<CloudUploadIcon />}
+                        startIcon={<CloudUploadIcon/>}
                     >
                         Завантажити
                         <VisuallyHiddenInput accept={".jpg"} onChange={handleImageUpload} type="file"/>
@@ -302,6 +300,18 @@ export default function EditRoom() {
                 }
             })
         }
+    }
+
+    function getAllDistinctFields() {
+        let distinctData;
+
+        Object.keys(currentData).forEach((key) => {
+            if (currentData[key] != startData[key]) {
+                distinctData = {...distinctData, [key]: currentData[key]}
+            }
+        })
+
+        return distinctData;
     }
 
     function isDataEqual() {

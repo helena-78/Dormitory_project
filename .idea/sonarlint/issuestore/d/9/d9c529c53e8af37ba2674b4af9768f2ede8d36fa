@@ -1,0 +1,7 @@
+
+Pjavascript:S1128"/Remove this unused import of 'useSearchParams'.(Ã¾ÉÑüÿÿÿÿ
+[javascript:S1481":Remove the declaration of the unused 'studentId' variable.(œÙ¦âúÿÿÿÿ
+Xjavascript:S1854"7Remove this useless assignment to variable "studentId".(œÙ¦âúÿÿÿÿ
+:javascript:S125	"Remove this commented out code.(£ø¨í
+:javascript:S125)"Remove this commented out code.(¬Õ´Ÿ
+âjavascript:S6851z"ÅRedundant alt attribute. Screen-readers already announce `img` tags as an image. You don\u8217t need to use the words `image`, `photo,` or `picture` (or any specified custom words) in the alt prop.(ë¥“Â

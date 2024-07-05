@@ -28,12 +28,13 @@ export default function Page() {
     const fetchData = async () => {
         const result = await fetch(url)
             .then(response => response.json())
-            .finally(() => changeLoadingProcessState(false)).catch((reason) => {
+            .catch((reason) => {
                 showErrorAlert();
                 console.log(reason);
             });
 
         setCurrentData(result);
+        changeLoadingProcessState(false);
     }
 
     useEffect(() => {
@@ -67,18 +68,18 @@ export default function Page() {
     }
 
     function getRoomList() {
-            return (
-                <DynamicList
-                    icon={<NightShelterIcon sx={{color: '#FFFFFF', transform: 'scale(1.5)'}}></NightShelterIcon>}
-                    itemValues={currentData.map((room) => room.number)}
-                    dataLength={currentData.length}
-                    itemIDs={currentData.map((room) => room.room_id)}
-                    title={"кімнат"}
-                    itemName={"Кімната "}
-                    editComponentUrl={'/AdminPanel/Rooms/EditRoom'}
-                >
-                </DynamicList>
-            );
+        return (
+            <DynamicList
+                icon={<NightShelterIcon sx={{color: '#FFFFFF', transform: 'scale(1.5)'}}></NightShelterIcon>}
+                itemValues={currentData.map((room) => room.number)}
+                dataLength={currentData.length}
+                itemIDs={currentData.map((room) => room.room_id)}
+                title={"кімнат"}
+                itemName={"Кімната "}
+                editComponentUrl={'/AdminPanel/Rooms/EditRoom/'}
+            >
+            </DynamicList>
+        );
     }
 
     function showErrorAlert() {
@@ -88,6 +89,7 @@ export default function Page() {
     function changeLoadingProcessState(state) {
         loadingContext.setLoadingState(state);
     }
+
 }
 
 
