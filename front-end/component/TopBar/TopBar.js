@@ -53,7 +53,7 @@ export default function (props) {
                             localStorage.setItem('student_id', null);
                             setStudentId(null);
                          }  
-                        router.push('/')
+                        window.location.reload();
                         }}>
                         <div id={'loginImage'}>
                             <LogoutIcon sx={{color: '#1976d2'}}></LogoutIcon>
