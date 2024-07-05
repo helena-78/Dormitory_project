@@ -39,16 +39,16 @@ function generateListItems(props) {
             <div id={props.itemIDs[i]} className="listElement">
                 <ListItem
                     secondaryAction={
-                    <Link
-                        href={{
-                            pathname: props.editComponentUrl,
-                            query: "id=" + props.itemIDs[i]
-                        }}
-                    >
-                        <IconButton edge="end">
-                            <BorderColorIcon sx={{color: '#1976d2'}}></BorderColorIcon>
-                        </IconButton>
-                    </Link>
+                        <Link
+                            href={{
+                                pathname: props.editComponentUrl,
+                                query: "id=" + props.itemIDs[i]
+                            }}
+                        >
+                            <IconButton edge="end">
+                                <BorderColorIcon sx={{color: '#1976d2'}}></BorderColorIcon>
+                            </IconButton>
+                        </Link>
                     }
                 >
                     <ListItemAvatar>
@@ -63,11 +63,11 @@ function generateListItems(props) {
             </div>
     }
 
-    listItemsArray= listItemsArray.sort(sortList);
+    listItemsArray = listItemsArray.sort(sortList);
 
     return listItemsArray;
 
-    function sortList(listItem1, listItem2){
+    function sortList(listItem1, listItem2) {
         return parseInt(listItem1.props.id) - parseInt(listItem2.props.id);
     }
 }

@@ -24,7 +24,7 @@ const remote_url = process.env.NEXT_PUBLIC_API_URL;
 const applicationsENDPOINT = '/applications';
 const roomsENDPOINT = '/rooms/';
 const studentsENDPOINT = '/students/';
-const applicationENDPOINT = '/applications/';
+const bookingsENDPOINT = '/bookings/create/';
 const applicationsUrl = `${remote_url}${applicationsENDPOINT}`;
 const roomUrl = `${remote_url}${roomsENDPOINT}`;
 const studentUrl = `${remote_url}${studentsENDPOINT}`;
@@ -55,12 +55,13 @@ export default function Page() {
     const fetchApplicationsData = async () => {
         const result = await fetch(applicationsUrl)
             .then(response => response.json())
-            .finally(() => changeLoadingProcessState(false)).catch((reason) => {
+            .catch((reason) => {
                 showErrorAlert();
                 console.log(reason);
             });
 
         setApplicationsData(result);
+        changeLoadingProcessState(false);
     }
 
     const fetchStudentData = async (id) => {
@@ -85,11 +86,54 @@ export default function Page() {
         setRoomData(result);
     }
 
+    const deleteApplication = async () => {
+        const url = `${BASE_URL}${applicationsENDPOINT}` + applicationData.application_id + '/';
+
+        try {
+            await fetch(url, {
+                method: 'DELETE',
+            }).then((response) => {
+                if (response.ok) {
+                    showSuccessfulAlert();
+                    fetchApplicationsData();
+                } else {
+                    showErrorAlert();
+                }
+            });
+        } catch (error) {
+            console.log(error)
+            showErrorAlert();
+        }
+    }
+
+    const createBooking = async () => {
+        const url = `${BASE_URL}${bookingsENDPOINT}`;
+        let bookingData;
+
+        try {
+            await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(bookingData)
+            }).then((response) => {
+                if (response.ok) {
+                    showSuccessfulAlert();
+                } else {
+                    showErrorAlert();
+                }
+            });
+            await fetchApplicationsData();
+        } catch (error) {
+            showErrorAlert();
+        }
+    }
+
     useEffect(() => {
         changeLoadingProcessState(true);
         fetchApplicationsData()
     }, []);
-
 
     return (
         <Box sx={{paddingTop: '10%', paddingLeft: '10%', paddingRight: '10%'}}>
@@ -118,7 +162,7 @@ export default function Page() {
                                     </TableRow>
                                     <TableRow>
                                         <TableCell>Дата створення:</TableCell>
-                                        <TableCell>{applicationData.application_date.substring(0,10)}</TableCell>
+                                        <TableCell>{applicationData.application_date.substring(0, 10)}</TableCell>
                                     </TableRow>
                                     <TableRow>
                                         <TableCell>Студент: </TableCell>
@@ -151,18 +195,18 @@ export default function Page() {
                             <Button
                                 variant="contained"
                                 color="success"
-                                onClick={() => {
-                                }}
+                                onClick={handleButtonApproveClick}
                                 sx={{mt: 2, bgcolor: 'green'}}
+                                disabled={isApplicationSelected()}
                             >
                                 Підтвердити
                             </Button>
                             <Button
                                 variant="contained"
                                 color="error"
-                                onClick={() => {
-                                }}
+                                onClick={handleButtonRejectClick}
                                 sx={{mt: 2, bgcolor: 'red'}}
+                                disabled={isApplicationSelected()}
                             >
                                 Відхилити
                             </Button>
@@ -181,13 +225,39 @@ export default function Page() {
         }
     }
 
+    function handleButtonApproveClick() {
+
+    }
+
+    function handleButtonRejectClick() {
+        deleteApplication();
+    }
+
     async function displayApplication(application) {
         await Promise.all([fetchRoomData(application.room), fetchStudentData(application.student)]);
         setApplicationData(application);
     }
 
+    function isApplicationSelected() {
+        if (JSON.stringify(applicationData) != JSON.stringify({
+            application_id: "",
+            status: "",
+            application_date: "",
+            student: "",
+            room: ""
+        })) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     function showErrorAlert() {
         alertContext.setErrorOccurredState();
+    }
+
+    function showSuccessfulAlert() {
+        alertContext.setSuccessState();
     }
 
     function changeLoadingProcessState(state) {
