@@ -62,6 +62,7 @@ export default function Page() {
 
         setApplicationsData(result);
         changeLoadingProcessState(false);
+        console.log(getValidApplications());
     }
 
     const fetchStudentData = async (id) => {
@@ -141,12 +142,11 @@ export default function Page() {
                 <Grid item xs={6}>
                     <DynamicClickList
                         icon={<DescriptionIcon sx={{color: '#FFFFFF', transform: 'scale(1.5)'}}/>}
-                        items={applicationsData.map((application) => `ID:${application.application_id}
-                        Кімната ID: ${application.room}`)}
-                        data={applicationsData}
+                        items={getValidApplications().map((application)=> `ID:${application.application_id} Кімната ID: ${application.room}`)}
+                        data={getValidApplications()}
                         title={"заяв"}
                         itemName={"Заява "}
-                        itemIDs={applicationsData.map((application) => application.application_id)}
+                        itemIDs={getValidApplications().map((application)=>application.application_id)}
                         onItemClick={handleItemClick}
                     />
                 </Grid>
@@ -250,6 +250,18 @@ export default function Page() {
         } else {
             return true;
         }
+    }
+
+    function getValidApplications(){
+        let validApplications= [];
+
+         applicationsData.map(function (application){
+            if(application.room!=null){
+                 validApplications.push(application);
+            }
+        })
+
+        return validApplications;
     }
 
     function showErrorAlert() {

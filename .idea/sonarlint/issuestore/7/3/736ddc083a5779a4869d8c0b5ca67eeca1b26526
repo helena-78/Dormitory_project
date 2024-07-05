@@ -1,7 +1,8 @@
 
-zjavascript:S1128",Remove this unused import of 'commonStyles'.(ê„Îûûÿÿÿÿ8ßÓ¶ş‡2J$a7263f35-bf3a-486a-8603-3bbd49113860
-tjavascript:S1128"&Remove this unused import of 'styles'.(ØöüŞùÿÿÿÿ8àÓ¶ş‡2J$d64a6068-1869-4011-89e1-2c7ed06250d7
-Œjavascript:S1481m">Remove the declaration of the unused 'createBooking' variable.( Ûıüÿÿÿÿ8àÓ¶ş‡2J$e7e39ad4-a173-43cf-9e4a-9986a1e68676
-‰javascript:S1854m";Remove this useless assignment to variable "createBooking".( Ûıüÿÿÿÿ8àÓ¶ş‡2J$368c4000-7e54-46a3-a965-ec4f6712ea0a
-javascript:S1186ä"5Unexpected empty function 'handleButtonApproveClick'.(½ì–ü8àÓ¶ş‡2J$06c72707-0207-430d-8bab-e10cc8fa633b
-†javascript:S1126ò"<Replace this if-then-else flow by a single return statement.(§‡§„8àÓ¶ş‡2J$489ecd99-361b-4867-9867-ff2cf07eba6c
+zjavascript:S1128",Remove this unused import of 'commonStyles'.(ê„Îûûÿÿÿÿ8µ½ ™ˆ2J$d4a9305e-c5e0-4bd4-911e-7c91332a5dd8
+tjavascript:S1128"&Remove this unused import of 'styles'.(ØöüŞùÿÿÿÿ8µ½ ™ˆ2J$90490686-324f-4f5a-a59d-5a6620f887ec
+Œjavascript:S1481n">Remove the declaration of the unused 'createBooking' variable.( Ûıüÿÿÿÿ8µ½ ™ˆ2J$801b30f3-d479-4e64-97a7-18dbac9aa09a
+‰javascript:S1854n";Remove this useless assignment to variable "createBooking".( Ûıüÿÿÿÿ8µ½ ™ˆ2J$662167ab-b616-400b-ad67-58c14495609f
+javascript:S1186ä"5Unexpected empty function 'handleButtonApproveClick'.(½ì–ü8µ½ ™ˆ2J$99977545-8931-4a22-b415-c82f36757742
+†javascript:S1126ò"<Replace this if-then-else flow by a single return statement.(§‡§„8µ½ ™ˆ2J$4b49aa08-ca4a-4d7b-8490-e60c73933319
+tjavascript:S3796‚"*Add a "return" statement to this callback.(«‹¥”8µ½ ™ˆ2J$835fa655-e004-45cf-9a40-746dbbb310b5
