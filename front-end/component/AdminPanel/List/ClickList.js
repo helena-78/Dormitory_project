@@ -37,7 +37,7 @@ function generateListItems(props) {
 
     for (let i = 0; i < props.data.length; i++) {
         listItemsArray[i] =
-            <div key={i} id={props.itemIDs[i]} className="listElement" onClick={props.onItemClick}>
+            <div key={i} className="listElement" onClick={() => props.onItemClick(props.data[i].student_id)}>
                 <ListItem
                     secondaryAction={
                         <IconButton edge="end">

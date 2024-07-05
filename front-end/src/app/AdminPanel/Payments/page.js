@@ -120,7 +120,7 @@ export default function Page() {
 
     const dismissBill = async (billId) => {
         try {
-            const response = await fetch(`${BILLS_API}${billId}/`, {
+            const response = await fetch(`${BILLS_API_remote}${billId}/`, {
                 method: 'DELETE',
             }) 
             if (!response.ok) {
@@ -143,7 +143,7 @@ export default function Page() {
     const handleItemClick = (studentId) => {
         const student = students.find(student => student.student_id === studentId) 
         const bill = bills.find(bill => bill.student_id === studentId) 
-        setSelectedStudent({ ...student, dept: bill.dept, bill_id: bill.bill_id }) 
+        setSelectedStudent({ ...student, dept: bill.debt, bill_id: bill.bill_id }) 
     } 
 
     return (
@@ -156,7 +156,6 @@ export default function Page() {
                         data={studentsWithBills}
                         title={"студентів"}
                         itemName={"Студент "}
-                        itemIDs={studentsWithBills.map((student)=> student.student_id)}
                         onItemClick={handleItemClick}
                     />
                 </Grid>
