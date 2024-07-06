@@ -1,8 +1,7 @@
 
-zjavascript:S1128",Remove this unused import of 'commonStyles'.(ê„Îûûÿÿÿÿ8µ½ ™ˆ2J$d4a9305e-c5e0-4bd4-911e-7c91332a5dd8
-tjavascript:S1128"&Remove this unused import of 'styles'.(ØöüŞùÿÿÿÿ8µ½ ™ˆ2J$90490686-324f-4f5a-a59d-5a6620f887ec
-Œjavascript:S1481n">Remove the declaration of the unused 'createBooking' variable.( Ûıüÿÿÿÿ8µ½ ™ˆ2J$801b30f3-d479-4e64-97a7-18dbac9aa09a
-‰javascript:S1854n";Remove this useless assignment to variable "createBooking".( Ûıüÿÿÿÿ8µ½ ™ˆ2J$662167ab-b616-400b-ad67-58c14495609f
-javascript:S1186ä"5Unexpected empty function 'handleButtonApproveClick'.(½ì–ü8µ½ ™ˆ2J$99977545-8931-4a22-b415-c82f36757742
-†javascript:S1126ò"<Replace this if-then-else flow by a single return statement.(§‡§„8µ½ ™ˆ2J$4b49aa08-ca4a-4d7b-8490-e60c73933319
-tjavascript:S3796‚"*Add a "return" statement to this callback.(«‹¥”8µ½ ™ˆ2J$835fa655-e004-45cf-9a40-746dbbb310b5
+zjavascript:S1128",Remove this unused import of 'commonStyles'.(ê„Îûûÿÿÿÿ8¶–’¥ˆ2J$de3ec6db-c3ed-4391-9c70-216c76b0a7ab
+tjavascript:S1128"&Remove this unused import of 'styles'.(ØöüŞùÿÿÿÿ8¶–’¥ˆ2J$5fd97c46-8189-44a6-a231-235288fd3756
+Àjavascript:S4822Ö"qConsider using 'await' for the promise inside this 'try' or replace it with 'Promise.prototype.catch(...)' usage.(¡»¢üùÿÿÿÿ8ƒµ¥ˆ2J$f4a95b93-47ce-43b0-b367-149358015f64
+^javascript:S108Ú"Empty block statement.(åÉ‚i8²ø°¥ˆ2J$30ba9e56-9b6b-4de1-a0fc-f808e9061c4d
+Àjavascript:S4822é"qConsider using 'await' for the promise inside this 'try' or replace it with 'Promise.prototype.catch(...)' usage.(¡»¢üùÿÿÿÿ8ƒµ¥ˆ2J$75ee5962-3c2f-40ac-8061-bc6f6439a288
+†javascript:S1126€"<Replace this if-then-else flow by a single return statement.(§‡§„8ƒµ¥ˆ2J$e1daf229-0e1d-4b4f-b52b-88f51c586b1d

@@ -19,7 +19,6 @@ import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import Button from "@mui/material/Button";
 
-const BASE_URL = 'http://127.0.0.1:8000';
 const remote_url = process.env.NEXT_PUBLIC_API_URL;
 const applicationsENDPOINT = '/applications';
 const roomsENDPOINT = '/rooms/';
@@ -28,27 +27,31 @@ const bookingsENDPOINT = '/bookings/create/';
 const applicationsUrl = `${remote_url}${applicationsENDPOINT}`;
 const roomUrl = `${remote_url}${roomsENDPOINT}`;
 const studentUrl = `${remote_url}${studentsENDPOINT}`;
+const initialApplicationsDataState = [];
+const initialApplicationDataState = {
+    application_id: "",
+    status: "",
+    application_date: "",
+    student: "",
+    room: ""
+};
+const initialRoomDataState = {
+    room_id: "",
+    number: "",
+    available_places: "",
+    floor: ""
+};
+const initialStudentDataState = {
+    student_id: "",
+    name: "",
+    surname: ""
+};
 
 export default function Page() {
-    const [applicationsData, setApplicationsData] = useState([]);
-    const [applicationData, setApplicationData] = useState({
-        application_id: "",
-        status: "",
-        application_date: "",
-        student: "",
-        room: ""
-    });
-    const [roomData, setRoomData] = useState({
-        room_id: "",
-        number: "",
-        available_places: "",
-        floor: ""
-    });
-    const [studentData, setStudentData] = useState({
-        student_id: "",
-        name: "",
-        surname: ""
-    });
+    const [applicationsData, setApplicationsData] = useState(initialApplicationsDataState);
+    const [applicationData, setApplicationData] = useState(initialApplicationDataState);
+    const [roomData, setRoomData] = useState(initialRoomDataState);
+    const [studentData, setStudentData] = useState(initialStudentDataState);
     const alertContext = useContext(AlertContext);
     const loadingContext = useContext(LoadingContext);
 
@@ -60,9 +63,9 @@ export default function Page() {
                 console.log(reason);
             });
 
-        setApplicationsData(result);
+        setApplicationsData(getValidApplications(result));
+        console.log(applicationsData)
         changeLoadingProcessState(false);
-        console.log(getValidApplications());
     }
 
     const fetchStudentData = async (id) => {
@@ -88,47 +91,29 @@ export default function Page() {
     }
 
     const deleteApplication = async () => {
-        const url = `${BASE_URL}${applicationsENDPOINT}` + applicationData.application_id + '/';
+        const url = `${remote_url}/applications/${applicationData.application_id}/delete/`;
+        let result = await fetch(url, {method: 'DELETE'});
 
-        try {
-            await fetch(url, {
-                method: 'DELETE',
-            }).then((response) => {
-                if (response.ok) {
-                    showSuccessfulAlert();
-                    fetchApplicationsData();
-                } else {
-                    showErrorAlert();
-                }
-            });
-        } catch (error) {
-            console.log(error)
-            showErrorAlert();
-        }
+        return result;
     }
 
     const createBooking = async () => {
-        const url = `${BASE_URL}${bookingsENDPOINT}`;
-        let bookingData;
+        const url = `${remote_url}${bookingsENDPOINT}`;
+        let bookingData = JSON.stringify({
+            confirmation_status: "Pending",
+            room: roomData.room_id,
+            student: studentData.student_id
+        });
 
-        try {
-            await fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(bookingData)
-            }).then((response) => {
-                if (response.ok) {
-                    showSuccessfulAlert();
-                } else {
-                    showErrorAlert();
-                }
-            });
-            await fetchApplicationsData();
-        } catch (error) {
-            showErrorAlert();
-        }
+        let result = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(bookingData)
+        });
+
+        return result;
     }
 
     useEffect(() => {
@@ -142,11 +127,11 @@ export default function Page() {
                 <Grid item xs={6}>
                     <DynamicClickList
                         icon={<DescriptionIcon sx={{color: '#FFFFFF', transform: 'scale(1.5)'}}/>}
-                        items={getValidApplications().map((application)=> `ID:${application.application_id} Кімната ID: ${application.room}`)}
-                        data={getValidApplications()}
+                        items={applicationsData.map((application) => `ID:${application.application_id} Кімната ID: ${application.room}`)}
+                        data={applicationsData}
                         title={"заяв"}
                         itemName={"Заява "}
-                        itemIDs={getValidApplications().map((application)=>application.application_id)}
+                        itemIDs={applicationsData.map((application) => application.application_id)}
                         onItemClick={handleItemClick}
                     />
                 </Grid>
@@ -226,11 +211,40 @@ export default function Page() {
     }
 
     function handleButtonApproveClick() {
-
+        try {
+            createBooking().then((response) => {
+                    if (response.ok) {
+                        deleteApplication().then((response)=>{
+                            if(response.ok){}
+                            showSuccessfulAlert();
+                        })
+                    } else {
+                        showErrorAlert();
+                    }
+                }
+            )
+        } catch (e) {
+            console.log(e);
+            showErrorAlert();
+        }
     }
 
     function handleButtonRejectClick() {
-        deleteApplication();
+        try {
+            deleteApplication().then((response) => {
+                if (response.ok) {
+                    showSuccessfulAlert()
+                    changeLoadingProcessState(true);
+                    refreshPage().finally(()=>changeLoadingProcessState(false));
+
+                } else {
+                    showErrorAlert();
+                }
+            })
+        } catch (e) {
+            console.log(e);
+            showErrorAlert();
+        }
     }
 
     async function displayApplication(application) {
@@ -252,12 +266,21 @@ export default function Page() {
         }
     }
 
-    function getValidApplications(){
-        let validApplications= [];
+    async function nullApplicationTable(){
+        await Promise.all([setApplicationData(initialApplicationDataState), setRoomData(initialRoomDataState)
+            ,setStudentData(initialStudentDataState)]);
+    }
 
-         applicationsData.map(function (application){
-            if(application.room!=null){
-                 validApplications.push(application);
+    async function refreshPage(){
+        await Promise.all([fetchApplicationsData(), nullApplicationTable()])
+    }
+
+    function getValidApplications(applications) {
+        let validApplications = [];
+
+        applications.map(function (application) {
+            if (application.room != null && application.student != null) {
+                validApplications.push(application);
             }
         })
 

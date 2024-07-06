@@ -9,7 +9,7 @@ class Student(models.Model):
     contact_number = models.CharField(max_length=10, null=True, blank=True)   
     gender = models.TextField(choices=[('Male', 'Male'), ('Female', 'Female')])
     room = models.ForeignKey('Room', null=True, blank=True, on_delete=models.SET_NULL)
-    application = models.ForeignKey('Application', null=True, blank=True, on_delete=models.SET_NULL, related_name='students')
+    application = models.ForeignKey('status_check.Application', null=True, blank=True, on_delete=models.SET_NULL, related_name='students')
     password = models.TextField()
 
 class Room(models.Model):
@@ -20,15 +20,6 @@ class Room(models.Model):
     images = models.BinaryField(null=True, blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=0)
     gender = models.TextField(choices=[('Male', 'Male'), ('Female', 'Female')])
-
-class Application(models.Model):
-    application_id = models.BigAutoField(primary_key=True)
-    student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='applications')
-    room = models.ForeignKey(Room, null=True, blank=True, on_delete=models.CASCADE)
-    status = models.TextField(choices=[('Submitted', 'Submitted'), ('Approved', 'Approved'), ('Rejected', 'Rejected')])
-    application_date = models.DateTimeField(auto_now_add=True)
-    desired_roommate1 = models.TextField(null=True, blank=True)
-    desired_roommate2 = models.TextField(null=True, blank=True)
 
 class Booking(models.Model):
     booking_id = models.BigAutoField(primary_key=True)

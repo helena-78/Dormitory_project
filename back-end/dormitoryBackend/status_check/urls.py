@@ -7,5 +7,5 @@ urlpatterns = [
     path('applications/create/', create_application, name='create-application'),
     path('applications/<int:pk>/', get_application, name='get-application'),
     path('applications/<int:pk>/update/', update_application_status, name='update-application-status'),
-    path('applications/<int:pk>/', delete_application, name='delete_application'),
+    path('applications/<int:pk>/delete/', delete_application, name='delete_application'),
 ]
