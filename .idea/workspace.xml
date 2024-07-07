@@ -6,9 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="aac95de3-22e8-4717-8dd6-c55d8b1ea068" name="Changes" comment="fixed displaying null applications">
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/3/736ddc083a5779a4869d8c0b5ca67eeca1b26526" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/3/736ddc083a5779a4869d8c0b5ca67eeca1b26526" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/c/8c8c15d7efd22d88beeacc600ca888bf27bdd636" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/c/8c8c15d7efd22d88beeacc600ca888bf27bdd636" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/f/ef09486c70c94c76fdb4a2eb9d6c67d7c98a4ba4" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/f/ef09486c70c94c76fdb4a2eb9d6c67d7c98a4ba4" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Applications/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Applications/page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Rooms/EditRoom/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Rooms/EditRoom/page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Students/EditStudent/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Students/EditStudent/page.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,7 +161,10 @@
       <workItem from="1720190716882" duration="478000" />
       <workItem from="1720202673536" duration="6023000" />
       <workItem from="1720214568743" duration="622000" />
-      <workItem from="1720293894434" duration="481000" />
+      <workItem from="1720293894434" duration="1354000" />
+      <workItem from="1720342914427" duration="371000" />
+      <workItem from="1720351825534" duration="602000" />
+      <workItem from="1720381365599" duration="5528000" />
     </task>
     <task id="LOCAL-00001" summary="Added TopBar">
       <option name="closed" value="true" />

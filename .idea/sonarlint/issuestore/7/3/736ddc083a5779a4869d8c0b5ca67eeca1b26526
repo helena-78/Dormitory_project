@@ -1,7 +1,8 @@
 
-zjavascript:S1128",Remove this unused import of 'commonStyles'.(ê„Îûûÿÿÿÿ8¶–’¥ˆ2J$de3ec6db-c3ed-4391-9c70-216c76b0a7ab
-tjavascript:S1128"&Remove this unused import of 'styles'.(ØöüÞùÿÿÿÿ8¶–’¥ˆ2J$5fd97c46-8189-44a6-a231-235288fd3756
-Àjavascript:S4822Ö"qConsider using 'await' for the promise inside this 'try' or replace it with 'Promise.prototype.catch(...)' usage.(¡»¢üùÿÿÿÿ8ƒµž¥ˆ2J$f4a95b93-47ce-43b0-b367-149358015f64
-^javascript:S108Ú"Empty block statement.(åÉ‚i8²ø°¥ˆ2J$30ba9e56-9b6b-4de1-a0fc-f808e9061c4d
-Àjavascript:S4822é"qConsider using 'await' for the promise inside this 'try' or replace it with 'Promise.prototype.catch(...)' usage.(¡»¢üùÿÿÿÿ8ƒµž¥ˆ2J$75ee5962-3c2f-40ac-8061-bc6f6439a288
-†javascript:S1126€"<Replace this if-then-else flow by a single return statement.(§‡§„8ƒµž¥ˆ2J$e1daf229-0e1d-4b4f-b52b-88f51c586b1d
+zjavascript:S1128",Remove this unused import of 'commonStyles'.(ê„Îûûÿÿÿÿ8À¬³÷ˆ2J$a57f04eb-832d-49c7-b307-d101dbcdafa8
+tjavascript:S1128"&Remove this unused import of 'styles'.(ØöüÞùÿÿÿÿ8À¬³÷ˆ2J$300a696f-7ebd-43af-95ea-ffac3a66f478
+Àjavascript:S4822ä"qConsider using 'await' for the promise inside this 'try' or replace it with 'Promise.prototype.catch(...)' usage.(¡»¢üùÿÿÿÿ8Á¬³÷ˆ2J$9f623450-5613-424d-a97e-422904e70de7
+_javascript:S108è"Empty block statement.(¸ÁñÊ8Á¬³÷ˆ2J$5246a655-6860-40ca-827f-3762782add2d
+javascript:S2004ì"ARefactor this code to not nest functions more than 4 levels deep.(¹òèßüÿÿÿÿ8ºŽÝúˆ2J$a702791b-5ef3-4dad-a416-d144c0612514
+Àjavascript:S4822ú"qConsider using 'await' for the promise inside this 'try' or replace it with 'Promise.prototype.catch(...)' usage.(¡»¢üùÿÿÿÿ8Á¬³÷ˆ2J$d41a7a13-0540-4dbb-a709-819b5e67a510
+†javascript:S1126"<Replace this if-then-else flow by a single return statement.(§‡§„8Á¬³÷ˆ2J$06339a01-71e4-43f9-9ae8-9fbe0161370e

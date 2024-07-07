@@ -21,10 +21,12 @@ import Button from "@mui/material/Button";
 
 const remote_url = process.env.NEXT_PUBLIC_API_URL;
 const applicationsENDPOINT = '/applications';
+const applicationENDPOINT = '/applications/';
 const roomsENDPOINT = '/rooms/';
 const studentsENDPOINT = '/students/';
 const bookingsENDPOINT = '/bookings/create/';
 const applicationsUrl = `${remote_url}${applicationsENDPOINT}`;
+const applicationUrl = `${remote_url}${applicationENDPOINT}`;
 const roomUrl = `${remote_url}${roomsENDPOINT}`;
 const studentUrl = `${remote_url}${studentsENDPOINT}`;
 const initialApplicationsDataState = [];
@@ -58,20 +60,20 @@ export default function Page() {
     const fetchApplicationsData = async () => {
         const result = await fetch(applicationsUrl)
             .then(response => response.json())
+            .finally(() => changeLoadingProcessState(false))
             .catch((reason) => {
                 showErrorAlert();
                 console.log(reason);
             });
 
         setApplicationsData(getValidApplications(result));
-        console.log(applicationsData)
-        changeLoadingProcessState(false);
+        console.log(applicationsData);
     }
 
     const fetchStudentData = async (id) => {
         const result = await fetch(studentUrl + id)
             .then(response => response.json())
-            .finally(() => changeLoadingProcessState(false)).catch((reason) => {
+            .catch((reason) => {
                 showErrorAlert();
                 console.log(reason);
             });
@@ -82,13 +84,25 @@ export default function Page() {
     const fetchRoomData = async (id) => {
         const result = await fetch(roomUrl + id)
             .then(response => response.json())
-            .finally(() => changeLoadingProcessState(false)).catch((reason) => {
+            .catch((reason) => {
                 showErrorAlert();
                 console.log(reason);
             });
 
         setRoomData(result);
     }
+
+    const fetchApplicationData = async (id) => {
+        const result = await fetch(applicationUrl + id)
+            .then(response => response.json())
+            .catch((reason) => {
+                showErrorAlert();
+                console.log(reason);
+            });
+
+        setApplicationData(result);
+    }
+
 
     const deleteApplication = async () => {
         const url = `${remote_url}/applications/${applicationData.application_id}/delete/`;
@@ -110,7 +124,7 @@ export default function Page() {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(bookingData)
+            body: bookingData
         });
 
         return result;
@@ -214,9 +228,12 @@ export default function Page() {
         try {
             createBooking().then((response) => {
                     if (response.ok) {
-                        deleteApplication().then((response)=>{
-                            if(response.ok){}
+                        deleteApplication().then((response) => {
+                            if (response.ok) {
+                            }
                             showSuccessfulAlert();
+                            changeLoadingProcessState(true);
+                            refreshPage().finally(() => changeLoadingProcessState(false));
                         })
                     } else {
                         showErrorAlert();
@@ -235,7 +252,7 @@ export default function Page() {
                 if (response.ok) {
                     showSuccessfulAlert()
                     changeLoadingProcessState(true);
-                    refreshPage().finally(()=>changeLoadingProcessState(false));
+                    refreshPage().finally(() => changeLoadingProcessState(false));
 
                 } else {
                     showErrorAlert();
@@ -248,8 +265,7 @@ export default function Page() {
     }
 
     async function displayApplication(application) {
-        await Promise.all([fetchRoomData(application.room), fetchStudentData(application.student)]);
-        setApplicationData(application);
+        await Promise.all([fetchApplicationData(application.application_id), fetchRoomData(application.room), fetchStudentData(application.student)]);
     }
 
     function isApplicationSelected() {
@@ -266,12 +282,12 @@ export default function Page() {
         }
     }
 
-    async function nullApplicationTable(){
+    async function nullApplicationTable() {
         await Promise.all([setApplicationData(initialApplicationDataState), setRoomData(initialRoomDataState)
-            ,setStudentData(initialStudentDataState)]);
+            , setStudentData(initialStudentDataState)]);
     }
 
-    async function refreshPage(){
+    async function refreshPage() {
         await Promise.all([fetchApplicationsData(), nullApplicationTable()])
     }
 
