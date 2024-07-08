@@ -106,7 +106,14 @@ export default function AddRoom() {
 
     function handleSubmit(e) {
         e.preventDefault();
-        console.log(data)
+        let requestBody;
+
+        if (data.images == '/images/emptyImage.jpg') {
+            requestBody = JSON.stringify({...data, images: null});
+        } else {
+            requestBody = JSON.stringify(data);
+        }
+
         const postData = async () => {
             try {
                 await fetch(url, {
@@ -114,7 +121,7 @@ export default function AddRoom() {
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify(data)
+                    body: requestBody
                 }).then(response => response.json());
                 router.push('/AdminPanel/Rooms')
                 showSuccessfulAlert();
@@ -162,10 +169,12 @@ export default function AddRoom() {
 
         if (data.images !== null) {
             image = <Image src={data.images} alt={""} height={"400"} width={"400"}/>;
+        } else {
+            image = <Image src={'/images/emptyImage.jpg'} alt={""} height={"400"} width={"400"}/>;
         }
 
         return (
-            <div className={"roomField"} style={{paddingLeft:'10vw'}}>
+            <div className={"roomField"} style={{paddingLeft: '10vw'}}>
                 Зображення:
                 <div style={{paddingTop: "2vh"}}>
                     {image}

@@ -36,7 +36,7 @@ function generateListItems(props) {
 
     for (let i = 0; i < props.dataLength; i++) {
         listItemsArray[i] =
-            <div id={props.itemIDs[i]} className="listElement">
+            <div id={props.itemIDs[i]}  key={props.itemIDs[i]} className="listElement">
                 <ListItem
                     secondaryAction={
                         <Link

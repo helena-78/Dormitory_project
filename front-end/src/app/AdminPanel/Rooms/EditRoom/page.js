@@ -39,6 +39,7 @@ export default function EditRoom() {
     const router = useRouter();
 
     const fetchData = async () => {
+        let fetchedData;
         const result = await fetch(url)
             .then(response => response.json())
             .catch((reason) => {
@@ -46,7 +47,12 @@ export default function EditRoom() {
                 showErrorAlert();
             });
 
-        let fetchedData = {...result, images: 'data:image/jpeg;base64,' + result.images};
+        if (result.images == null) {
+            fetchedData = result
+        } else {
+            fetchedData = {...result, images: 'data:image/jpeg;base64,' + result.images};
+        }
+
         startData = fetchedData;
         setCurrentData(fetchedData);
         changeLoadingProcessState(false);
@@ -248,7 +254,10 @@ export default function EditRoom() {
 
         if (currentData.images !== null) {
             image = <Image src={currentData.images} alt={""} height={"400"} width={"400"}/>;
+        } else {
+            image = <Image src={'/images/emptyImage.jpg'} alt={""} height={"400"} width={"400"}/>;
         }
+
 
         return (
             <div className={"roomField"} style={{paddingLeft: '10vw'}}>

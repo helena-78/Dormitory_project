@@ -4,12 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aac95de3-22e8-4717-8dd6-c55d8b1ea068" name="Changes" comment="added approve and reject button handlers for admin page applications">
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/a/5a7eb2063016ac464edf81781c4bb9c78de713cd" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/a/5a7eb2063016ac464edf81781c4bb9c78de713cd" afterDir="false" />
+    <list default="true" id="aac95de3-22e8-4717-8dd6-c55d8b1ea068" name="Changes" comment="admin student isnt displayed">
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/1/31807a73150311500d51158f97cb5a84eb46ba3a" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/1/31807a73150311500d51158f97cb5a84eb46ba3a" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/f/7fa41be335568342bf401d619d7e21b88fa3ee56" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/f/7fa41be335568342bf401d619d7e21b88fa3ee56" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/c/8c8c15d7efd22d88beeacc600ca888bf27bdd636" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/c/8c8c15d7efd22d88beeacc600ca888bf27bdd636" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/f/ef09486c70c94c76fdb4a2eb9d6c67d7c98a4ba4" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/f/ef09486c70c94c76fdb4a2eb9d6c67d7c98a4ba4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/component/AdminPanel/List/DynamicList.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/component/AdminPanel/List/DynamicList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Rooms/AddRoom/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Rooms/AddRoom/page.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Rooms/EditRoom/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Rooms/EditRoom/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Students/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Students/page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Rooms/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/src/app/AdminPanel/Rooms/page.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,7 +169,8 @@
       <workItem from="1720342914427" duration="371000" />
       <workItem from="1720351825534" duration="602000" />
       <workItem from="1720381365599" duration="5679000" />
-      <workItem from="1720443509885" duration="2391000" />
+      <workItem from="1720443509885" duration="2526000" />
+      <workItem from="1720454255834" duration="1308000" />
     </task>
     <task id="LOCAL-00001" summary="Added TopBar">
       <option name="closed" value="true" />
@@ -325,7 +332,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720393131104</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="admin student isnt displayed">
+      <option name="closed" value="true" />
+      <created>1720447483179</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1720447483179</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -360,6 +375,7 @@
     <MESSAGE value="changed patch" />
     <MESSAGE value="fixed displaying null applications" />
     <MESSAGE value="added approve and reject button handlers for admin page applications" />
-    <option name="LAST_COMMIT_MESSAGE" value="added approve and reject button handlers for admin page applications" />
+    <MESSAGE value="admin student isnt displayed" />
+    <option name="LAST_COMMIT_MESSAGE" value="admin student isnt displayed" />
   </component>
 </project>
