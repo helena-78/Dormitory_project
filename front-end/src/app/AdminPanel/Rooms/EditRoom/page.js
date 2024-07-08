@@ -310,6 +310,7 @@ export default function EditRoom() {
                 distinctData = {...distinctData, [key]: currentData[key]}
             }
         })
+
         distinctData = {...distinctData, images: currentData.images}
 
         return distinctData;

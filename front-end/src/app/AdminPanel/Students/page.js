@@ -26,7 +26,7 @@ export default function Page() {
                 console.log(reason);
             });
 
-        setCurrentData(result);
+        setCurrentData(getValidStudents(result));
     }
 
     useEffect(() => {
@@ -54,6 +54,18 @@ export default function Page() {
             >
             </DynamicList>
         );
+    }
+
+    function getValidStudents(students) {
+        let validStudents = [];
+
+        for (const student of students) {
+            if (student.student_id != 1) {
+                validStudents.push(student);
+            }
+        }
+
+        return validStudents;
     }
 
     function showErrorAlert() {

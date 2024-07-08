@@ -165,7 +165,7 @@ export default function Page() {
                                     </TableRow>
                                     <TableRow>
                                         <TableCell>Студент: </TableCell>
-                                        <TableCell>{studentData.name + "" + studentData.surname}</TableCell>
+                                        <TableCell>{studentData.name + " " + studentData.surname}</TableCell>
                                     </TableRow>
                                     <TableRow>
                                         <TableCell>ID студента:</TableCell>
