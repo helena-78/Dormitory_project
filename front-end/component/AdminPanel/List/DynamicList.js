@@ -46,6 +46,7 @@ const getTableHead = (title) => {
                 <TableCell>Контактний номер</TableCell>
                 <TableCell>Id кімнати</TableCell>
                 <TableCell>Id аплікації</TableCell>
+                <TableCell>Стать</TableCell>
                 <TableCell>Дії</TableCell>
             </TableRow>
         )
@@ -160,6 +161,7 @@ function generateListItems(props, title) {
                     <TableCell>{props.items[i].contact_number}</TableCell>
                     <TableCell>{props.items[i].room_id}</TableCell>
                     <TableCell>{props.items[i].application_id}</TableCell>
+                    <TableCell>{props.items[i].gender}</TableCell>
                     <TableCell>
                         <IconButton edge="end" onClick={() => {router.push(`/AdminPanel/Students/EditStudent/${props.items[i].student_id}`)}}>               
                             <BorderColorIcon sx={{color: '#1976d2'}}></BorderColorIcon>          
@@ -194,10 +196,6 @@ function generateListItems(props, title) {
         }
     }
     return listItemsArray;
-
-    function sortList(listItem1, listItem2){
-        return parseInt(listItem1.props.id) - parseInt(listItem2.props.id);
-    }
 }
 
 
