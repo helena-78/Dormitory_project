@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import DynamicList from '../../../../component/AdminPanel/List/DynamicList';
 import ArticleIcon from '@mui/icons-material/Article';
 import { DynamicSelect } from '../../../../component/AdminPanel/Select/DynamicSelect';
+import ClickList from 'component/AdminPanel/List/ClickList';
 
 const BASE_URL = 'http://174.129.65.133:8000';
 
@@ -66,7 +67,7 @@ const BookingsPage = () => {
         ) : error ? (
           <p>Error: {error}</p>
         ) : (
-          <DynamicList
+          <ClickList
             icon={<ArticleIcon sx={{color: '#FFFFFF', transform: 'scale(1.4)'}}></ArticleIcon>}
             items={bookings.map(booking => {
               const studentName = getStudentName(booking.student);
@@ -75,12 +76,14 @@ const BookingsPage = () => {
             })}
             data={bookings}
             title={"бронювань"}
-            itemName={"Бронювання"}
+            itemName={"Бронювання "}
+            onItemClick={() => {}}
           />
         )}
       </Box>
     </>
   );
 };
+
 
 export default BookingsPage;
