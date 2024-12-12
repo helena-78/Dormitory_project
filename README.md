@@ -1,2 +1,2 @@
 # Dormitory_project
-The aim of the project is to create an online check-in platform for student dormitory.
+This is a work done by 3rd year students of Computer Science major. The project consists in a platform for an online check-in to student's dormitory.
